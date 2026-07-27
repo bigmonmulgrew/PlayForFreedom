@@ -61,6 +61,7 @@
   <Project Path="Unity.Services.Core.Configuration.csproj" />
   <Project Path="Unity.InternalAPIEditorBridgeDev.001.csproj" />
   <Project Path="Unity.ProBuilder.KdTree.csproj" />
+  <Project Path="BMD.CharacterController.Runtime.csproj" />
   <Project Path="Unity.ProBuilder.AddOns.Editor.csproj" />
   <Project Path="Unity.Services.Core.Environments.Internal.csproj" />
   <Project Path="Unity.InputSystem.ForUI.csproj" />
@@ -87,5 +88,6 @@
   <Project Path="Unity.Services.Core.Networking.csproj" />
   <Project Path="Unity.VisualScripting.DocCodeExamples.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />
+  <Project Path="BMD.CharacterController.Editor.csproj" />
   <Project Path="Unity.Services.Core.Environments.csproj" />
 </Solution>

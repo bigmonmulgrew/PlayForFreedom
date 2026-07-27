@@ -1,0 +1,425 @@
+using System;
+using System.Collections;
+using UnityEngine;
+using System.Collections.Generic;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+namespace BMD
+{
+    [RequireComponent(typeof(UnityEngine.CharacterController))] // Ensure that a CharacterController component is attached
+    public abstract class CharacterController : MonoBehaviour
+    {
+        private readonly Dictionary<Type, ICharacterModule> modules = new();
+
+        #region Actions
+        public event Action<CharacterState> OnStateChanged;
+        public event Action<Vector3> OnMoveDirectionChanged;
+        public event Action<float> OnZoomChanged;
+        public event Action OnJumpRequested;    // Event fdired attempting to jump
+        public event Action OnJumpPerformed;    // Event fired when jump is performed
+        public event Action OnJumpLanded;       // Evenet fires when character lands
+
+        public event Action OnSprintDown;
+        public event Action OnSprintUp;
+
+        public event Action OnRollRequested;    // Event fired attempting to roll
+        public event Action OnRollPerformed;    // Event fired when roll is performed
+        public event Action OnRollEnded;        // Event fired when roll ends
+
+        public event Action OnDodgeRequested;   // Event fired attempting to dodge
+        public event Action OnDodgePerformed;    // Event fired when dodge is performed
+        public event Action OnDodgeEnded;        // Event fired when dodge ends
+
+        public event Action OnDieRequested;     
+        public event Action OnDiePerformed;     
+        public event Action OnDieEnded;
+
+        public event Action OnAttackRequested;
+        public event Action OnAttackPerformed;
+        public event Action OnAttackEnded;
+
+        public event Action OnSpecialAttackRequested;
+        public event Action OnSpecialAttackPerformed;
+        public event Action OnSpecialAttackEnded;
+
+        public event Action OnFireWeaponRequested;
+        public event Action OnFireWeaponPerformed;
+        public event Action OnFireWeaponEnded;
+
+        public event Action OnDealDamageFromWeapon;
+        public event Action OnCastSpell;
+
+        #endregion
+
+        #region Constants
+        protected const float IDLE_VARIATION_INTERVAL = 2f; // Interval for idle animation variation
+        protected const float IDLE_BLEND_SPEED = 0.5f; // Higher = faster blending
+        #endregion
+
+        #region Serialized fields
+        [Header("Depricated: Speed settings for various character rotation")]
+        [SerializeField] protected float crouchSpeed = 2.5f;    // Speed of the character when crouching
+        [SerializeField] protected float crawlSpeed = 1f;       // Speed of the character when crawling
+        [SerializeField] protected float pushSpeed = 3f;        // Speed of the character when pushing objects
+        [SerializeField] protected float pullSpeed = 3f;        // Speed of the character when pulling objects
+        [SerializeField] protected float climbSpeed = 3f;       // Speed of the character when climbing
+        [SerializeField] protected float swimSpeed = 4f;        // Speed of the character when swimming
+        [SerializeField] protected float swingSpeed = 8f;       // Speed of the character when swinging
+        [SerializeField] protected float flySpeed = 12f;        // Speed of the character when flying
+        #endregion
+
+        #region Cached references
+        protected Vector3 gravity = UnityEngine.Physics.gravity; // Gravity vector for the character
+        protected UnityEngine.CharacterController unityController; // Reference to the CharacterController component    
+        protected Animator animator;
+        #endregion
+
+        #region Runtime variables
+        protected Vector3 moveDirection = Vector3.zero; // Current movement direction of the character
+
+        protected Vector2 lookInput = Vector2.zero;
+
+        protected CharacterState currentState = CharacterState.Idle;
+        private Coroutine idleLoopCoroutine;    // Coroutine for handling idle loop animations
+        private Coroutine rollCoroutine;        // Coroutine for handling rolling movement
+
+        private float currentIdleBlend = 0f;
+        private float targetIdleBlend = 0f;
+
+        private bool isDead = false;
+        private bool isAttacking = false;
+
+        private Camera _camera; // This is the camera attached to this character, it is not necessarily the player camera.
+
+        #endregion
+
+        #region Properties
+        public Vector3 MoveDirection => moveDirection;
+        public Vector2 LookInput => lookInput;
+        public CharacterState CurrentState 
+        {
+            get { return currentState; }
+            set { currentState = value; }
+        }
+        /// <summary>
+        /// Gets the locomotion scales for walking, running, and sprinting speeds as a tuple.
+        /// </summary>
+        public (float walk, float run, float sprint) LocomotionScales
+        {
+            // Returns walks, run and sprint speed from the movement module if exits, if not returns a default scale.
+            get
+            {
+                if (TryGetModule(out CharacterMovementModule module)) return module.LocomotionScales;
+
+                return (walk: 1f, run: 2f, sprint: 3f);
+            }
+        }
+        public float TurnAngle
+        {
+            get
+            {
+                // Lightweight fetch calculater turn angle if we have a move module
+                if (TryGetModule(out CharacterMovementModule module)) return module.TurnAngle;
+
+                // Expensive (relatively) calculate it based on other factors.
+                Vector3 velocity = unityController.velocity;
+
+                // Flatten forward and velocity vectors
+                Vector3 flatForward = unityController.transform.forward;
+                Vector3 flatVelocity = new Vector3(velocity.x, 0f, velocity.z);
+
+                // Avoid NaNs if velocity is nearly zero
+                if (flatVelocity.sqrMagnitude > 0.0001f)
+                {
+                    flatForward.Normalize();
+                    flatVelocity.Normalize();
+
+                    float turnAngle = Vector3.SignedAngle(flatForward, flatVelocity, Vector3.up);
+                    return turnAngle;
+                }
+
+                return 0f;
+            }
+        }
+        private bool IsDead => isDead;      // TODO optional call to character
+        public bool IsAttacking => isAttacking;
+        private bool CantAttack => IsDead || IsAttacking;
+        /// <summary>
+        /// Defines the camera attached to this character. Returns null if no camera module is enabld.
+        /// </summary>
+        public Camera Camera => _camera;
+        #endregion
+
+        #region Signal Helpers
+        // --- Signal helpers (so modules can’t fire events directly) ---
+        public void NotifyStateChanged(CharacterState state) => OnStateChanged?.Invoke(state);
+        public void NotifyZoomChanged(float delta) => OnZoomChanged?.Invoke(delta);
+
+        // Jump signal helpers
+        public void RequestJump() => OnJumpRequested?.Invoke();
+        public void NotifyJumpPerformed() => OnJumpPerformed?.Invoke();
+        public void NotifyJumpLanded() => OnJumpLanded?.Invoke();
+
+        // Roll signal helpers
+        public void RequestRoll() => OnRollRequested?.Invoke();
+        public void NotifyRollPerformed() => OnRollPerformed?.Invoke();
+        public void NotifyRollEnded() => OnRollEnded?.Invoke();
+
+        //Dodge signal helpers
+        public void RequestDodge() => OnDodgeRequested?.Invoke();
+        public void NotifyDodgePerformed() => OnDodgePerformed?.Invoke();
+        public void NotifyDodgeEnded() => OnDodgeEnded?.Invoke();
+
+        public void RequestDie() => _RequestDie();
+        public void NotifyDiePerformed() => OnDiePerformed?.Invoke();
+        public void NotifyDieEnded() => OnDieEnded?.Invoke();
+
+        public void RequestAttack() => _RequestAttack();
+        public void NotifyAttackPerformed() => _NotifyAttackPerformed();
+        public void NotifyAttackEnded() => _NotifyAttackEnded();
+        public void RequestSpecialAttack() => _RequestSpecialAttack();
+        public void NotifySpecialAttackPerformed() => _NotifySpecialAttackPerformed();
+        public void NotifySpecialAttackEnded() => _NotifySpecialAttackEnded();
+        public void RequestFireWeapon() => _RequestFireWeapon();
+        public void NotifyFireWeaponPerformed() => _NotifyFireWeaponPerformed();
+        public void NotifyFireWeaponEnded() => _NotifyFireWeaponEnded();
+        public void NotifyDealDamageFromWeapon() => OnDealDamageFromWeapon?.Invoke();
+        public void NotifyCastSpell() => OnCastSpell?.Invoke();
+
+        protected void NotifySprintTriggered(bool triggered) 
+        {
+            if (triggered)
+            {
+                OnSprintDown?.Invoke();
+            }
+            else
+            {
+                OnSprintUp?.Invoke();
+            }
+        }
+        #endregion
+
+        #region Signal Methods
+        private void _RequestDie()
+        {
+            if (isDead) return;
+
+            isDead = true;              // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
+            OnDieRequested?.Invoke();
+            Destroy(gameObject, 2.0f);  // TODO evil magic number, but probably want die config and tracking elsewhere
+        }
+
+        private void _RequestAttack()
+        {
+            if (CantAttack) return;
+
+            OnAttackRequested?.Invoke();
+            NotifyAttackPerformed();
+        }
+
+        private void _NotifyAttackPerformed()
+        {
+            isAttacking = true;         // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
+            OnAttackPerformed?.Invoke();
+        }
+
+        private void _NotifyAttackEnded()
+        {
+            OnAttackEnded?.Invoke();    // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
+            isAttacking = false;
+        }
+
+        private void _RequestSpecialAttack()
+        {
+            if (CantAttack) return;
+
+            OnSpecialAttackRequested?.Invoke();
+            NotifySpecialAttackPerformed();
+        }
+        private void _NotifySpecialAttackPerformed()
+        {
+            isAttacking = true;         // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
+            OnSpecialAttackPerformed?.Invoke();
+        }
+
+        private void _NotifySpecialAttackEnded()
+        {
+            OnSpecialAttackEnded?.Invoke();    // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
+            isAttacking = false;
+        }
+
+        private void _RequestFireWeapon()
+        {
+            if (CantAttack) return;
+
+            OnFireWeaponRequested?.Invoke();
+            NotifyFireWeaponPerformed();
+        }
+
+        private void _NotifyFireWeaponPerformed()
+        {
+            isAttacking = true;         // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
+            OnFireWeaponPerformed?.Invoke();
+        }
+
+        private void _NotifyFireWeaponEnded()
+        {
+            OnFireWeaponEnded?.Invoke();    // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
+            isAttacking = false;
+        }
+
+        #endregion
+
+        protected virtual void Awake()
+        {
+            unityController = GetComponent<UnityEngine.CharacterController>();
+            animator = GetComponent<Animator>();
+
+            foreach (var module in GetComponents<CharacterModule>())
+            {
+                RegisterModule(module);
+                module.PreInitialize(this);
+            }
+        }
+        protected virtual void Start()
+        {
+            if (unityController == null)
+            {
+                Debug.LogError("CharacterController component is missing on " + gameObject.name);
+            }
+
+            foreach (var (_, module) in modules)
+                module.Initialize(this);
+        }
+        protected virtual void Update()
+        {
+            foreach (var (_, module) in modules)
+                module.Tick(Time.deltaTime);
+        }
+        protected virtual void FixedUpdate()
+        {
+            // PlayerController sets MoveDirection; movement happens inside modules.
+            foreach (var (_, module) in modules)
+                module.FixedTick(Time.fixedDeltaTime);
+
+        }
+
+#if UNITY_EDITOR
+        [ContextMenu("Add Default Modules")]
+        private void AddDefaultModules()
+        {
+            if (!GetComponent<CharacterMovementModule>())
+            {
+                gameObject.AddComponent<CharacterMovementModule>();
+                Debug.Log("Added default CharacterMovementModule.");
+            }
+            EditorUtility.SetDirty(this);
+        }
+#endif
+
+        [ExecuteAlways]
+        protected virtual void Reset()
+        {
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                if (GetComponents<ICharacterModule>().Length == 0)
+                {
+                    gameObject.AddComponent<CharacterMovementModule>();
+                    Debug.Log("Auto-added default CharacterMovementModule on new controller.");
+                }
+            }
+#endif
+        }
+        public void OnIdleLoopComplete()
+        {
+            float chance = UnityEngine.Random.value; // 0.0 to 1.0
+            if (chance < 0.3f) // 30% chance
+            {
+                animator.SetTrigger("SwitchIdle");
+
+                if (idleLoopCoroutine == null)
+                {
+                    idleLoopCoroutine = StartCoroutine(IdleLoop());
+                }
+
+            }
+        }
+        protected virtual IEnumerator IdleLoop()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(IDLE_VARIATION_INTERVAL);
+
+                targetIdleBlend = UnityEngine.Random.value; // pick a new idle style
+            }
+        }
+        protected virtual void ToggleCrouch()
+        {
+            Debug.Log("ToggleCrouch called, but not implemented in base class.");
+        }
+        private void OnDestroy()
+        {
+            foreach (var (_,module) in modules)
+            {
+                module.Dispose();
+            }
+
+            modules.Clear();
+        }
+        public void RegisterModule<T>(T module) where T : CharacterModule => RegisterModule((CharacterModule)module);
+        public void RegisterModule(CharacterModule module)
+        {
+            var type = module.GetType(); // concrete type, e.g., CharacterMovementModule
+
+            if (modules.TryGetValue(type, out var existing))
+            {
+                Debug.LogError(
+                    $"[CharacterController] Duplicate module registration attempted: {type.Name}.\n" +
+                    $"Existing: {existing.GetType().Name}, New: {module.GetType().Name}", this);
+                return;
+            }
+
+            if(CharacterModuleValidator.CheckModuleCompatibility(this.gameObject, module)) modules[type] = module;
+        }
+        public bool TryGetModule<T>(out T module) where T : class, ICharacterModule
+        {
+            if (modules.TryGetValue(typeof(T), out var m))
+            {
+                module = m as T;
+                return true;
+            }
+            module = null;
+            return false;
+        }
+        /// <summary>
+        /// Registers a camera to this character. Does not manage player camera
+        /// or camera settings/activation. This only assigns a camera to this character for reference.
+        /// </summary>
+        /// <param name="camera"></param>
+        public void RegisterCamera(Camera camera)
+        {
+            if (camera == null)
+            {
+                // TODO rework this to not need the camera
+                camera = Camera.main;
+                if (camera == null)
+                {
+                    Debug.LogError($"{this.name}: Specified Camera is null.");
+                    return;
+                }
+            }
+
+            if (_camera != null)
+            {
+                Debug.LogWarning($"{this.name}: Attempting to specify a camera when one is already assigned.");
+            }
+
+            _camera = camera;
+        }
+
+    }
+}
