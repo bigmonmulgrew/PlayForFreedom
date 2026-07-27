@@ -40,6 +40,7 @@ public class EnmyRoomSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        if (enemyCount > enemiesToSpawn) return;
         if (Time.time < nextSpawnTime) return;
         nextSpawnTime += spawnInterval;
 

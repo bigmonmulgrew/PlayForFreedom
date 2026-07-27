@@ -659,17 +659,6 @@ namespace BMD
                 },
                 {
                     ""name"": """",
-                    ""id"": ""907a8310-f6da-44eb-b67c-250f6252aab2"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b5935bac-4f68-4f26-9750-b720660a9979"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
