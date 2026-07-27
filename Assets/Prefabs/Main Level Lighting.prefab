@@ -44,7 +44,7 @@ Light:
   serializedVersion: 13
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 30
+  m_Intensity: 40
   m_Range: 20
   m_SpotAngle: 120
   m_InnerSpotAngle: 50
@@ -257,7 +257,7 @@ Transform:
   m_GameObject: {fileID: 7681172146060818298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 12, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -416,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344740345116536218, guid: 0d9a43c998920114f88b14b8f6f57610, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8344740345116536218, guid: 0d9a43c998920114f88b14b8f6f57610, type: 3}
       propertyPath: m_LocalPosition.z
@@ -478,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344740345116536218, guid: 0d9a43c998920114f88b14b8f6f57610, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8344740345116536218, guid: 0d9a43c998920114f88b14b8f6f57610, type: 3}
       propertyPath: m_LocalPosition.z
@@ -540,7 +540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344740345116536218, guid: 0d9a43c998920114f88b14b8f6f57610, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8344740345116536218, guid: 0d9a43c998920114f88b14b8f6f57610, type: 3}
       propertyPath: m_LocalPosition.z
@@ -602,7 +602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8344740345116536218, guid: 0d9a43c998920114f88b14b8f6f57610, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8344740345116536218, guid: 0d9a43c998920114f88b14b8f6f57610, type: 3}
       propertyPath: m_LocalPosition.z
