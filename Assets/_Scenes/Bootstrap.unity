@@ -610,10 +610,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2527761439494652416, guid: 7c5d07fe3dbf67c4880812cbf4bc7c70, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 3918073133151816845, guid: 7c5d07fe3dbf67c4880812cbf4bc7c70, type: 3}
       propertyPath: m_Name
       value: Main Level Lighting
