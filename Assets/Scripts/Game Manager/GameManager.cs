@@ -1,6 +1,8 @@
+using BMD;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    // TODO move this project wide.
+    public const bool DEBUG_ENABLED = true;
+
     #region Configuration
 
     [Header("Canvase References")]
@@ -18,6 +23,9 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Cached References
+    PlayerControls playerControls;
+    InputAction winButton;
+    InputAction loseButton;
     #endregion
 
     #region Runtime Variables
@@ -46,7 +54,20 @@ public class GameManager : MonoBehaviour
         // Subscrite to sceneLoaded once.
         SceneManager.sceneLoaded += OnSceneLoaded;
 
+        
+
     }
+    private void OnEnable()
+    {
+        if (DEBUG_ENABLED)
+        {
+            playerControls = new PlayerControls();
+            playerControls.Debug.Enable();
+            winButton = playerControls.Debug.DebugWin;
+            loseButton = playerControls.Debug.DebugLose;
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -58,10 +79,14 @@ public class GameManager : MonoBehaviour
     {
         if(gameOver || gameWon) return;
 
-        
+        DebugInputs();
     }
     
-    
+    void DebugInputs()
+    {
+        if (winButton.WasPerformedThisFrame())  WinGame();
+        if (loseButton.WasPerformedThisFrame()) GameOver();
+    }
     private void WinGame()
     {
         gameWon = true;

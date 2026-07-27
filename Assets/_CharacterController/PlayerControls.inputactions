@@ -1196,6 +1196,120 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Debug",
+            "id": "483dcd09-72e8-4c9f-87f7-a613e590608e",
+            "actions": [
+                {
+                    "name": "DebugWin",
+                    "type": "Button",
+                    "id": "4deda950-b4e7-4ffb-97cc-a0ed5ab5387f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DebugLose",
+                    "type": "Button",
+                    "id": "84e3cbcf-37b9-412f-870e-378b61d98c67",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Two Modifiers",
+                    "id": "743cc534-141f-4f56-91eb-6a98be67caba",
+                    "path": "TwoModifiers(overrideModifiersNeedToBePressedFirst=true)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugWin",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "6e3578d6-a5d6-446b-9775-ae633bdc8578",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugWin",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "58a7d40a-9b0a-4170-a166-77bac3d8636f",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugWin",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "ec0398ca-a612-4263-9e83-394911b6da8c",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "DebugWin",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Two Modifiers",
+                    "id": "722164ec-bb9b-4533-9164-ce9569264fb2",
+                    "path": "TwoModifiers(overrideModifiersNeedToBePressedFirst=true)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugLose",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "850d83e0-2739-4d6c-9025-f00622f10881",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugLose",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "cc36649a-c147-4fde-923b-6d79f9ccc4a9",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "DebugLose",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "bc3b17db-6830-4ef7-a0da-62fe228c05fe",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugLose",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": [
