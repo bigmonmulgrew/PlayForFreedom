@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         }
 
 
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Bootstrap");
     }
     
     public static void LoadGameOver()

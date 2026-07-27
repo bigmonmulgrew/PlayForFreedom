@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Netcode;
+using System.Globalization;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,7 +13,7 @@ using UnityEditor;
 namespace BMD
 {
     [RequireComponent(typeof(UnityEngine.CharacterController))] // Ensure that a CharacterController component is attached
-    public abstract class CharacterController : MonoBehaviour
+    public abstract class CharacterController : NetworkBehaviour
     {
         private readonly Dictionary<Type, ICharacterModule> modules = new();
 
@@ -75,6 +78,7 @@ namespace BMD
         protected Vector3 gravity = UnityEngine.Physics.gravity; // Gravity vector for the character
         protected UnityEngine.CharacterController unityController; // Reference to the CharacterController component    
         protected Animator animator;
+        protected Renderer characterRenderer;
         #endregion
 
         #region Runtime variables
@@ -151,6 +155,25 @@ namespace BMD
         /// Defines the camera attached to this character. Returns null if no camera module is enabld.
         /// </summary>
         public Camera Camera => _camera;
+        #endregion
+
+        #region Network
+        public override void OnNetworkSpawn()
+        {
+            // TODO this needs reworking completely, its copied form the placeholder MVP
+            characterRenderer = GetComponent<Renderer>();
+
+            if (characterRenderer != null)
+            {
+                characterRenderer.material.color = IsOwner ? Color.green : Color.grey;
+            }
+
+            // Only the locally owned player needs to listen for input.
+            if (!IsOwner) return;
+
+            float spawnX = OwnerClientId % 2 == 0 ? -2f : 2f;
+            transform.position = new Vector3(spawnX, 0.5f, 0f);
+        }
         #endregion
 
         #region Signal Helpers
@@ -296,11 +319,13 @@ namespace BMD
         }
         protected virtual void Update()
         {
+            if (!IsOwner) return;
             foreach (var (_, module) in modules)
                 module.Tick(Time.deltaTime);
         }
         protected virtual void FixedUpdate()
         {
+            if (!IsOwner) return;
             // PlayerController sets MoveDirection; movement happens inside modules.
             foreach (var (_, module) in modules)
                 module.FixedTick(Time.fixedDeltaTime);

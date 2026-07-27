@@ -49,24 +49,32 @@ namespace BMD
             attack = playerControls.Player.Attack;
             specialAttack = playerControls.Player.SpecialAttack;
         }
-        private void OnEnable()
+        public override void OnNetworkSpawn()
         {
-            playerControls.Player.Enable();
-            look.performed += ctx => HandleLookInput(ctx);
-            look.canceled += ctx => HandleLookInput();
-            zoom.performed += ctx => AdjustZoomLevel(-ctx.ReadValue<float>());
-            zoom.canceled += ctx => AdjustZoomLevel(0f);
-            crouch.performed += ctx => ToggleCrouch();
-            roll.performed += ctx => PerformRoll();
-            sprint.started += ctx => NotifySprintTriggered(true);
-            sprint.canceled += ctx => NotifySprintTriggered(false);
+            if (IsOwner)
+            {
+                playerControls.Player.Enable();
+                look.performed += ctx => HandleLookInput(ctx);
+                look.canceled += ctx => HandleLookInput();
+                zoom.performed += ctx => AdjustZoomLevel(-ctx.ReadValue<float>());
+                zoom.canceled += ctx => AdjustZoomLevel(0f);
+                crouch.performed += ctx => ToggleCrouch();
+                roll.performed += ctx => PerformRoll();
+                sprint.started += ctx => NotifySprintTriggered(true);
+                sprint.canceled += ctx => NotifySprintTriggered(false);
+            }
+            
+
+            base.OnNetworkSpawn();
         }
-        private void OnDisable()
+        public override void OnNetworkDespawn()
         {
             playerControls.Player.Disable();
         }
         protected override void Update()
         {
+            if (!IsOwner) return;
+
             HandleJumpInput();
             HandleAttackInput();
             base.Update();
@@ -75,7 +83,6 @@ namespace BMD
         private void HandleLookInput(InputAction.CallbackContext ctx) => lookInput = ctx.ReadValue<Vector2>();
         private void HandleLookInput() => lookInput = Vector2.zero;
         private void AdjustZoomLevel(float zd) => NotifyZoomChanged(zd);
-
         private void HandleJumpInput()
         {
             if (jump.WasPressedThisFrame())
@@ -91,6 +98,7 @@ namespace BMD
         }
         protected override void FixedUpdate()
         {
+            if (!IsOwner) return;
             SetMoveDirection();
 
             base.FixedUpdate(); // controller.Tick() and FixedTick() will trigger module updates

@@ -5,7 +5,7 @@ using UnityEditor;
 using System;
 using System.IO;
 using System.Reflection;
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(Readme))]
 [InitializeOnLoad]
 public class ReadmeEditor : Editor {
@@ -156,3 +156,4 @@ public class ReadmeEditor : Editor {
 	}
 }
 
+#endif

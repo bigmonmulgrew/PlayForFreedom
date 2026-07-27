@@ -2,7 +2,8 @@
     "name": "BMD.CharacterController.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:929f07575d949834eb696e0b677f2020"
+        "GUID:929f07575d949834eb696e0b677f2020",
+        "GUID:1491147abca9d7d4bb7105af628b223e"
     ],
     "includePlatforms": [
         "Editor"
