@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] bool IsExitDoor = false;
+    [SerializeField] bool isExitDoor = false;
+    [SerializeField] GameObject playerBarrier;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,7 +18,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (IsExitDoor && other.gameObject.CompareTag("Player"))
+        if (isExitDoor && other.gameObject.CompareTag("Player"))
         {
             LevelManager.LoadWinScreen();
         }

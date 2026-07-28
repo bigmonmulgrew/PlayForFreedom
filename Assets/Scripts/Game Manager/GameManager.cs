@@ -33,11 +33,13 @@ public class GameManager : MonoBehaviour
 
     bool gameOver = false;
     bool gameWon = false;
+    bool roundOver = false;
     #endregion
 
     #region Properties
     public bool GameIsOver { get => gameOver; }
     public bool GameWon { get => gameWon; }
+    public bool RoundOver { get => roundOver; set => gameOver = value;  }
     #endregion
 
     private void Awake()

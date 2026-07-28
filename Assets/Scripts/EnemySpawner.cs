@@ -4,11 +4,12 @@ using UnityEngine.AI;
 
 public class EnemySpawner : NetworkBehaviour
 {
-    public void SpawnEnemy(Enemy enemyTempalte)
+    public Enemy SpawnEnemy(Enemy enemyTempalte)
     {
         
         Enemy newEnemy = Instantiate(enemyTempalte, GetSpawnPosition(), transform.rotation);
         newEnemy.GetComponent<NetworkObject>().Spawn();
+        return newEnemy;
 
     }
 

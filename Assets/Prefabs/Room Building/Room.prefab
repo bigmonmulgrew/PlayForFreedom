@@ -256,6 +256,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2748515500582421096, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
+      propertyPath: isExitDoor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6066625334467105484, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -454,6 +458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2748515500582421096, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
+      propertyPath: isExitDoor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6066625334467105484, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -648,6 +656,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2748515500582421096, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
+      propertyPath: isExitDoor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6066625334467105484, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -714,14 +726,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (1) - Exit
       objectReference: {fileID: 0}
-    - target: {fileID: 2748515500582421096, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
-      propertyPath: IsExitDoor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6066625334467105484, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: bc95cec50fa487e4cb0fd810c191c047, type: 2}
     - target: {fileID: 7975022699527034874, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.334
