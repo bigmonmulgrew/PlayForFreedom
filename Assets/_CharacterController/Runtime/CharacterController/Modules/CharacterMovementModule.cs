@@ -402,7 +402,6 @@ namespace BMD
             if (!rotationEnabled) return;
             Vector3 lookInput = new Vector3(controller.LookInput.x, 0, controller.LookInput.y);
 
-
             Vector3 inputDir = lookInput;
             inputDir.y = 0f;
 
@@ -434,7 +433,9 @@ namespace BMD
         }
         private void RotateCharacterDynamic(float dt)
         {
-
+            // TODO we need a middle ground to smooth transition, maybe.
+            if (controller.LookInput.magnitude > 0.01f) RotateCharacterTowardsInput(dt);
+            else RotateCharacterTowardsMovement(dt);
         }
         private void UpdateState()
         {

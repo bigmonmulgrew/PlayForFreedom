@@ -187,7 +187,7 @@ MonoBehaviour:
   rotationEnabled: 1
   rotationSpeed: 10
   rotationSpeedAttacking: 360
-  rotationType: 1
+  rotationType: 2
   instantTurnThreshold: 0.05
   canJump: 1
   jumpForce: 5
