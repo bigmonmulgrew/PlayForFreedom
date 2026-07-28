@@ -192,6 +192,15 @@ namespace BMD
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LockLook"",
+                    ""type"": ""Button"",
+                    ""id"": ""d806bea3-51bd-4081-b4e3-ad4dd8f7e887"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -755,6 +764,28 @@ namespace BMD
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95823754-7676-4f1f-a4fe-e64e229fe8da"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""797e20fb-d0ba-4d27-8d50-cf2589d0ac21"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1465,6 +1496,7 @@ namespace BMD
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
             m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+            m_Player_LockLook = m_Player.FindAction("LockLook", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1574,6 +1606,7 @@ namespace BMD
         private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_SpecialAttack;
         private readonly InputAction m_Player_Zoom;
+        private readonly InputAction m_Player_LockLook;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -1629,6 +1662,10 @@ namespace BMD
             /// Provides access to the underlying input action "Player/Zoom".
             /// </summary>
             public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/LockLook".
+            /// </summary>
+            public InputAction @LockLook => m_Wrapper.m_Player_LockLook;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1688,6 +1725,9 @@ namespace BMD
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @LockLook.started += instance.OnLockLook;
+                @LockLook.performed += instance.OnLockLook;
+                @LockLook.canceled += instance.OnLockLook;
             }
 
             /// <summary>
@@ -1732,6 +1772,9 @@ namespace BMD
                 @Zoom.started -= instance.OnZoom;
                 @Zoom.performed -= instance.OnZoom;
                 @Zoom.canceled -= instance.OnZoom;
+                @LockLook.started -= instance.OnLockLook;
+                @LockLook.performed -= instance.OnLockLook;
+                @LockLook.canceled -= instance.OnLockLook;
             }
 
             /// <summary>
@@ -2216,6 +2259,13 @@ namespace BMD
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnZoom(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "LockLook" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnLockLook(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

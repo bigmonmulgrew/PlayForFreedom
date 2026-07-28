@@ -9,15 +9,13 @@ public class Player : Character
     public readonly static List<Player> RemotePlayers = new();
 
     
-
-
-
-    private void Awake()
+    void Update()
     {
-        controller = GetComponent<CharacterController>();
-        weapon = GetComponentInChildren<Weapon>();
-        SubscribeToSignals();
+        Debug.Log($"{name} is looking at {controller.LookInput}");
     }
+
+
+    
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -34,24 +32,7 @@ public class Player : Character
         if (IsOwner) LocalPlayers.Remove(this);
         else RemotePlayers.Remove(this);
     }
-    private void SubscribeToSignals()
-    {
-        if (!IsOwner) return;
-        if(controller == null)
-        {
-            Debug.LogError($"No character controller found on {gameObject.name}", this);
-            return;
-        }
-
-        controller.OnFireWeaponRequested += FireWeapon;
-    }
-    private void OnDisable()
-    {
-        controller.OnFireWeaponRequested -= FireWeapon;
-    }
-    public void FireWeapon()
-    {
-        if (!IsOwner) return;
-        weapon.Fire();
-    }
+    
+    
+    
 }

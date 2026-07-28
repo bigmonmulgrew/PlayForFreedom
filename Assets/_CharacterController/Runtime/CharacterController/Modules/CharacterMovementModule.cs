@@ -35,6 +35,8 @@ namespace BMD
         [SerializeField] bool rotationEnabled = true; 
         [Tooltip("Rotation speed in degrees per second")]
         [SerializeField] float rotationSpeed = 10f;
+        [Tooltip("Rotation speed when attacking in degrees per second")]
+        [SerializeField] float rotationSpeedAttacking = 360f;
         [Tooltip("Define if rotation should be based on movement, or input, or dynamic.")]
         [SerializeField] RotationType rotationType = RotationType.TowardsMovement;
 
@@ -183,7 +185,7 @@ namespace BMD
                     break;
                 case RotationType.DynamicType:
                     Debug.LogError("Dynamic type not yet implemented, please use Towards Movement or Towards Input");
-                    RotateCharacterTowardsMovement(fixedDeltaTime);
+                    RotateCharacterDynamic(fixedDeltaTime);
                     break;
             }
             
@@ -398,14 +400,14 @@ namespace BMD
         private void RotateCharacterTowardsInput(float dt)
         {
             if (!rotationEnabled) return;
-            Vector3 inputDir = controller.MoveDirection;
+            Vector3 lookInput = new Vector3(controller.LookInput.x, 0, controller.LookInput.y);
+
+
+            Vector3 inputDir = lookInput;
             inputDir.y = 0f;
 
             // No input ? no rotation
             if (inputDir.sqrMagnitude < 0.0001f) return;
-
-            // If we're moving fast enough, defer to movement-based rotation
-            if (currentHorizontalVelocity.magnitude > instantTurnThreshold) return;
 
             // Compute target direction from input
             Vector3 targetDir = inputDir.normalized;
@@ -429,6 +431,10 @@ namespace BMD
                 rotationSpeed * dt
             );
             Debug.Log("Finished turn");
+        }
+        private void RotateCharacterDynamic(float dt)
+        {
+
         }
         private void UpdateState()
         {

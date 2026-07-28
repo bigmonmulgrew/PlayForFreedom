@@ -17,8 +17,11 @@ namespace BMD
         private InputAction fire;
         private InputAction attack;
         private InputAction specialAttack;
+        private InputAction lockLook;
 
         #endregion
+
+        bool lookLocked;
 
         protected override void Awake()
         {
@@ -38,16 +41,17 @@ namespace BMD
         private void SetupControls()
         {
             playerControls = new PlayerControls();
-            move = playerControls.Player.Move;
-            jump = playerControls.Player.Jump;
-            look = playerControls.Player.Look;
-            zoom = playerControls.Player.Zoom;
-            crouch = playerControls.Player.Crouch;
-            roll = playerControls.Player.Roll;
-            sprint = playerControls.Player.Sprint;
-            fire = playerControls.Player.Fire;
-            attack = playerControls.Player.Attack;
+            move        = playerControls.Player.Move;
+            jump        = playerControls.Player.Jump;
+            look        = playerControls.Player.Look;
+            zoom        = playerControls.Player.Zoom;
+            crouch      = playerControls.Player.Crouch;
+            roll        = playerControls.Player.Roll;
+            sprint      = playerControls.Player.Sprint;
+            fire        = playerControls.Player.Fire;
+            attack      = playerControls.Player.Attack;
             specialAttack = playerControls.Player.SpecialAttack;
+            lockLook    = playerControls.Player.LockLook;
         }
         public override void OnNetworkSpawn()
         {
@@ -75,13 +79,27 @@ namespace BMD
         {
             if (!IsOwner) return;
 
+            HandleLookLockinput();
             HandleJumpInput();
             HandleAttackInput();
             base.Update();
         }
 
-        private void HandleLookInput(InputAction.CallbackContext ctx) => lookInput = ctx.ReadValue<Vector2>();
-        private void HandleLookInput() => lookInput = Vector2.zero;
+        void HandleLookLockinput()
+        {
+            if (lockLook.WasPressedThisFrame()) lookLocked = !lookLocked;
+        }
+        private void HandleLookInput(InputAction.CallbackContext ctx)
+        {
+            if (lookLocked) return;
+            lookInput = ctx.ReadValue<Vector2>();
+        }
+        
+        private void HandleLookInput()
+        {
+            if (lookLocked) return;
+            lookInput = Vector2.zero;
+        } 
         private void AdjustZoomLevel(float zd) => NotifyZoomChanged(zd);
         private void HandleJumpInput()
         {

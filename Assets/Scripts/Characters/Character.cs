@@ -20,6 +20,23 @@ public class Character : NetworkBehaviour
 
     bool IsDead => isDead;
 
+    private void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        weapon = GetComponentInChildren<Weapon>();
+        SubscribeToSignals();
+    }
+    private void SubscribeToSignals()
+    {
+        if (controller == null)
+        {
+            Debug.LogError($"No character controller found on {gameObject.name}", this);
+            return;
+        }
+
+        controller.OnFireWeaponRequested += FireWeapon;
+    }
+
     private void OnEnable()
     {
         health = maxHealth;
@@ -44,9 +61,20 @@ public class Character : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == projectileLayers)
+        Debug.Log($"{name} was shot by {collision.gameObject.name}");
+        if ((projectileLayers.value & (1 << collision.gameObject.layer)) != 0)
         {
+            Debug.Log($"{collision.gameObject.name} on correct collision layer");
             if (collision.gameObject.TryGetComponent<Projectile>(out Projectile p)) DealDamage(p.Damage); 
         }
+    }
+    private void OnDisable()
+    {
+        controller.OnFireWeaponRequested -= FireWeapon;
+    }
+    public void FireWeapon()
+    {
+        if (!IsOwner) return;
+        weapon.Fire();
     }
 }
