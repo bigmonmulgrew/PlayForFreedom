@@ -215,6 +215,7 @@ MonoBehaviour:
   - {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
   initialSpawnDelay: 3
   spawnInterval: 0.25
+  enemiesToSpawn: 10
 --- !u!1001 &259683569599790309
 PrefabInstance:
   m_ObjectHideFlags: 0
