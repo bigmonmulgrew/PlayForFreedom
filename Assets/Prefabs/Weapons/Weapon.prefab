@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   projectile: {fileID: 173318939751075400, guid: 92d8fc2e78d26084688cda85328d88bb, type: 3}
   bulletSpawn: {fileID: 4230516242969178237}
-  projectileForce: 10
+  projectileForce: 100
+  firingCooldown: 0.5
 --- !u!1 &3418831563661253696
 GameObject:
   m_ObjectHideFlags: 0

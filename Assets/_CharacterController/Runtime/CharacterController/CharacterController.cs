@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Netcode;
-using System.Globalization;
 
 
 #if UNITY_EDITOR
@@ -284,13 +283,12 @@ namespace BMD
 
         private void _NotifyFireWeaponPerformed()
         {
-            isAttacking = true;         // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
             OnFireWeaponPerformed?.Invoke();
         }
 
         private void _NotifyFireWeaponEnded()
         {
-            OnFireWeaponEnded?.Invoke();    // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
+            OnFireWeaponEnded?.Invoke();    
             isAttacking = false;
         }
 

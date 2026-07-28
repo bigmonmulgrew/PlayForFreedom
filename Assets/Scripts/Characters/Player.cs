@@ -9,6 +9,8 @@ public class Player : Character
     Weapon weapon;
     #endregion
 
+
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -19,19 +21,18 @@ public class Player : Character
     {
         if(controller == null)
         {
-            Debug.LogError($"Nocharacter controller found on {gameObject.name}", this);
+            Debug.LogError($"No character controller found on {gameObject.name}", this);
             return;
         }
 
-        controller.OnFireWeaponPerformed += FireWeapon;
+        controller.OnFireWeaponRequested += FireWeapon;
     }
     private void OnDisable()
     {
-        controller.OnFireWeaponPerformed -= FireWeapon;
+        controller.OnFireWeaponRequested -= FireWeapon;
     }
     public void FireWeapon()
     {
-        Debug.Log("Hello");
         weapon.Fire();
     }
 }
