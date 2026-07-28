@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] int maxBounces = 1;
     [SerializeField] float maxLifetime = 1.0f;
     [SerializeField] float minimumVelocity = 0.1f;
+    [SerializeField] int damage = 100;
     #endregion 
     #region Cached references
     Rigidbody rb;
@@ -19,6 +20,8 @@ public class Projectile : MonoBehaviour
     Coroutine velocityCheck;
     int bounces;
     #endregion
+
+    public int Damage => damage;
 
     void Awake()
     {

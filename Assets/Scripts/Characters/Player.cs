@@ -1,4 +1,3 @@
-using BMD;
 using System.Collections.Generic;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
@@ -9,10 +8,7 @@ public class Player : Character
     public readonly static List<Player> LocalPlayers = new();
     public readonly static List<Player> RemotePlayers = new();
 
-    #region Cached references
-    CharacterController controller;
-    Weapon weapon;
-    #endregion
+    
 
 
 

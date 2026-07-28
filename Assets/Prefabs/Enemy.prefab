@@ -150,6 +150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::eNEMY
   ShowTopMostFoldoutHeaderGroup: 1
+  maxHealth: 100
+  projectileLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8659491745854867075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +175,7 @@ MonoBehaviour:
   swimSpeed: 4
   swingSpeed: 8
   flySpeed: 12
+  repathInterval: 0.1
 --- !u!114 &5934569851714528958
 MonoBehaviour:
   m_ObjectHideFlags: 0
