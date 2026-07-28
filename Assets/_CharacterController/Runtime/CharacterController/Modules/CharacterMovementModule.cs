@@ -184,7 +184,6 @@ namespace BMD
                     RotateCharacterTowardsInput(fixedDeltaTime);
                     break;
                 case RotationType.DynamicType:
-                    Debug.LogError("Dynamic type not yet implemented, please use Towards Movement or Towards Input");
                     RotateCharacterDynamic(fixedDeltaTime);
                     break;
             }
@@ -429,7 +428,6 @@ namespace BMD
                 targetRotation,
                 rotationSpeed * dt
             );
-            Debug.Log("Finished turn");
         }
         private void RotateCharacterDynamic(float dt)
         {

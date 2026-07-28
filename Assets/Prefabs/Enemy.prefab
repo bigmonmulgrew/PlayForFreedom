@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 420481835
+  GlobalObjectIdHash: 2612547047
   InScenePlacedSourceGlobalObjectIdHash: 420481835
   DeferredDespawnTick: 0
   Ownership: 1
@@ -154,6 +154,9 @@ MonoBehaviour:
   projectileLayers:
     serializedVersion: 2
     m_Bits: 256
+  pickupDropChance: 0.5
+  pickups:
+  - {fileID: 5139721101452212543, guid: a8aec108a1c30814aa6e0630f845ab0e, type: 3}
 --- !u!114 &8659491745854867075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +198,7 @@ MonoBehaviour:
   minMoveInputMagnitude: 0.05
   rotationEnabled: 1
   rotationSpeed: 10
+  rotationSpeedAttacking: 360
   rotationType: 0
   instantTurnThreshold: 0.05
   canJump: 1

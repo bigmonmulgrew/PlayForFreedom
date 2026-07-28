@@ -18,7 +18,7 @@ public class Character : NetworkBehaviour
     bool isDead;
     #endregion
 
-    bool IsDead => isDead;
+    protected bool IsDead => isDead;
 
     private void Awake()
     {
@@ -51,7 +51,7 @@ public class Character : NetworkBehaviour
         if (health <= 0) Die();
     }
 
-    void Die()
+    protected virtual void Die()
     {
         if (IsDead) return;
 
@@ -59,7 +59,7 @@ public class Character : NetworkBehaviour
         controller.RequestDie();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"{name} was shot by {collision.gameObject.name}");
         if ((projectileLayers.value & (1 << collision.gameObject.layer)) != 0)

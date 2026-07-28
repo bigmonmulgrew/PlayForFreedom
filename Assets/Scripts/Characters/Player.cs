@@ -8,12 +8,17 @@ public class Player : Character
     public readonly static List<Player> LocalPlayers = new();
     public readonly static List<Player> RemotePlayers = new();
 
-    
-    void Update()
-    {
-        Debug.Log($"{name} is looking at {controller.LookInput}");
-    }
+    [SerializeField] LayerMask pickupsLayers = (1 << 12);
 
+    int cashScore;
+    string playerName = "Dave"; // TODO add UI to change this.
+
+    public int CashScore => cashScore;
+
+    public void SetPlayerName(string playerName)
+    {
+        this.playerName = playerName;
+    }
 
     
     public override void OnNetworkSpawn()
@@ -32,7 +37,17 @@ public class Player : Character
         if (IsOwner) LocalPlayers.Remove(this);
         else RemotePlayers.Remove(this);
     }
-    
-    
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if ((pickupsLayers.value & (1 << other.gameObject.layer)) != 0)
+        {
+            if (other.gameObject.transform.parent.TryGetComponent<Pickup>(out Pickup p))
+            {
+                cashScore += p.CashValue;
+                p.DestroyPickup();
+                Debug.Log($"{playerName} now has {cashScore}");
+            }
+        }
+    }
 }
