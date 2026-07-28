@@ -52,7 +52,7 @@ public class EnmyRoomSpawner : NetworkBehaviour
     {
         if (enemyCount > enemiesToSpawn) return;
         if (Time.time < nextSpawnTime) return;
-        Debug.Log($"Time.time currently {Time.time}");
+
         nextSpawnTime += spawnInterval;
 
         if (enemies.Length == 0 || spawners.Length == 0) 
@@ -67,4 +67,5 @@ public class EnmyRoomSpawner : NetworkBehaviour
         
         selectedSpawner.SpawnEnemy(newEnemy);
     }
+
 }

@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
   m_SerializedVersion: 0
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_CollectObjects: 0
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b02b5ab402799aa4392d73b114a722e1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 761d887d5e85675498ca644132171a36, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &8155586175612935269
 GameObject:
@@ -212,15 +212,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1281480191
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 675469867
+  InScenePlacedSourceGlobalObjectIdHash: 486091439
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
-  m_InScenePlaced: 0
+  m_InScenePlaced: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -242,7 +242,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
   initialSpawnDelay: 3
-  spawnInterval: 0.25
+  spawnInterval: 2
   enemiesToSpawn: 10
 --- !u!1001 &259683569599790309
 PrefabInstance:
@@ -256,6 +256,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6066625334467105484, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ac35de332f12ec74cb04f1c63cd60d7e, type: 2}
     - target: {fileID: 7975022699527034874, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -450,6 +454,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6066625334467105484, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ac35de332f12ec74cb04f1c63cd60d7e, type: 2}
     - target: {fileID: 7975022699527034874, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.334
@@ -644,6 +652,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6066625334467105484, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ac35de332f12ec74cb04f1c63cd60d7e, type: 2}
     - target: {fileID: 7975022699527034874, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -710,6 +722,10 @@ PrefabInstance:
       propertyPath: IsExitDoor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6066625334467105484, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ac35de332f12ec74cb04f1c63cd60d7e, type: 2}
     - target: {fileID: 7975022699527034874, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.334

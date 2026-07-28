@@ -147,7 +147,7 @@ namespace BMD
                 return 0f;
             }
         }
-        private bool IsDead => isDead;      // TODO optional call to character
+        protected bool IsDead => isDead;      // TODO optional call to character
         public bool IsAttacking => isAttacking;
         private bool CantAttack => IsDead || IsAttacking;
         /// <summary>

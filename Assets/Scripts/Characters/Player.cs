@@ -1,9 +1,14 @@
 using BMD;
+using System.Collections.Generic;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
 
 public class Player : Character
 {
+    public readonly static List<Player> AllPlayers = new();
+    public readonly static List<Player> LocalPlayers = new();
+    public readonly static List<Player> RemotePlayers = new();
+
     #region Cached references
     CharacterController controller;
     Weapon weapon;
@@ -16,6 +21,22 @@ public class Player : Character
         controller = GetComponent<CharacterController>();
         weapon = GetComponentInChildren<Weapon>();
         SubscribeToSignals();
+    }
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        AllPlayers.Add(this);
+
+        if (IsOwner) LocalPlayers.Add(this);
+        else RemotePlayers.Add(this);
+    }
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        AllPlayers.Remove(this);
+        
+        if (IsOwner) LocalPlayers.Remove(this);
+        else RemotePlayers.Remove(this);
     }
     private void SubscribeToSignals()
     {
