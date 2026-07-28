@@ -155,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6390303525033110417}
   - component: {fileID: 5479614340826018110}
+  - component: {fileID: 8687836991483069051}
   - component: {fileID: 8326653938142033569}
   m_Layer: 0
   m_Name: Room
@@ -199,6 +200,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3790ec529574e54ca40cfbc64a79e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &8687836991483069051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155586175612935269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 1281480191
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &8326653938142033569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff38d02ea2c67f84fb3b59325f584913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  ShowTopMostFoldoutHeaderGroup: 1
   enemies:
   - {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
   initialSpawnDelay: 3

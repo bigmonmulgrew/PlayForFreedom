@@ -19,6 +19,7 @@ public class Player : Character
     }
     private void SubscribeToSignals()
     {
+        if (!IsOwner) return;
         if(controller == null)
         {
             Debug.LogError($"No character controller found on {gameObject.name}", this);
@@ -33,6 +34,7 @@ public class Player : Character
     }
     public void FireWeapon()
     {
+        if (!IsOwner) return;
         weapon.Fire();
     }
 }

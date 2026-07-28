@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class EnmyRoomSpawner : MonoBehaviour
+public class EnmyRoomSpawner : NetworkBehaviour
 {
     #region config
     [SerializeField] Enemy[] enemies;
@@ -17,6 +18,7 @@ public class EnmyRoomSpawner : MonoBehaviour
     #region Runtime Variables
     float nextSpawnTime = 0;
     int enemyCount;
+    bool networkReady;
     #endregion
 
 
@@ -25,6 +27,13 @@ public class EnmyRoomSpawner : MonoBehaviour
         spawners = GetComponentsInChildren<EnemySpawner>();
         nextSpawnTime = Time.time + initialSpawnDelay;
     }
+
+    public override void OnNetworkSpawn()
+    {
+        nextSpawnTime = Time.time + initialSpawnDelay;
+        networkReady = true;
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +44,7 @@ public class EnmyRoomSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsHost || !networkReady) return;
         SpawnEnemy();
     }
 
@@ -42,6 +52,7 @@ public class EnmyRoomSpawner : MonoBehaviour
     {
         if (enemyCount > enemiesToSpawn) return;
         if (Time.time < nextSpawnTime) return;
+        Debug.Log($"Time.time currently {Time.time}");
         nextSpawnTime += spawnInterval;
 
         if (enemies.Length == 0 || spawners.Length == 0) 
@@ -53,7 +64,7 @@ public class EnmyRoomSpawner : MonoBehaviour
         enemyCount++;
         Enemy newEnemy = enemies[Random.Range(0, enemies.Length)];
         EnemySpawner selectedSpawner = spawners[Random.Range(0, spawners.Length)];
-
+        
         selectedSpawner.SpawnEnemy(newEnemy);
     }
 }

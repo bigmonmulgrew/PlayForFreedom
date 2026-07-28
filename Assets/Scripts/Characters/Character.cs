@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : NetworkBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
