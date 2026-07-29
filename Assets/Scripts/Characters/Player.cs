@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
@@ -7,6 +8,8 @@ public class Player : Character
     public readonly static List<Player> AllPlayers = new();
     public readonly static List<Player> LocalPlayers = new();
     public readonly static List<Player> RemotePlayers = new();
+
+    public event Action<int> OnScoreChanged;
 
     [SerializeField] LayerMask pickupsLayers = (1 << 12);
 
@@ -25,6 +28,7 @@ public class Player : Character
     {
         base.OnNetworkSpawn();
         AllPlayers.Add(this);
+        PlayerUI.NewPlayerSpawned();
 
         if (IsOwner) LocalPlayers.Add(this);
         else RemotePlayers.Add(this);
@@ -45,6 +49,7 @@ public class Player : Character
             if (other.gameObject.transform.parent.TryGetComponent<Pickup>(out Pickup p))
             {
                 cashScore += p.CashValue;
+                OnScoreChanged?.Invoke(cashScore);
                 p.DestroyPickup();
                 Debug.Log($"{playerName} now has {cashScore}");
             }

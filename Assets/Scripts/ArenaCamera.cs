@@ -20,10 +20,14 @@ public class ArenaCamera : MonoBehaviour
 
     private void SmoothTransition()
     {
-        float interpolatioRation = (Time.time - startTime) / transitionTime;
+        if (targetTransform == null) return;
 
-        transform.position = Vector3.Lerp(transform.position, targetTransform.position, interpolatioRation);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetTransform.rotation, interpolatioRation);
+        float interpolatioRatio = (Time.time - startTime) / transitionTime;
+
+        transform.position = Vector3.Lerp(transform.position, targetTransform.position, interpolatioRatio);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetTransform.rotation, interpolatioRatio);
+
+        if (interpolatioRatio >= 1) targetTransform = null; 
     }
 
     public void SetNewTransfrom(Transform newTransform)
