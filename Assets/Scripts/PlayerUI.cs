@@ -5,13 +5,13 @@ using Unity.VisualScripting;
 
 public class PlayerUI : MonoBehaviour
 {
-    static int count = 0;
     static List<PlayerUI> PlayerUIs = new();
 
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI playerIndicatorText;
 
     Player selectedPlayer;
+    Room parentRoom;
 
     int playerIndex = 0;
     bool isActive = false;
@@ -21,6 +21,10 @@ public class PlayerUI : MonoBehaviour
     private void Awake()
     {
         PlayerUIs.Add(this);
+        parentRoom = GetComponentInParent<Room>();
+        parentRoom.PlayerUIList.Add(this);
+
+        
     }
     void Start()
     {
@@ -28,23 +32,22 @@ public class PlayerUI : MonoBehaviour
 
     }
 
-    void SetInitiaReadouts()
+    void SetInitiaReadouts(int i = 0)
     {
-        playerIndicatorText.text = new string('.', count);
+        playerIndicatorText.text = new string('.', i);
         scoreText.text = "000";
     }
 
-    void SetPlayerIndex()
+    void SetPlayerIndex(int i)
     {
-        playerIndex = count;
-        count++;
+        playerIndex = i;
     }
 
-    public void Initialise()
+    public void Initialise(int i)
     {
-        SetPlayerIndex();
+        SetPlayerIndex(i);
 
-        SetInitiaReadouts();
+        SetInitiaReadouts(i + 1);
 
         if (playerIndex >= Player.AllPlayers.Count) return;
 
@@ -62,13 +65,20 @@ public class PlayerUI : MonoBehaviour
     }
     public static void NewPlayerSpawned()
     {
-        foreach (var p in PlayerUIs)
+        foreach (Room r in Room.AllRooms)
         {
-            if (p.IsActive) continue;
-            p.IsActive = true;
-            p.Initialise();
-            break;
-        } 
+            int i = 0;
+            foreach(PlayerUI p in r.PlayerUIList)
+            {
+                i++;
+                if (p.IsActive) continue;
+                p.IsActive = true;
+                p.Initialise(i - 1);
+                
+                break;
+            }
+
+        }
             
     }
 }

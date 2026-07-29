@@ -1,15 +1,28 @@
 
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
 public class Room : NetworkBehaviour
 {
+    public static List<Room> AllRooms = new();
+   
+
     #region Cached reference
     RoomStartTrigger startTrigger;
     EnemyRoomSpawner enemyRoomSpawner;
     RoomCameraLocations cameraLocations;
     Door[] doorList;
     #endregion
+
+    List<PlayerUI> playerUIList = new();
+
+    public List<PlayerUI> PlayerUIList {  get { return playerUIList; }  set { playerUIList = value; } }
+
+    private void Awake()
+    {
+        AllRooms.Add(this);
+    }
 
     void FindReferences()
     {
