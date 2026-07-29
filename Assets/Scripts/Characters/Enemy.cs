@@ -22,4 +22,5 @@ public class Enemy: Character
             Instantiate(p, transform.position, Quaternion.identity);
         }
     }
+
 }
