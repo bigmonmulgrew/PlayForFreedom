@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Door
   isExitDoor: 0
   playerBarrier: {fileID: 7194722696084704842}
+  doorMesh: {fileID: 6066625334467105484}
 --- !u!1 &2402157968757200643
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1871410617
+  GlobalObjectIdHash: 3017845710
   InScenePlacedSourceGlobalObjectIdHash: 486091439
   DeferredDespawnTick: 0
   Ownership: 1

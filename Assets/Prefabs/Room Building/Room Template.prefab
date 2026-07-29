@@ -660,8 +660,8 @@ MonoBehaviour:
   enemies:
   - {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
   initialSpawnDelay: 3
-  spawnInterval: 2
-  enemiesToSpawn: 10
+  spawnInterval: 1
+  enemiesToSpawn: 2
 --- !u!1 &8578326155916616835
 GameObject:
   m_ObjectHideFlags: 0

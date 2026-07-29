@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using Random = UnityEngine.Random;
 
 public class EnemyRoomSpawner : NetworkBehaviour
@@ -13,11 +15,14 @@ public class EnemyRoomSpawner : NetworkBehaviour
 
     #region Cached references
     EnemySpawner[] spawners;
+    Room room;
     #endregion
 
     #region Runtime Variables
+    List<Enemy> spawnedEnemies = new();
     float nextSpawnTime = 0;
-    int enemyCount;
+    int totalSpawnedEnemies;
+    int totalKilledEnemies;
     bool startSpawning = false;
     bool spawningComplete = false;
     #endregion
@@ -33,11 +38,13 @@ public class EnemyRoomSpawner : NetworkBehaviour
     private void FindReferences()
     {
         spawners = GetComponentsInChildren<EnemySpawner>();
+        room = GetComponent<Room>();
     }
     void SanityChecks()
     {
         if (spawners.Length == 0) Debug.LogError($"{name} cannot find any enemy spawner. Please places some on this room.", this);
         if (enemiesToSpawn == 0 && enemies.Length > 0) Debug.LogError($"{name} has enemies configured but is set to spawn 0 eneimes.", this);
+        if (room == null) Debug.LogError($"{name} has no Room script attached, please add one.", this);
     }
 
     void Update()
@@ -53,7 +60,7 @@ public class EnemyRoomSpawner : NetworkBehaviour
     {
         if (!IsServer) return;
         if (spawningComplete) return;
-        if (enemyCount > enemiesToSpawn) return;
+        if (totalSpawnedEnemies > enemiesToSpawn) return;
         if (Time.time < nextSpawnTime) return;
 
         nextSpawnTime += spawnInterval;
@@ -64,13 +71,17 @@ public class EnemyRoomSpawner : NetworkBehaviour
             return; 
         }
 
-        enemyCount++;
-        if (enemyCount >= enemiesToSpawn) spawningComplete = true;
+        totalSpawnedEnemies++;
+        if (totalSpawnedEnemies >= enemiesToSpawn) spawningComplete = true;
 
         Enemy newEnemy = enemies[Random.Range(0, enemies.Length)];
         EnemySpawner selectedSpawner = spawners[Random.Range(0, spawners.Length)];
         
         Enemy spawnedEnemy = selectedSpawner.SpawnEnemy(newEnemy);
+        spawnedEnemy.SetRoomSpawner(this);
+
+        spawnedEnemies.Add(spawnedEnemy);
+
     }
 
     public void StartSpawning()
@@ -80,5 +91,17 @@ public class EnemyRoomSpawner : NetworkBehaviour
 
         startSpawning = true;
         nextSpawnTime = StartSpawningTime;
+    }
+    public void EnemyHasDied(Enemy enemy)
+    {
+        if (spawnedEnemies.Remove(enemy)) totalKilledEnemies++;
+
+        if (!IsServer) return;
+        if (!spawningComplete) return;
+
+        if (totalKilledEnemies < totalSpawnedEnemies) return;
+
+        if (room) room.FinishRoom();
+
     }
 }

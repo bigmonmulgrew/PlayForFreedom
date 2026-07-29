@@ -2,14 +2,24 @@ using UnityEngine;
 
 public class Enemy: Character
 {
-
+    #region Cofiguration
     [SerializeField] float pickupDropChance = 0.5f;
     [SerializeField] Pickup[] pickups;
+    #endregion
+
+    #region Cached References
+    EnemyRoomSpawner parentSpawner;
+    #endregion
+
 
     protected override void Die()
     {
         base.Die();
-        if (IsDead) DropPickup();
+
+        if (!IsDead) return;
+            
+        DropPickup();
+        if (parentSpawner != null) parentSpawner.EnemyHasDied(this);
     }
     void DropPickup()
     {
@@ -23,4 +33,8 @@ public class Enemy: Character
         }
     }
 
+    public void SetRoomSpawner(EnemyRoomSpawner enemyRoomSpawner)
+    {
+        parentSpawner = enemyRoomSpawner;
+    }
 }
