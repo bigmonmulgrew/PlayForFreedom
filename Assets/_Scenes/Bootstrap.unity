@@ -94,7 +94,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 1f42e57148472b04284a59d33be886cf, type: 2}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 59b67dd0f560e994580c22d6fa2ac603, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -342,7 +342,7 @@ Camera:
     height: 1
   near clip plane: 5
   far clip plane: 1000
-  field of view: 90
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 160289586}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 14, z: 0}
+  m_LocalPosition: {x: 0, y: 22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1319,13 +1319,50 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2398827345951521223, guid: 0b843edb0cdbdec43ad9cae7653b1615, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1391068549}
   m_SourcePrefab: {fileID: 100100000, guid: 0b843edb0cdbdec43ad9cae7653b1615, type: 3}
 --- !u!4 &1391068547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 528219262864816180, guid: 0b843edb0cdbdec43ad9cae7653b1615, type: 3}
   m_PrefabInstance: {fileID: 1391068546}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1391068548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2398827345951521223, guid: 0b843edb0cdbdec43ad9cae7653b1615, type: 3}
+  m_PrefabInstance: {fileID: 1391068546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1391068549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391068548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &1522427159
 GameObject:
   m_ObjectHideFlags: 1
@@ -2076,8 +2113,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2398827345951521223, guid: 1d09d13e0602c094db8948ba9b8acb03, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5554688039139763007}
   m_SourcePrefab: {fileID: 100100000, guid: 1d09d13e0602c094db8948ba9b8acb03, type: 3}
+--- !u!1 &5554688039139763006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2398827345951521223, guid: 1d09d13e0602c094db8948ba9b8acb03, type: 3}
+  m_PrefabInstance: {fileID: 5554688039139763005}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5554688039139763007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554688039139763006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!4 &7057516004932664435
 Transform:
   m_ObjectHideFlags: 0
