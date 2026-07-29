@@ -1,9 +1,8 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnmyRoomSpawner : NetworkBehaviour
+public class EnemyRoomSpawner : NetworkBehaviour
 {
     #region config
     [SerializeField] Enemy[] enemies;
@@ -19,38 +18,41 @@ public class EnmyRoomSpawner : NetworkBehaviour
     #region Runtime Variables
     float nextSpawnTime = 0;
     int enemyCount;
-    bool networkReady;
+    bool startSpawning = false;
     bool spawningComplete = false;
     #endregion
 
+    float StartSpawningTime => Time.time + initialSpawnDelay;
+
     private void Awake()
     {
+        FindReferences();
+        SanityChecks();
+    }
+
+    private void FindReferences()
+    {
         spawners = GetComponentsInChildren<EnemySpawner>();
-        nextSpawnTime = Time.time + initialSpawnDelay;
     }
-
-    public override void OnNetworkSpawn()
+    void SanityChecks()
     {
-        nextSpawnTime = Time.time + initialSpawnDelay;
-        networkReady = true;
+        if (spawners.Length == 0) Debug.LogError($"{name} cannot find any enemy spawner. Please places some on this room.", this);
+        if (enemiesToSpawn == 0 && enemies.Length > 0) Debug.LogError($"{name} has enemies configured but is set to spawn 0 eneimes.", this);
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (!IsHost || !networkReady) return;
+        if (!IsServer) return;
+        if (!IsHost) return;
+        if (!startSpawning) return;
+
         SpawnEnemy();
     }
 
     void SpawnEnemy()
     {
+        if (!IsServer) return;
+        if (spawningComplete) return;
         if (enemyCount > enemiesToSpawn) return;
         if (Time.time < nextSpawnTime) return;
 
@@ -71,4 +73,12 @@ public class EnmyRoomSpawner : NetworkBehaviour
         Enemy spawnedEnemy = selectedSpawner.SpawnEnemy(newEnemy);
     }
 
+    public void StartSpawning()
+    {
+        if (!IsServer) return;
+        if (spawningComplete) return;
+
+        startSpawning = true;
+        nextSpawnTime = StartSpawningTime;
+    }
 }
