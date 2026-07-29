@@ -7,6 +7,7 @@ public class Room : NetworkBehaviour
     #region Cached reference
     RoomStartTrigger startTrigger;
     EnemyRoomSpawner enemyRoomSpawner;
+    RoomCameraLocations cameraLocations;
     Door[] doorList;
     #endregion
 
@@ -18,6 +19,8 @@ public class Room : NetworkBehaviour
         enemyRoomSpawner = enemyRoomSpawner != null ? enemyRoomSpawner : GetComponent<EnemyRoomSpawner>();
 
         doorList = GetComponentsInChildren<Door>();
+
+        cameraLocations = GetComponentInChildren<RoomCameraLocations>();
     }
 
     void SanityChecks()
@@ -52,6 +55,9 @@ public class Room : NetworkBehaviour
         {
             d.Close();
         }
+
+        Transform newCamerTransform = cameraLocations.GetTransformAtIndex(0);   // TODO add some smart transtion so we preserve relative transforms.
+        ArenaCamera.Instance?.SetNewTransfrom(newCamerTransform);
     }
 
     public void FinishRoom()

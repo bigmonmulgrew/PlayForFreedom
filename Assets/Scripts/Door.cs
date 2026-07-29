@@ -15,6 +15,10 @@ public class Door : MonoBehaviour
     bool islocked = false;
     #endregion
 
+    private void Awake()
+    {
+        Open();
+    }
 
     void OnTriggerEnter(Collider other)
     {
