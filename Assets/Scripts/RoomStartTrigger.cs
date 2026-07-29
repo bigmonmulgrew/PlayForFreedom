@@ -12,5 +12,6 @@ public class RoomStartTrigger : MonoBehaviour
         if (isTriggered) return;
         RoomStartTriggered?.Invoke();
         isTriggered = true;
+        Destroy(gameObject);
     }
 }
