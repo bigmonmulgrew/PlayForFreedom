@@ -231,9 +231,15 @@ namespace BMD
 
             isDead = true;              // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
             OnDieRequested?.Invoke();
-            Destroy(gameObject, 2.0f);  // TODO evil magic number, but probably want die config and tracking elsewhere
+
+            StartCoroutine(DelayedDespawn());
         }
 
+        IEnumerator DelayedDespawn()
+        {
+            yield return new WaitForSeconds(2); // TODO evil magic number
+            NetworkObject.Despawn();
+        }
         private void _RequestAttack()
         {
             if (CantAttack) return;

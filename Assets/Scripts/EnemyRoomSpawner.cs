@@ -29,12 +29,13 @@ public class EnemyRoomSpawner : NetworkBehaviour
 
     float StartSpawningTime => Time.time + initialSpawnDelay;
 
-    private void Awake()
+    public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
         FindReferences();
         SanityChecks();
-    }
 
+    }
     private void FindReferences()
     {
         spawners = GetComponentsInChildren<EnemySpawner>();

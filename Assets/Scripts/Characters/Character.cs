@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
 
@@ -75,6 +76,11 @@ public class Character : NetworkBehaviour
     public void FireWeapon()
     {
         if (!IsOwner) return;
+        RequestFire();
+    }
+
+    void RequestFire()
+    {
         weapon.Fire();
     }
 }

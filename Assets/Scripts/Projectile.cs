@@ -1,7 +1,8 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : NetworkBehaviour
 {
     const float VELOCITY_CHECK_INTERVAL = 0.1f;
 
@@ -17,7 +18,7 @@ public class Projectile : MonoBehaviour
 
     #region Runtime Variables
     float spawnTime;
-    Coroutine velocityCheck;
+    Coroutine intermittenChecksCoroutine;
     int bounces;
     #endregion
 
@@ -28,29 +29,36 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void OnEnable()
+    public override void OnNetworkSpawn()
     {
-        velocityCheck = StartCoroutine(IntermittendChecks());
+        base.OnNetworkSpawn();
+        intermittenChecksCoroutine = StartCoroutine(IntermittendChecks());
         spawnTime = Time.time;
     }
-    void OnDisable()
+
+    public override void OnNetworkDespawn()
     {
-        if (velocityCheck != null) StopCoroutine(velocityCheck);
+        base.OnNetworkDespawn();
+        if (intermittenChecksCoroutine != null) StopCoroutine(intermittenChecksCoroutine);
     }
     /// <summary>
     /// Destroys the projectile or applies pool cleanup
     /// </summary>
     void DisposeofProjectile()
     {
-        if (velocityCheck != null) StopCoroutine(velocityCheck);
+        if (intermittenChecksCoroutine != null) StopCoroutine(intermittenChecksCoroutine);
 
         // TODO imlement pooling logic
         // TODO add some destroy particles or effects.
-        Destroy(gameObject);
+        NetworkObject.Despawn();
+        
+
     }
 
     IEnumerator IntermittendChecks()
     {
+        if (!IsServer) yield break;
+
         bool destroyNow = false;
         while (true)
         {
@@ -71,6 +79,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (!IsServer) return;
         // bounces is incremented AFTER the if statment accesses bounces.
         if (bounces++ == maxBounces) DisposeofProjectile();
     }

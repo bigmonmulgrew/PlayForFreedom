@@ -636,7 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1505611910
+  GlobalObjectIdHash: 486091439
   InScenePlacedSourceGlobalObjectIdHash: 486091439
   DeferredDespawnTick: 0
   Ownership: 1
@@ -678,7 +678,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   enemies:
   - {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
-  initialSpawnDelay: 3
+  initialSpawnDelay: 10
   spawnInterval: 1
   enemiesToSpawn: 10
 --- !u!1 &8578326155916616835

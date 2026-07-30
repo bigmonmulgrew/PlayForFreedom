@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a669e9e53b233064e9caa83da8859376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  ShowTopMostFoldoutHeaderGroup: 1
   projectile: {fileID: 173318939751075400, guid: 92d8fc2e78d26084688cda85328d88bb, type: 3}
   bulletSpawn: {fileID: 4230516242969178237}
   projectileForce: 100

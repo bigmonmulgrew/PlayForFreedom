@@ -47,6 +47,8 @@ public class EnemyController : BMD.CharacterController
     }
     IEnumerator MoveToNavMesh()
     {
+        if(!IsServer) yield break;
+
         yield return null;
         // Auto-align agent to navmesh height
         if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 2f, NavMesh.AllAreas))
@@ -68,6 +70,7 @@ public class EnemyController : BMD.CharacterController
 
     protected override void FixedUpdate()
     {
+        if (!IsServer) return;
         base.FixedUpdate();
         SetMoveInput();
     }
@@ -84,6 +87,8 @@ public class EnemyController : BMD.CharacterController
 
     IEnumerator RepathLoop()
     {
+        if (!IsServer) yield break;
+
         while (true)
         {
             yield return new WaitForSeconds(repathInterval);
@@ -173,6 +178,8 @@ public class EnemyController : BMD.CharacterController
 
     void LateUpdate()
     {
+        if (!IsServer) return;
+
         if (!agent.isOnNavMesh) return;
 
         agent.nextPosition = transform.position;
