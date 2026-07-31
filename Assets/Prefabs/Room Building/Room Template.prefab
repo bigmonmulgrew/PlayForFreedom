@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 727
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -678,7 +678,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   enemies:
   - {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
-  initialSpawnDelay: 10
+  initialSpawnDelay: 3
   spawnInterval: 1
   enemiesToSpawn: 10
 --- !u!1 &8578326155916616835
@@ -1015,7 +1015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1448475622234149144, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 147215702
+      value: 3100780472
       objectReference: {fileID: 0}
     - target: {fileID: 1448475622234149144, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: SceneMigrationSynchronization
@@ -2013,7 +2013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1448475622234149144, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 422180174
+      value: 2413371146
       objectReference: {fileID: 0}
     - target: {fileID: 1448475622234149144, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: SceneMigrationSynchronization
@@ -2425,7 +2425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1448475622234149144, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1725077338
+      value: 3466319849
       objectReference: {fileID: 0}
     - target: {fileID: 1448475622234149144, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: SceneMigrationSynchronization
@@ -2573,7 +2573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1448475622234149144, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3457417146
+      value: 1871410617
       objectReference: {fileID: 0}
     - target: {fileID: 7975022699527034874, guid: fbef1e41962c8b5429bc96797ccd90e0, type: 3}
       propertyPath: m_LocalPosition.x
