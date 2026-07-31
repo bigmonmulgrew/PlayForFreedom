@@ -1,0 +1,1 @@
+This folder is a reference for 3rd party assets unmodified
