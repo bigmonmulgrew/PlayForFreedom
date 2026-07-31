@@ -206,7 +206,7 @@ MonoBehaviour:
   RotationInterpolationType: 1
   ScaleInterpolationType: 1
   PositionLerpSmoothing: 1
-  PositionMaxInterpolationTime: 0.1
+  PositionMaxInterpolationTime: 0.05
   RotationLerpSmoothing: 1
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1

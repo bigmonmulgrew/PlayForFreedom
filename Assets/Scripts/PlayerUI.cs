@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.Netcode;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -52,16 +52,17 @@ public class PlayerUI : MonoBehaviour
         if (playerIndex >= Player.AllPlayers.Count) return;
 
         selectedPlayer = Player.AllPlayers[playerIndex];
-        selectedPlayer.OnScoreChanged += UpdateScore;
+        //selectedPlayer.OnScoreChanged += UpdateScore;
+        selectedPlayer.CashScore.OnValueChanged += UpdateScore;
     }
 
     private void OnDisable()
     {
-        if (selectedPlayer) selectedPlayer.OnScoreChanged -= UpdateScore;
+        if (selectedPlayer) selectedPlayer.CashScore.OnValueChanged -= UpdateScore;
     }
-    void UpdateScore(int newScore)
+    void UpdateScore(int previousValue, int newValue)
     {
-        scoreText.text = newScore.ToString("N0");
+        scoreText.text = newValue.ToString("N0");
     }
     public static void NewPlayerSpawned()
     {

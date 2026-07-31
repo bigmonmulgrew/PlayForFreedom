@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
 
@@ -9,14 +10,14 @@ public class Player : Character
     public readonly static List<Player> LocalPlayers = new();
     public readonly static List<Player> RemotePlayers = new();
 
-    public event Action<int> OnScoreChanged;
+    //public event Action<int> OnScoreChanged;
 
     [SerializeField] LayerMask pickupsLayers = (1 << 12);
 
-    int cashScore;
+    NetworkVariable<int> cashScore = new(0);
     string playerName = "Dave"; // TODO add UI to change this.
 
-    public int CashScore => cashScore;
+    public NetworkVariable<int> CashScore => cashScore;
 
     public void SetPlayerName(string playerName)
     {
@@ -44,15 +45,23 @@ public class Player : Character
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!IsServer) return;
+
         if ((pickupsLayers.value & (1 << other.gameObject.layer)) != 0)
         {
             if (other.gameObject.transform.parent.TryGetComponent<Pickup>(out Pickup p))
             {
-                cashScore += p.CashValue;
-                OnScoreChanged?.Invoke(cashScore);
+                cashScore.Value += p.CashValue;
+                
+                //ScoreHasChangedRPC();
                 p.DestroyPickup();
                 Debug.Log($"{playerName} now has {cashScore}");
             }
         }
     }
+    //[Rpc(SendTo.Everyone)]
+    //private void ScoreHasChangedRPC()
+    //{
+    //    OnScoreChanged?.Invoke(cashScore.Value);
+    //}
 }

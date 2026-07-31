@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 public class Enemy: Character
@@ -29,7 +30,8 @@ public class Enemy: Character
             if (pickups.Length == 0) return;
 
             Pickup p = pickups[Random.Range(0, pickups.Length)];
-            Instantiate(p, transform.position, Quaternion.identity);
+            Pickup newPickup = Instantiate(p, transform.position, Quaternion.identity);
+            newPickup.GetComponent<NetworkObject>().Spawn();
         }
     }
 

@@ -2,6 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Enemy controller contains the enemy movement and attack logic. 
+/// This emulates the player inputs allowing the charafcter controller to interface with the ai the same way as a player.
+/// </summary>
 public class EnemyController : BMD.CharacterController
 {
     #region Configuration
@@ -30,7 +34,6 @@ public class EnemyController : BMD.CharacterController
 
         SetupAgent();
     }
-
     void SetupAgent()
     {
 
@@ -61,13 +64,11 @@ public class EnemyController : BMD.CharacterController
             Debug.LogError($"{name}: Could not find navmesh under enemy {name}!", this);
         }
     }
-
     protected override void Start()
     {
         base.Start();
 
     }
-
     protected override void FixedUpdate()
     {
         if (!IsServer) return;
@@ -84,7 +85,6 @@ public class EnemyController : BMD.CharacterController
         base.OnNetworkDespawn();
         if(repathCoroutine != null) StopCoroutine(repathCoroutine);
     }
-
     IEnumerator RepathLoop()
     {
         if (!IsServer) yield break;
@@ -98,21 +98,19 @@ public class EnemyController : BMD.CharacterController
     /// <summary>
     /// Call externally to trigger an enemy to immediately change target, providing a player as a target, or leaving blank to find nearest player.
     /// </summary>
-    /// <param name="target"></param>
-    public void RepathImmediate(Player target = null)
+    /// <param name="aggroTarget"></param>
+    public void RepathImmediate(Player aggroTarget = null)
     {
-        if (target == null)
+        if (aggroTarget == null)
         {
-            if (TryFindNearestPlayer(out Player closestPlayer)) 
-                MoveTo(closestPlayer.transform.position);
+            if (TryFindNearestPlayer(out Player closestPlayer)) MoveTo(closestPlayer.transform.position);
         }
         else
         {
-            MoveTo(target.transform.position);
+            MoveTo(aggroTarget.transform.position);
         }
         
     }
-
     void SetMoveInput()
     {
         inputDirection = GetMoveDirection();
@@ -120,7 +118,6 @@ public class EnemyController : BMD.CharacterController
         moveDirection.y = 0;
         moveDirection.z = inputDirection.y;
     }
-
     Vector2 GetMoveDirection()
     {
         if (IsDead) return Vector2.zero;
@@ -137,7 +134,6 @@ public class EnemyController : BMD.CharacterController
         dir.Normalize();
         return new Vector2(dir.x, dir.z);
     }
-
     bool MoveTo(Vector3 targetPos)
     {
         if (IsDead) return false;
@@ -154,7 +150,6 @@ public class EnemyController : BMD.CharacterController
 
         return success;
     }
-
     bool TryFindNearestPlayer(out Player closestPlayer)
     {
         closestPlayer = null;
@@ -168,14 +163,13 @@ public class EnemyController : BMD.CharacterController
             float distanceToPlayer = Vector3.Distance(p.transform.position, transform.position);
             if (distanceToPlayer < distance)
             {
-                distanceToPlayer = distance;
+                distance = distanceToPlayer;
                 closestPlayer = p;
             }
         }
 
         return true;
     }
-
     void LateUpdate()
     {
         if (!IsServer) return;
@@ -184,7 +178,6 @@ public class EnemyController : BMD.CharacterController
 
         agent.nextPosition = transform.position;
     }
-
     /// <summary>
     /// True when we've effectively arrived at the agent destination.
     /// This is used by EnemyController for patrol / walk logic.
