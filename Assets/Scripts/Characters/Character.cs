@@ -21,7 +21,7 @@ public class Character : NetworkBehaviour
 
     protected bool IsDead => isDead;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         controller = GetComponent<CharacterController>();
         weapon = GetComponentInChildren<Weapon>();
