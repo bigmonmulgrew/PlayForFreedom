@@ -7,15 +7,19 @@ public class Room : NetworkBehaviour
 {
     public static List<Room> AllRooms = new();
    
-
     #region Cached reference
     RoomStartTrigger startTrigger;
     EnemyRoomSpawner enemyRoomSpawner;
     RoomCameraLocations cameraLocations;
     Door[] doorList;
+    List<PlayerUI> playerUIList = new();
     #endregion
 
-    List<PlayerUI> playerUIList = new();
+    #region Runtime Variables
+    bool roomIsStarted;
+    int playEnteredCount;
+    #endregion
+
 
     public List<PlayerUI> PlayerUIList {  get { return playerUIList; }  set { playerUIList = value; } }
 
@@ -45,7 +49,6 @@ public class Room : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        if (!IsServer) return;
         
         FindReferences();
         SanityChecks();
@@ -55,14 +58,14 @@ public class Room : NetworkBehaviour
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();
-        if (!IsServer) return;
         startTrigger.RoomStartTriggered -= StartRoom;
     }
 
     void StartRoom()
     {
-        if (!IsServer) return;
-        if(enemyRoomSpawner != null) enemyRoomSpawner.StartSpawning();
+        StartRoomRPC();
+
+        if (!IsOwner) return;
         
         foreach (Door d in doorList)
         {
@@ -73,6 +76,22 @@ public class Room : NetworkBehaviour
         ArenaCamera.Instance?.SetNewTransfrom(newCamerTransform);
     }
 
+    [Rpc(SendTo.Server)]
+    void StartRoomRPC()
+    {
+        if (!IsServer) return;
+        if (roomIsStarted) return;
+
+        playEnteredCount++;
+
+        Debug.Log($"Player count: {playEnteredCount} and all players list length {Player.AllPlayers.Count}");
+
+        if (playEnteredCount < Player.AllPlayers.Count) return;
+
+        if (enemyRoomSpawner != null) enemyRoomSpawner.StartSpawning();
+        roomIsStarted = true;
+    }
+
     public void FinishRoom()
     {
         if (!IsServer) return;
@@ -81,6 +100,8 @@ public class Room : NetworkBehaviour
         {
             d.Open();
         }
+
+        playEnteredCount = 0;
     }
     public void LockOtherDoors(Door door)
     {
