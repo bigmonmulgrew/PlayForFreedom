@@ -11,9 +11,16 @@ public class Projectile : NetworkBehaviour
     [SerializeField] float maxLifetime = 1.0f;
     [SerializeField] float minimumVelocity = 0.1f;
     [SerializeField] int damage = 100;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip fireSound;
+    [SerializeField] AudioClip impactSound;
+    [Range(0, 0.8f)]
+    [SerializeField] float pitchVariance = 0.1f;
     #endregion 
     #region Cached references
     Rigidbody rb;
+    AudioSource audioSource;
     #endregion
 
     #region Runtime Variables
@@ -26,7 +33,27 @@ public class Projectile : NetworkBehaviour
 
     void Awake()
     {
+        FindReferences();
+        ResetAudio();
+        audioSource.Play();
+        SetRandomPitch();
+    }
+
+    void ResetAudio()
+    {
+        audioSource.clip = fireSound;
+        
+    }
+
+    void SetRandomPitch()
+    {
+        audioSource.pitch = Random.Range(1 - pitchVariance, 1 + pitchVariance);
+    }
+    private void FindReferences()
+    {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        
     }
 
     public override void OnNetworkSpawn()
@@ -79,8 +106,21 @@ public class Projectile : NetworkBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        PlayImpactSound();
+
         if (!IsServer) return;
         // bounces is incremented AFTER the if statment accesses bounces.
         if (bounces++ == maxBounces) DisposeofProjectile();
+    }
+    void PlayImpactSound()
+    {
+        Debug.Log($"{name} audiosource is pllaying : {audioSource.isPlaying}");
+        if (audioSource.isPlaying) AudioSource.PlayClipAtPoint(impactSound, transform.position);        // TODO move this to pooled instanced audio
+        else
+        {
+            SetRandomPitch();
+            audioSource.clip = impactSound;
+            audioSource.Play();
+        }
     }
 }
