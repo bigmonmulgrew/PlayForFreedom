@@ -5,6 +5,7 @@ public class Door : MonoBehaviour
     [SerializeField] bool isExitDoor = false;
     [SerializeField] GameObject playerBarrier;
     [SerializeField] MeshRenderer doorMesh;
+    [SerializeField] bool startsLocked = false;
 
     #region Cahced References
     Room parentRoom;
@@ -17,6 +18,7 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
+        islocked = startsLocked;
         Open();
     }
 
