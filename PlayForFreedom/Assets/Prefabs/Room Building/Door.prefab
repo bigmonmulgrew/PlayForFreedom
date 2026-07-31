@@ -50,6 +50,7 @@ MonoBehaviour:
   isExitDoor: 0
   playerBarrier: {fileID: 7194722696084704842}
   doorMesh: {fileID: 6066625334467105484}
+  startsLocked: 0
 --- !u!1 &2402157968757200643
 GameObject:
   m_ObjectHideFlags: 0
