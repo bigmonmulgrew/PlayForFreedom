@@ -9,7 +9,7 @@ public class EnemySpawner : NetworkBehaviour
         if (!IsServer) return null;
 
         Enemy newEnemy = Instantiate(enemyTempalte, GetSpawnPosition(), transform.rotation);
-        
+
         newEnemy.GetComponent<NetworkObject>().Spawn();
 
         return newEnemy;

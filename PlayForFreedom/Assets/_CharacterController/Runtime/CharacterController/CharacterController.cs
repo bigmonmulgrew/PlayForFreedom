@@ -167,11 +167,6 @@ namespace BMD
                 characterRenderer.material.color = IsOwner ? Color.green : Color.grey;
             }
 
-            // Only the locally owned player needs to listen for input.
-            if (!IsOwner) return;
-
-            float spawnX = OwnerClientId % 2 == 0 ? -2f : 2f;
-            transform.position = new Vector3(spawnX, 0.5f, 0f);
         }
         #endregion
 
