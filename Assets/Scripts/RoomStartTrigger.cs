@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomStartTrigger : MonoBehaviour
 {
-    public event Action RoomStartTriggered;
+    public event Action<NetworkObject> RoomStartTriggered;
 
     bool isTriggered;
 
@@ -16,8 +16,8 @@ public class RoomStartTrigger : MonoBehaviour
         // This is a safety check, just in case.
         if (!other.gameObject.TryGetComponent<NetworkObject>(out NetworkObject no)) return;
         if (!no.IsOwner) return;
-
-        RoomStartTriggered?.Invoke();
+        
+        RoomStartTriggered?.Invoke(no);
         isTriggered = true;
         Destroy(gameObject);
     }

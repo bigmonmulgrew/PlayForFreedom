@@ -61,11 +61,11 @@ public class Room : NetworkBehaviour
         startTrigger.RoomStartTriggered -= StartRoom;
     }
 
-    void StartRoom()
+    void StartRoom(NetworkObject no)
     {
         StartRoomRPC();
 
-        if (!IsOwner) return;
+        if (!no.IsOwner) return;
         
         foreach (Door d in doorList)
         {
@@ -92,10 +92,9 @@ public class Room : NetworkBehaviour
         roomIsStarted = true;
     }
 
-    public void FinishRoom()
+    [Rpc(SendTo.Everyone)]
+    public void FinishRoomRPC()
     {
-        if (!IsServer) return;
-
         foreach (Door d in doorList)
         {
             d.Open();

@@ -102,7 +102,7 @@ public class EnemyRoomSpawner : NetworkBehaviour
 
         if (totalKilledEnemies < totalSpawnedEnemies) return;
 
-        if (room) room.FinishRoom();
+        if (room) room.FinishRoomRPC();
 
     }
 }
