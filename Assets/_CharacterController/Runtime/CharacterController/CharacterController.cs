@@ -231,6 +231,7 @@ namespace BMD
 
             isDead = true;              // TODO, this probably shouldnt be here, this is supposed to be a signaling hub
             OnDieRequested?.Invoke();
+            unityController.excludeLayers = LayerMask.GetMask("Player", "Weapons", "PlayerProjectiles", "Enemies", "EnemyProjectiles", "Projectile", "Pickups", "Pickups");
 
             StartCoroutine(DelayedDespawn());
         }
