@@ -1,0 +1,332 @@
+Sci-Fi Industrial Environment Kit
+Documentation & User Guide
+
+Thank you for purchasing the Sci-Fi Industrial Environment Kit.
+
+This package contains a collection of modular sci-fi environment assets designed to help you quickly create futuristic industrial facilities, space stations, corridors, hangars, and mechanical environments.
+
+The kit has been created with optimisation and flexibility in mind, using a shared material workflow and a custom shader system that allows you to easily customise the appearance of the entire environment.
+
+Package Contents
+
+The package includes:
+
+101 modular sci-fi environment pieces
+Optimised modular meshes
+Shared trim sheet material workflow
+Custom environment shader
+Emissive lighting controls
+Panel colour customisation system
+Object rotation utility script
+
+All assets are designed to work together seamlessly, allowing you to build large environments while maintaining a clean and efficient material setup.
+
+Modular Asset Workflow
+
+All environment pieces use a shared material system.
+
+Instead of each object having its own unique texture set, the kit uses a single master material that controls the appearance of all assets.
+
+Benefits:
+
+Reduced material count
+Improved batching performance
+Easy global style changes
+Simple colour customisation
+Consistent visual appearance across the entire kit
+
+Simply place the modular prefab pieces into your scene and they will automatically use the included material setup.
+
+Custom Sci-Fi Material Shader
+
+The included shader provides creative control over the appearance of the environment.
+
+The material inspector contains several custom parameters:
+
+Surface Inputs
+Metallic Intensity
+
+Controls the metallic response of the materials.
+
+Higher values:
+
+More reflective surfaces
+More metallic appearance
+
+Lower values:
+
+Less reflective
+More painted/plastic appearance
+Smoothness Intensity
+
+Controls the surface roughness.
+
+Higher values:
+
+Cleaner polished surfaces
+Stronger reflections
+
+Lower values:
+
+Rougher industrial materials
+More weathered appearance
+Ambient Occlusion Intensity
+
+Controls the strength of the baked ambient occlusion information.
+
+Higher values:
+
+Stronger shadows in creases and panel gaps
+
+Lower values:
+
+Softer surface shading
+Lights Intensity
+
+Controls the intensity of emissive lighting effects.
+
+This can be used to adjust how strongly the environment lighting elements appear.
+
+Panel Customisation
+
+The shader includes a dedicated panel masking system.
+
+The included panel mask separates areas of the mesh, allowing you to customise the colour of individual sections without creating additional materials.
+
+Panel Intensity
+
+Controls the brightness/intensity of the masked panel areas.
+
+Increase this value to make panels stand out more.
+
+Panel Colour
+
+Allows you to change the colour of all masked panel sections.
+
+This makes it easy to create variations such as:
+
+Military interiors
+Corporate facilities
+Alien technology
+Warning panels
+Different faction styles
+
+Emissive Controls
+
+The shader includes dedicated emissive controls.
+
+You can customise:
+
+Light Colour
+
+Changes the colour of emissive lighting elements.
+
+Examples:
+
+Blue sci-fi lighting
+Red warning systems
+Green alien technology
+Orange industrial lighting
+Emissive Intensity
+
+Controls how bright the emissive elements appear.
+
+Higher values:
+
+Strong glowing effects
+More intense lighting
+
+Lower values:
+
+Subtle illuminated details
+Texture Maps
+
+The material uses the following texture inputs:
+
+Albedo
+
+Controls the base colour information.
+
+Normal
+
+Controls surface detail and small-scale surface depth.
+
+Metallic/Roughness
+
+Controls material response.
+
+Ambient Occlusion
+
+Adds additional depth and shading detail.
+
+Emissive
+
+Controls illuminated areas of the environment.
+
+Included Scripts
+Object Spinner
+
+The package includes a simple object rotation script.
+
+This is included for the fan prefab but can be used on any object that requires continuous rotation.
+
+Example uses:
+
+Fans
+Machinery
+Rotating mechanisms
+Display objects
+Sci-fi components
+Using Object Spinner
+Select the object you want to rotate.
+Add the:
+SpinObject
+
+component.
+
+Adjust:
+Rotation Axis
+
+Controls the direction of rotation.
+
+Examples:
+
+X Axis
+Y Axis
+Z Axis
+Rotation Speed
+
+Controls how quickly the object rotates.
+
+Higher values create faster movement.
+
+Showcase Scene
+
+The package includes a fully assembled Showcase Scene, where all 101 modular prefabs are displayed for easy browsing and reference.
+
+This scene demonstrates how the pieces fit together and provides examples of how the modular kit can be combined to create larger environments.
+
+The Showcase Scene also includes demonstrations of the utility scripts included with the package.
+
+Object Spinner Demonstration
+
+A fan assembly in the Showcase Scene demonstrates the SpinObject script in action.
+
+The script can be added to any object that requires continuous rotation, making it useful for animated machinery and environmental props.
+
+The SpinObject component includes the following options:
+
+Play In Editor
+
+When enabled, the object will rotate while editing the scene, allowing you to preview moving objects without entering Play Mode.
+
+When disabled, objects will only rotate during Play Mode.
+
+Rotation Axis
+
+Controls the direction of rotation.
+
+Examples:
+
+X Axis
+Y Axis
+Z Axis
+
+Rotation Speed
+
+Controls how quickly the object rotates.
+
+Higher values produce faster rotation.
+
+Common uses include:
+
+Cooling fans
+Turbines
+Mechanical components
+Rotating machinery
+Display objects
+Material Colour Animation Demonstration
+
+The Showcase Scene also includes a demonstration of the Rainbow Material Controller.
+
+This script automatically cycles through colours to showcase the flexibility of the included custom shader.
+
+The demonstration animates both:
+
+Panel Colour
+Emissive Light Colour
+
+This provides a quick visual example of how easily the material can be customised to create different themes and colour palettes using a single shared material.
+
+Included Scripts
+
+The package includes two utility scripts.
+
+SpinObject
+
+A simple object rotation component for continuously rotating objects.
+
+Perfect for:
+
+Fans
+Machinery
+Rotating mechanisms
+Display objects
+Sci-Fi components
+
+Features
+
+Adjustable Rotation Axis
+Adjustable Rotation Speed
+Optional Play In Editor mode for previewing movement without entering Play Mode
+Rainbow Material Controller
+
+A demonstration script designed to showcase the flexibility of the custom material shader.
+
+The script smoothly cycles through colours over time, updating both the emissive lighting and panel colours simultaneously.
+
+This script is intended as an example of how the shader can be driven through code and can be used as a starting point for creating animated lighting effects, alarms, faction colour changes, or other dynamic material behaviours.
+
+I would also recommend adding a small "Getting Started" section near the beginning of the documentation, as it's something Unity Asset Store buyers often look for:
+
+Getting Started
+Import the package into your Unity project.
+Open the Showcase Scene to view all included prefabs and example scripts.
+Drag the modular prefabs into your own scene to begin building.
+Customise the included material using the shader controls to change panel colours, emissive lighting, metallic response, and surface properties.
+Add the SpinObject component to any object that requires continuous rotation, or use the included Rainbow Material Controller as an example of runtime material customisation.
+
+This gives new users a clear starting point within the first minute of opening the package.
+
+Recommended Usage
+
+For the best results:
+
+Use the included material as the base material for the kit.
+Duplicate the material if you want to create completely different visual themes.
+Use the panel colour and emissive controls to create variations.
+Combine pieces together to create larger environments.
+Performance Notes
+
+The kit has been designed with optimisation in mind.
+
+Recommended practices:
+
+Use baked lighting where possible.
+Avoid creating unnecessary material duplicates.
+Keep the shared material workflow whenever possible.
+
+Support
+
+If you encounter any issues with the package, please ensure:
+
+You are using a supported Unity version.
+The required render pipeline settings are correctly configured.
+The included materials and shaders have not been modified incorrectly.
+
+Thank you for supporting this asset pack.
+
+Enjoy building your next sci-fi environment!
+
+Sci-Fi Industrial Environment Kit
+Created by Crystal Gear Games - Steven Holmes
