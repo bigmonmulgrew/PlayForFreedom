@@ -72,8 +72,7 @@ public class Room : NetworkBehaviour
             d.Close();
         }
 
-        Transform newCamerTransform = cameraLocations.GetTransformAtIndex(0);   // TODO add some smart transtion so we preserve relative transforms.
-        ArenaCamera.Instance?.SetNewTransfrom(newCamerTransform);
+        ArenaCamera.Instance?.SetNewTransfrom(cameraLocations);
     }
 
     [Rpc(SendTo.Server)]

@@ -1,5 +1,68 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &515774405101155903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5474102897125523353}
+  - component: {fileID: 3694833759251746019}
+  - component: {fileID: 3587564759280608197}
+  m_Layer: 0
+  m_Name: Camera Wall Position (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5474102897125523353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515774405101155903}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3535534, y: 0.61237246, z: -0.3535534, w: -0.61237246}
+  m_LocalPosition: {x: 10, y: 17.320509, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 711502007687335410}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &3694833759251746019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515774405101155903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8e379993ef6da4dad7a9ae976365fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EditorArrow
+  size: 0.8
+  colour: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &3587564759280608197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515774405101155903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0af6479216a9641b2ca322d502b30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomCameraLocation
+  up: {fileID: 5951960606208174377}
+  down: {fileID: 0}
+  left: {fileID: 7836430018956849757}
+  right: {fileID: 5654007201829499281}
 --- !u!1 &2002039682972856462
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +94,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1048044991076736420}
+  - {fileID: 4538677590758095716}
+  - {fileID: 7498514134054117089}
+  - {fileID: 2412659414903609293}
+  - {fileID: 5474102897125523353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3792999695696544680
@@ -47,6 +114,199 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomCameraLocations
   cameraTransforms:
   - {fileID: 1048044991076736420}
+  - {fileID: 4538677590758095716}
+  - {fileID: 7498514134054117089}
+  - {fileID: 2412659414903609293}
+  - {fileID: 5474102897125523353}
+--- !u!1 &4544990990612560369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2412659414903609293}
+  - component: {fileID: 6487830656235085146}
+  - component: {fileID: 5654007201829499281}
+  m_Layer: 0
+  m_Name: Camera Wall Position (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2412659414903609293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544990990612560369}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.86602545, z: -0.5, w: 0}
+  m_LocalPosition: {x: 0, y: 17.320509, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 711502007687335410}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &6487830656235085146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544990990612560369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8e379993ef6da4dad7a9ae976365fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EditorArrow
+  size: 0.8
+  colour: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &5654007201829499281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544990990612560369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0af6479216a9641b2ca322d502b30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomCameraLocation
+  up: {fileID: 5951960606208174377}
+  down: {fileID: 0}
+  left: {fileID: 3587564759280608197}
+  right: {fileID: 2977957084045461230}
+--- !u!1 &4795263551694649320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7498514134054117089}
+  - component: {fileID: 7256397073682858424}
+  - component: {fileID: 2977957084045461230}
+  m_Layer: 0
+  m_Name: Camera Wall Position (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7498514134054117089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795263551694649320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.3535534, y: 0.61237246, z: -0.3535534, w: 0.61237246}
+  m_LocalPosition: {x: -10, y: 17.320509, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 711502007687335410}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &7256397073682858424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795263551694649320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8e379993ef6da4dad7a9ae976365fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EditorArrow
+  size: 0.8
+  colour: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &2977957084045461230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795263551694649320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0af6479216a9641b2ca322d502b30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomCameraLocation
+  up: {fileID: 5951960606208174377}
+  down: {fileID: 0}
+  left: {fileID: 5654007201829499281}
+  right: {fileID: 7836430018956849757}
+--- !u!1 &5050636804974033811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4538677590758095716}
+  - component: {fileID: 3925143591950609715}
+  - component: {fileID: 7836430018956849757}
+  m_Layer: 0
+  m_Name: Camera Wall Position (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4538677590758095716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050636804974033811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.86602545}
+  m_LocalPosition: {x: 0, y: 17.320509, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 711502007687335410}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &3925143591950609715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050636804974033811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8e379993ef6da4dad7a9ae976365fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EditorArrow
+  size: 0.8
+  colour: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &7836430018956849757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050636804974033811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0af6479216a9641b2ca322d502b30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomCameraLocation
+  up: {fileID: 5951960606208174377}
+  down: {fileID: 0}
+  left: {fileID: 2977957084045461230}
+  right: {fileID: 3587564759280608197}
 --- !u!1 &8238812423393204261
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048044991076736420}
   - component: {fileID: 978199657255059823}
+  - component: {fileID: 5951960606208174377}
   m_Layer: 0
   m_Name: Camera Top Position
   m_TagString: Untagged
@@ -93,3 +354,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EditorArrow
   size: 0.8
   colour: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &5951960606208174377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238812423393204261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0af6479216a9641b2ca322d502b30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomCameraLocation
+  up: {fileID: 5654007201829499281}
+  down: {fileID: 7836430018956849757}
+  left: {fileID: 0}
+  right: {fileID: 0}

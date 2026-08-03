@@ -16,8 +16,7 @@ public class CameraMoveTrigger : MonoBehaviour
         if (!other.gameObject.TryGetComponent<NetworkObject>(out NetworkObject no)) return;
         if (!no.IsOwner) return;
 
-        Transform newCamerTransform = cameraLocations.GetTransformAtIndex(0);   // TODO add some smart transtion so we preserve relative transforms.
-        ArenaCamera.Instance?.SetNewTransfrom(newCamerTransform);
+        ArenaCamera.Instance?.SetNewTransfrom(cameraLocations);
     }
 
 }
