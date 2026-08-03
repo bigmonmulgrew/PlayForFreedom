@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -23,7 +22,6 @@ public class Player : Character
     {
         this.playerName = playerName;
     }
-
     
     public override void OnNetworkSpawn()
     {
@@ -53,15 +51,9 @@ public class Player : Character
             {
                 cashScore.Value += p.CashValue;
                 
-                //ScoreHasChangedRPC();
                 p.DestroyPickup();
                 Debug.Log($"{playerName} now has {cashScore}");
             }
         }
     }
-    //[Rpc(SendTo.Everyone)]
-    //private void ScoreHasChangedRPC()
-    //{
-    //    OnScoreChanged?.Invoke(cashScore.Value);
-    //}
 }
