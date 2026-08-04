@@ -16,9 +16,11 @@ public class Character : NetworkBehaviour
     #region Runtime Variables
     int health;
     bool isDead;
+    bool isDespawning;
     #endregion
 
     protected bool IsDead => isDead;
+    protected bool IsDespawning => isDespawning;
 
     protected virtual void Awake()
     {
@@ -36,8 +38,7 @@ public class Character : NetworkBehaviour
 
         controller.OnFireWeaponRequested += FireWeapon;
     }
-
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         health = maxHealth;
     }
@@ -50,7 +51,6 @@ public class Character : NetworkBehaviour
 
         if (health <= 0) Die();
     }
-
     protected virtual void Die()
     {
         if (IsDead) return;
@@ -58,7 +58,6 @@ public class Character : NetworkBehaviour
         isDead = true;
         controller.RequestDie();
     }
-
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"{name} was shot by {collision.gameObject.name}");
@@ -77,9 +76,21 @@ public class Character : NetworkBehaviour
         if (!IsOwner) return;
         RequestFire();
     }
-
     void RequestFire()
     {
         weapon.Fire();
     }
+
+    /// <summary>
+    /// Despans the character as if they have left the play area and not been destroy.
+    /// </summary>
+    protected virtual void RemoveCharacter()
+    {
+        if (IsDespawning) return;
+
+        isDespawning = true;
+        // TODO may need to deactive character controller just liek Die()
+        NetworkObject.Despawn();
+    }
+
 }

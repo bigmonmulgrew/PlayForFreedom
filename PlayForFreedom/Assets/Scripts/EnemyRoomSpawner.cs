@@ -92,7 +92,7 @@ public class EnemyRoomSpawner : NetworkBehaviour
         startSpawning = true;
         nextSpawnTime = StartSpawningTime;
     }
-    public void EnemyHasDied(Enemy enemy)
+    public void EnemyHasDiedOrRemoved(Enemy enemy)
     {
         if (spawnedEnemies.Remove(enemy)) totalKilledEnemies++;
 

@@ -110,6 +110,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
+      propertyPath: despawnTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
+      propertyPath: despawnOnTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
+      propertyPath: despawnOnTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6919200171595018296, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: m_Name
       value: Enemy with Weapon
@@ -120,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8666896900459904719, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 2710455721
+      value: 3153863423
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
