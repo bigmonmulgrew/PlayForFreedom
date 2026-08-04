@@ -157,6 +157,9 @@ MonoBehaviour:
   pickupDropChance: 0.5
   pickups:
   - {fileID: 5139721101452212543, guid: a8aec108a1c30814aa6e0630f845ab0e, type: 3}
+  despawnOnTrigger: 0
+  despawnOnTimer: 0
+  despawnTimer: 10
 --- !u!114 &8659491745854867075
 MonoBehaviour:
   m_ObjectHideFlags: 0

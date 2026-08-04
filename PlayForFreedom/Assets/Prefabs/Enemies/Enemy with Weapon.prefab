@@ -116,7 +116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: despawnOnTimer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6802958828384018535, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: despawnOnTrigger
@@ -125,6 +125,10 @@ PrefabInstance:
     - target: {fileID: 6919200171595018296, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: m_Name
       value: Enemy with Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659491745854867075, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
+      propertyPath: enemyPathType
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8659491745854867075, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: attackTargetType

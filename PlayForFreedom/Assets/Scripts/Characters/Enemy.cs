@@ -28,6 +28,8 @@ public class Enemy: Character
 
     public bool ReadyToFire => Time.time >= weapon.NextFireTime;
 
+    public EnemyRoomSpawner ParentSpawner => parentSpawner;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -81,7 +83,7 @@ public class Enemy: Character
 
     private void OnTriggerEnter(Collider other)
     {
-        if (finishedSpawning && other.CompareTag("EnemyDespawn")) RemoveCharacter();
+        if (finishedSpawning && despawnOnTrigger && other.CompareTag("EnemyDespawn")) RemoveCharacter();
     }
     private void OnTriggerExit(Collider other)
     {

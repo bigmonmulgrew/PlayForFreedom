@@ -19,7 +19,7 @@ public class Character : NetworkBehaviour
     bool isDespawning;
     #endregion
 
-    protected bool IsDead => isDead;
+    public bool IsDead => isDead;
     protected bool IsDespawning => isDespawning;
 
     protected virtual void Awake()

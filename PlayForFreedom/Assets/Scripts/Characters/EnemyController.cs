@@ -1,6 +1,9 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Splines;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Enemy controller contains the enemy movement and attack logic. 
@@ -8,26 +11,35 @@ using UnityEngine.AI;
 /// </summary>
 public class EnemyController : BMD.CharacterController
 {
+    const float SPLINE_PROGRESS_INCREMENT = 0.01f;
     #region Configuration
     [SerializeField] float repathInterval = 0.1f;
 
     [Header("Attack settings")]
     [SerializeField] AttackTargetType attackTargetType = AttackTargetType.Nothing;
+
+    [Header("Pathing Settings")]
+    [SerializeField] EnemyPathType enemyPathType = EnemyPathType.ToPlayer;
     #endregion
 
     #region Cached references
     private NavMeshAgent agent;
     Enemy enemy;
+    EnemyPathsManger enemyPathsManager;
+    SplineContainer splineContainer;
     #endregion
 
     #region Runtime Variables
     Coroutine repathCoroutine;
     Player currentTarget;
+
+    SplinePath path;
+
     #endregion
 
     #region Preallocation
     Vector2 inputDirection = Vector2.zero;
-    
+    float splineProgress;
     #endregion
 
     #region Properties
@@ -37,9 +49,41 @@ public class EnemyController : BMD.CharacterController
         base.Awake();
 
         enemy = GetComponent<Enemy>();
-
-        SetupAgent();
+        
     }
+    void SetupSplines()
+    {
+        switch (enemyPathType)
+        {
+            case EnemyPathType.ToPlayer:
+            case EnemyPathType.NoPath:
+            case EnemyPathType.Random:  // TODO setup random movement
+                return;
+            case EnemyPathType.LeaveRoom:
+                splineContainer = enemyPathsManager.LeaveRoomSplines;
+                break;
+            case EnemyPathType.RoomOrbit:
+                splineContainer = enemyPathsManager.RoomOrbitSplines;
+                break;
+            
+        }
+
+        if (splineContainer == null) return;
+        if (splineContainer.Splines.Count <= 0) return;
+
+        Matrix4x4 containerTransform = splineContainer.transform.localToWorldMatrix;
+
+        Spline selectedSpline = splineContainer.Splines[Random.Range(0, splineContainer.Splines.Count)];
+
+        path = new SplinePath(new[]
+        {
+            new SplineSlice<Spline>(selectedSpline, new SplineRange(0, selectedSpline.Count), containerTransform)
+        });
+
+        SplineUtility.GetNearestPoint(path, transform.position, out float3 nearest, out float progress);
+        splineProgress = progress;
+    }
+
     void SetupAgent()
     {
 
@@ -74,17 +118,28 @@ public class EnemyController : BMD.CharacterController
     {
         base.Start();
 
+        enemyPathsManager = enemy.ParentSpawner.GetComponentInChildren<EnemyPathsManger>();
+
+        SetupSplines();
+
+        SetupAgent();
+
     }
     protected override void Update()
     {
         if (!IsServer) return;
         base.Update();
+
+        if (enemy == null) return;
+        if (enemy.IsDead) return;
+
         Attack();
         SetLookInput();
     }
-
     void Attack()
     {
+        
+
         if (!enemy.ReadyToFire) return;
         switch (attackTargetType)
         {
@@ -122,7 +177,6 @@ public class EnemyController : BMD.CharacterController
 
         }
     }
-
     protected override void FixedUpdate()
     {
         if (!IsServer) return;
@@ -155,28 +209,60 @@ public class EnemyController : BMD.CharacterController
     /// <param name="aggroTarget"></param>
     public void RepathImmediate(Player aggroTarget = null)
     {
+        Player closestPlayer = null;
+
         if (aggroTarget == null)
         {
-            if (TryFindNearestPlayer(out Player closestPlayer))
-            {
-                currentTarget = closestPlayer;
-                MoveTo(closestPlayer.transform.position);
-            }
-                
-        }
-        else
+            TryFindNearestPlayer(out closestPlayer);
+        } 
+        
+        currentTarget = aggroTarget == null ? closestPlayer : aggroTarget;
+        
+        switch (enemyPathType)
         {
-            MoveTo(aggroTarget.transform.position);
+            case EnemyPathType.ToPlayer:
+                if (currentTarget)  MoveTo(currentTarget.transform.position);
+                else                MoveTo(transform.position);
+                break;
+            case EnemyPathType.NoPath:
+                MoveTo(transform.position);
+                break;
+            case EnemyPathType.Random:  // TODO setup random movement
+                Debug.LogError($"{name}: Random move direction not implemented yet, please select another type", this);
+                return;
+            case EnemyPathType.LeaveRoom:
+            case EnemyPathType.RoomOrbit:
+                MoveTo(GetPositionOnSplinePath());
+                break;
+
         }
+           
         
     }
     void SetMoveInput()
     {
+        
+
         inputDirection = GetMoveDirection();
+
         moveDirection.x = inputDirection.x;
         moveDirection.y = 0;
         moveDirection.z = inputDirection.y;
     }
+
+    Vector3 GetPositionOnSplinePath()
+    {
+        SplineUtility.GetNearestPoint(path, transform.position, out float3 nearest, out float progressAtCurrentPoint);
+        progressAtCurrentPoint += SPLINE_PROGRESS_INCREMENT;
+        while (progressAtCurrentPoint > 1)
+        {
+            progressAtCurrentPoint--;
+        }
+
+        return path.EvaluatePosition(progressAtCurrentPoint);
+
+    }
+
     Vector2 GetMoveDirection()
     {
         if (IsDead) return Vector2.zero;
@@ -250,4 +336,5 @@ public class EnemyController : BMD.CharacterController
         // remainingDistance is valid even when updatePosition=false (it uses internal nextPosition)
         return agent.hasPath && agent.remainingDistance <= agent.stoppingDistance;
     }
+
 }
