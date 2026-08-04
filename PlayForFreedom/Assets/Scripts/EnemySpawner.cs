@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class EnemySpawner : NetworkBehaviour
 {
@@ -8,7 +9,19 @@ public class EnemySpawner : NetworkBehaviour
     {
         if (!IsServer) return null;
 
-        Enemy newEnemy = Instantiate(enemyTempalte, GetSpawnPosition(), transform.rotation);
+        if (enemyTempalte == null)
+        {
+            Debug.Log("Enemy Template was null");
+            return null;
+        }
+
+        Debug.Log($"Enemy spawner {name} attempting to spawn enemy using prefab {enemyTempalte.name}");
+
+        Vector3 spawnPosition = GetSpawnPosition();
+
+        if (float.IsInfinity(spawnPosition.x)) spawnPosition = transform.position;
+
+        Enemy newEnemy = Instantiate(enemyTempalte, spawnPosition, transform.rotation);
 
         newEnemy.GetComponent<NetworkObject>().Spawn();
 
