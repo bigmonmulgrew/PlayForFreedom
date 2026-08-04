@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1818712472538281197}
   m_Layer: 16
   m_Name: EnemyDespawn
-  m_TagString: Untagged
+  m_TagString: EnemyDespawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

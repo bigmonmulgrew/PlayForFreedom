@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5a37998432a82e34ebf180a6c23f95ce, type: 2}
+    - target: {fileID: 4691006544547780162, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
+      propertyPath: runSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691006544547780162, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
+      propertyPath: walkSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691006544547780162, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
+      propertyPath: sprintSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5129439333379125253, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -60,9 +72,17 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 4222333648
       objectReference: {fileID: 0}
+    - target: {fileID: 7741317858142533247, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
+      propertyPath: enemyPathType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8185887060536685734, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
       propertyPath: dropRange
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185887060536685734, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
+      propertyPath: maxHealth
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8185887060536685734, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
       propertyPath: pickupsToDrop

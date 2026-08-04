@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8659491745854867075, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
+      propertyPath: enemyPathType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8666896900459904719, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1641958429
@@ -126,5 +130,8 @@ MonoBehaviour:
   pickupDropChance: 1
   pickups:
   - {fileID: 5139721101452212543, guid: a8aec108a1c30814aa6e0630f845ab0e, type: 3}
+  despawnOnTrigger: 0
+  despawnOnTimer: 0
+  despawnTimer: 10
   pickupsToDrop: 10
   dropRange: 5
