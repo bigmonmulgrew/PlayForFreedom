@@ -124,6 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6012033612166914992}
   - component: {fileID: 978214507036792420}
+  - component: {fileID: 8056713249381327923}
   m_Layer: 0
   m_Name: Room Geometry
   m_TagString: Untagged
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 727
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -182,6 +183,23 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 0b75471ab5c3d20469732019c00d5943, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &8056713249381327923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2340439720161141171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifierVolume
+  m_SerializedVersion: 0
+  m_Size: {x: 28, y: 3, z: 28}
+  m_Center: {x: 0, y: 10, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &2583041024226567552
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +787,14 @@ PrefabInstance:
     - target: {fileID: 2800967096318949810, guid: 769d8e892690f6f4d9b1394a3ca3d3c8, type: 3}
       propertyPath: m_Name
       value: RoomStartTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618704075339396339, guid: 769d8e892690f6f4d9b1394a3ca3d3c8, type: 3}
+      propertyPath: m_Size.x
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618704075339396339, guid: 769d8e892690f6f4d9b1394a3ca3d3c8, type: 3}
+      propertyPath: m_Size.z
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
