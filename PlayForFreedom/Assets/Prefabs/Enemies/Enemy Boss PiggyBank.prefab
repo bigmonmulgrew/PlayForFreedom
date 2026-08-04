@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: pickupsToDrop
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8185887060536685734, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
+      propertyPath: despawnOnTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8306873753398952132, guid: 892670b3ca66b91488a6dc0307bbb720, type: 3}
       propertyPath: m_Name
       value: Enemy Boss PiggyBank
