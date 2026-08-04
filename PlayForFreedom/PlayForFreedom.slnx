@@ -23,6 +23,7 @@
   <Project Path="Unity.Services.Authentication.csproj" />
   <Project Path="Unity.Services.QoS.csproj" />
   <Project Path="Unity.Services.Authentication.Editor.csproj" />
+  <Project Path="Unity.Splines.Examples.Editor.csproj" />
   <Project Path="Unity.Searcher.Editor.csproj" />
   <Project Path="Unity.ProBuilder.Editor.csproj" />
   <Project Path="3rdParty.All.csproj" />
@@ -71,6 +72,7 @@
   <Project Path="Unity.Services.Core.Telemetry.csproj" />
   <Project Path="Unity.Services.Core.Components.csproj" />
   <Project Path="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
+  <Project Path="Unity.Splines.Examples.csproj" />
   <Project Path="Unity.Services.Core.Threading.csproj" />
   <Project Path="Unity.ProBuilder.AssetIdRemapUtility.csproj" />
   <Project Path="Unity.Play.Publisher.Editor.csproj" />
