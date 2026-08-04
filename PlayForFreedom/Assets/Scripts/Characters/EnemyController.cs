@@ -10,6 +10,9 @@ public class EnemyController : BMD.CharacterController
 {
     #region Configuration
     [SerializeField] float repathInterval = 0.1f;
+
+    [Header("Attack settings")]
+    [SerializeField] AttackTargetType attackTargetType = AttackTargetType.Nothing;
     #endregion
 
     #region Cached references
@@ -19,6 +22,7 @@ public class EnemyController : BMD.CharacterController
 
     #region Runtime Variables
     Coroutine repathCoroutine;
+    Player currentTarget;
     #endregion
 
     #region Preallocation
@@ -31,6 +35,8 @@ public class EnemyController : BMD.CharacterController
     protected override void Awake()
     {
         base.Awake();
+
+        enemy = GetComponent<Enemy>();
 
         SetupAgent();
     }
@@ -69,6 +75,54 @@ public class EnemyController : BMD.CharacterController
         base.Start();
 
     }
+    protected override void Update()
+    {
+        if (!IsServer) return;
+        base.Update();
+        Attack();
+        SetLookInput();
+    }
+
+    void Attack()
+    {
+        if (!enemy.ReadyToFire) return;
+        switch (attackTargetType)
+        {
+            case AttackTargetType.Nothing:
+                return;
+            case AttackTargetType.Forward:
+                RequestFireWeapon();
+                break;
+            case AttackTargetType.Player:
+                if (currentTarget == null) return;
+                RequestFireWeapon();
+                break;
+
+        }
+
+
+    }
+    void SetLookInput()
+    {
+        switch (attackTargetType)
+        {
+            case AttackTargetType.Nothing:
+            case AttackTargetType.Forward:
+                return;
+            case AttackTargetType.Player:
+                lookInput = Vector2.zero;
+
+                if (currentTarget == null) return;
+                Vector3 lookInput3D = currentTarget.transform.position - transform.position;
+
+                lookInput.x = lookInput3D.x;
+                lookInput.y = lookInput3D.z;
+
+                break;
+
+        }
+    }
+
     protected override void FixedUpdate()
     {
         if (!IsServer) return;
@@ -103,7 +157,12 @@ public class EnemyController : BMD.CharacterController
     {
         if (aggroTarget == null)
         {
-            if (TryFindNearestPlayer(out Player closestPlayer)) MoveTo(closestPlayer.transform.position);
+            if (TryFindNearestPlayer(out Player closestPlayer))
+            {
+                currentTarget = closestPlayer;
+                MoveTo(closestPlayer.transform.position);
+            }
+                
         }
         else
         {

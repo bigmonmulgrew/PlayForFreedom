@@ -179,6 +179,7 @@ MonoBehaviour:
   swingSpeed: 8
   flySpeed: 12
   repathInterval: 0.1
+  attackTargetType: 0
 --- !u!114 &5934569851714528958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ MonoBehaviour:
   rotationEnabled: 1
   rotationSpeed: 10
   rotationSpeedAttacking: 360
-  rotationType: 0
+  rotationType: 2
   instantTurnThreshold: 0.05
   canJump: 1
   jumpForce: 5

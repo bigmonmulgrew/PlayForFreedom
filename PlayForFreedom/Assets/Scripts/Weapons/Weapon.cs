@@ -15,6 +15,8 @@ public class Weapon : NetworkBehaviour
 
     float nextFireTime;
 
+    public float NextFireTime => nextFireTime;
+
     private void Awake()
     {
         characterController = GetComponentInParent<CharacterController>();

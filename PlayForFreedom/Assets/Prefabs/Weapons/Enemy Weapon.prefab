@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 9095164719813320676, guid: 8f9076e85c01bbf4dbdbdab55bbf3a00, type: 3}
+    - target: {fileID: 2150834301484636009, guid: f977ced7cc542724b8d381712d84748e, type: 3}
+      propertyPath: firingCooldown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Enemy: Character
 {
@@ -12,6 +13,7 @@ public class Enemy: Character
     EnemyRoomSpawner parentSpawner;
     #endregion
 
+    public bool ReadyToFire => Time.time >= weapon.NextFireTime;
 
     protected override void Die()
     {
