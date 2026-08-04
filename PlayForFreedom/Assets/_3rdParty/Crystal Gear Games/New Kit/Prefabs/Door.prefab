@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 3670033928950357328}
   - component: {fileID: 4034944669833516945}
   m_Layer: 0
-  m_Name: polySurface150
+  m_Name: RightShutter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2661485670370043126
 Transform:
   m_ObjectHideFlags: 0
@@ -88,6 +88,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6035901698659749544
 GameObject:
@@ -101,12 +102,12 @@ GameObject:
   - component: {fileID: 5941916855501948622}
   - component: {fileID: 2986496781025675320}
   m_Layer: 0
-  m_Name: polySurface151
+  m_Name: LeftShutter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5223058451585807804
 Transform:
   m_ObjectHideFlags: 0
@@ -177,6 +178,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8079118447338474177
 GameObject:
@@ -269,6 +271,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &-6372929415869413021
 MeshCollider:
