@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class EnemyController : BMD.CharacterController
 {
-    const float SPLINE_PROGRESS_INCREMENT = 0.01f;
+    const float SPLINE_PROGRESS_INCREMENT = 0.1f;
     #region Configuration
     [SerializeField] float repathInterval = 0.1f;
 
@@ -249,7 +249,6 @@ public class EnemyController : BMD.CharacterController
         moveDirection.y = 0;
         moveDirection.z = inputDirection.y;
     }
-
     Vector3 GetPositionOnSplinePath()
     {
         SplineUtility.GetNearestPoint(path, transform.position, out float3 nearest, out float progressAtCurrentPoint);
@@ -259,10 +258,13 @@ public class EnemyController : BMD.CharacterController
             progressAtCurrentPoint--;
         }
 
-        return path.EvaluatePosition(progressAtCurrentPoint);
+        Vector3 newTarget = path.EvaluatePosition(progressAtCurrentPoint);
+
+        Debug.Log($"{name} moving from {transform.position} to {newTarget}. CurrentProgress {progressAtCurrentPoint}");
+
+        return newTarget;
 
     }
-
     Vector2 GetMoveDirection()
     {
         if (IsDead) return Vector2.zero;
