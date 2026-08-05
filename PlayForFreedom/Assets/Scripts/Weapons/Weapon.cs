@@ -7,30 +7,30 @@ public abstract class Weapon : NetworkBehaviour
 {
     #region Configuration
     [SerializeField] protected float firingCooldown = 0.5f;
-
-    [Header("Particle Settings")]
-    [SerializeField] float particleDamage;
-
-    [Header("AoE Settings")]
+    // TODO implement friendly fire option
+    
 
     [Header("Stats Settings")]
-    [SerializeField] float baseDamage;
+    [SerializeField] protected float baseDamage;
 
 
     #endregion
 
     #region Cached references
     protected CharacterController characterController;
+    protected Character character;
     #endregion
 
     protected float nextFireTime = 0;
+    protected int layerIndex;
 
     public float NextFireTime => nextFireTime;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         characterController = GetComponentInParent<CharacterController>();
-        
+        character = GetComponentInParent<Character>();
+        layerIndex = character.gameObject.layer;
     }
     void Start()
     {
