@@ -61,7 +61,7 @@ public class UnarmedWeapon : Weapon
         for (int i = 0; i < hitCount; i++)
         {
             if (hitTargets[i].gameObject.layer == characterLayerIndex) continue;
-            if (hitTargets[i].TryGetComponent<Character>(out Character c)) continue;
+            if (!hitTargets[i].TryGetComponent<Character>(out Character c)) continue;
             c.DealDamage(baseDamage);
 
         }

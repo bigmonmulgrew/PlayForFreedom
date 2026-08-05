@@ -183,7 +183,7 @@ MonoBehaviour:
   swingSpeed: 8
   flySpeed: 12
   repathInterval: 0.1
-  attackTargetType: 0
+  attackTargetType: 1
   enemyPathType: 0
 --- !u!114 &5934569851714528958
 MonoBehaviour:
