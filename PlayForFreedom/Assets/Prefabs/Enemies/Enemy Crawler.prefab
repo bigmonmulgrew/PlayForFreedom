@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3253689117187380803, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
+      propertyPath: baseDamage
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5934569851714528958, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: runSpeed
       value: 3
@@ -82,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8666896900459904719, guid: 11e4d608da9339a4d8735f1a5e522204, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 2422442310
+      value: 3284213603
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

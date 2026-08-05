@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 505974889114450718, guid: a78eb27b0cda32243bff42c8e46773b9, type: 3}
       propertyPath: m_Name
-      value: Enemy with Weapon
+      value: Enemy with Weapon RoomOrbit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2253904628167587305, guid: a78eb27b0cda32243bff42c8e46773b9, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1174208023
       objectReference: {fileID: 0}
     - target: {fileID: 7072970837589371938, guid: a78eb27b0cda32243bff42c8e46773b9, type: 3}
       propertyPath: m_LocalPosition.x
