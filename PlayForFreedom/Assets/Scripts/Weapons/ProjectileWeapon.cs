@@ -24,7 +24,7 @@ public class ProjectileWeapon : Weapon
 
         characterController.NotifyFireWeaponPerformed();
 
-        if (repeatFire) StartCoroutine(RepeatFire(FireSingleShot));
+        if (repeatFire) repeatFireCoroutine = StartCoroutine(RepeatFire(FireSingleShot));
         else
         {
             FireSingleShot();
