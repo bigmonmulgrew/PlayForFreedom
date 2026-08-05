@@ -37,6 +37,7 @@ public class Character : NetworkBehaviour
         }
 
         controller.OnFireWeaponRequested += FireWeapon;
+        controller.OnReleaseFireWeaponRequested += ReleaseFireWeapon;
     }
     protected virtual void OnEnable()
     {
@@ -69,12 +70,21 @@ public class Character : NetworkBehaviour
     private void OnDisable()
     {
         controller.OnFireWeaponRequested -= FireWeapon;
+        controller.OnReleaseFireWeaponRequested -= ReleaseFireWeapon;
     }
     public void FireWeapon()
     {
         if (!IsOwner) return;
         RequestFire();
     }
+
+    void ReleaseFireWeapon()
+    {
+        if (!IsOwner) return;
+        weapon.StopFiring();
+        controller.NotifyReleaseFireWeaponPerformed();
+    }
+
     void RequestFire()
     {
         if (weapon == null) return;

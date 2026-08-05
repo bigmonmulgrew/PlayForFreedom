@@ -113,6 +113,11 @@ namespace BMD
             if (attack.WasPressedThisFrame()) RequestAttack();
             if (specialAttack.WasPressedThisFrame()) RequestSpecialAttack();
             if (fire.WasPressedThisFrame()) RequestFireWeapon();
+
+            // Only fire needs release due to repeat fire.
+            //if (attack.WasReleasedThisFrame()) RequestAttack();
+            //if (specialAttack.WasReleasedThisFrame()) RequestSpecialAttack();
+            if (fire.WasReleasedThisFrame()) RequestReleaseFireWeapon();
         }
         protected override void FixedUpdate()
         {

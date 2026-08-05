@@ -23,6 +23,18 @@ public class ProjectileWeapon : Weapon
         if (Time.time < nextFireTime) return;
 
         characterController.NotifyFireWeaponPerformed();
+
+        if (repeatFire) StartCoroutine(RepeatFire(FireSingleShot));
+        else
+        {
+            FireSingleShot();
+            // TODO this should really be after the animation ends. 
+            characterController.NotifyFireWeaponEnded();
+        }    
+    }
+    
+    void FireSingleShot()
+    {
         nextFireTime = Time.time + firingCooldown;
 
         RequestFireParameters rfp = new()
@@ -32,9 +44,6 @@ public class ProjectileWeapon : Weapon
         };
 
         RequestFireRPC(rfp);
-
-        // TODO this should really be after the animation ends. 
-        characterController.NotifyFireWeaponEnded();
     }
 
     [Rpc(SendTo.Server)]

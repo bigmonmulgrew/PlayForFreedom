@@ -1,8 +1,6 @@
 using Unity.Netcode;
-using System.Linq;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
-using UnityEditor.ShaderKeywordFilter;
 
 public class UnarmedWeapon : Weapon
 {
@@ -68,5 +66,6 @@ public class UnarmedWeapon : Weapon
     }
 
 
- 
+
+
 }

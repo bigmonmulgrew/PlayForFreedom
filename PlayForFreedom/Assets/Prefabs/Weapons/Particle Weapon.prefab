@@ -88,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ParticleWeapon
   ShowTopMostFoldoutHeaderGroup: 1
   firingCooldown: 0.5
+  repeatFire: 1
   baseDamage: 100
   particleEmitter: {fileID: 1950193822985723224}
   particleRange: 20

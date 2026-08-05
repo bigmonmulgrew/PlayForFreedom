@@ -51,6 +51,9 @@ namespace BMD
         public event Action OnFireWeaponPerformed;
         public event Action OnFireWeaponEnded;
 
+        public event Action OnReleaseFireWeaponRequested;
+        public event Action OnReleaseFireWeaponPerformed;
+
         public event Action OnDealDamageFromWeapon;
         public event Action OnCastSpell;
 
@@ -203,6 +206,10 @@ namespace BMD
         public void RequestFireWeapon() => _RequestFireWeapon();
         public void NotifyFireWeaponPerformed() => _NotifyFireWeaponPerformed();
         public void NotifyFireWeaponEnded() => _NotifyFireWeaponEnded();
+
+        public void RequestReleaseFireWeapon() => _NotifyReleaseFireWeaponRequested();
+        public void NotifyReleaseFireWeaponPerformed() => _NotifyReleaseFireWeaponPerformed();
+
         public void NotifyDealDamageFromWeapon() => OnDealDamageFromWeapon?.Invoke();
         public void NotifyCastSpell() => OnCastSpell?.Invoke();
 
@@ -294,6 +301,14 @@ namespace BMD
             isAttacking = false;
         }
 
+        private void _NotifyReleaseFireWeaponRequested()
+        {
+            OnReleaseFireWeaponRequested?.Invoke();
+        }
+        private void _NotifyReleaseFireWeaponPerformed()
+        {
+            OnReleaseFireWeaponPerformed?.Invoke();
+        }
         #endregion
 
         protected virtual void Awake()

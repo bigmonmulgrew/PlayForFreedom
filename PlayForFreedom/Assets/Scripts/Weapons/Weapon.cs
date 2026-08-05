@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
@@ -7,6 +8,7 @@ public abstract class Weapon : NetworkBehaviour
 {
     #region Configuration
     [SerializeField] protected float firingCooldown = 0.5f;
+    [SerializeField] protected bool repeatFire;
     // TODO implement friendly fire option
     
 
@@ -25,6 +27,7 @@ public abstract class Weapon : NetworkBehaviour
 
     protected float nextFireTime = 0;
     protected int characterLayerIndex;
+    protected Coroutine repeatFireCoroutine;
 
     public float NextFireTime => nextFireTime;
 
@@ -33,6 +36,9 @@ public abstract class Weapon : NetworkBehaviour
         characterController = GetComponentInParent<CharacterController>();
         character = GetComponentInParent<Character>();
         characterLayerIndex = character.gameObject.layer;
+
+        // Enemies manage repeat fire already so forcing this false.
+        if (character is Enemy) repeatFire = false;
     }
     void Start()
     {
@@ -41,6 +47,14 @@ public abstract class Weapon : NetworkBehaviour
 
     public abstract void Fire();
 
+    public void StopFiring()
+    {
+        if (repeatFireCoroutine == null) return;
+
+        characterController.NotifyFireWeaponEnded();
+        StopCoroutine(repeatFireCoroutine);
+    }
+
     [Rpc(SendTo.Server)]
     protected virtual void RequestFireRPC(RequestFireParameters requestfireParameters)
     {
@@ -48,5 +62,14 @@ public abstract class Weapon : NetworkBehaviour
         throw new NotImplementedException();
         
     }
-
+    
+    protected IEnumerator RepeatFire(Action funciton)
+    {
+        while (true)
+        {
+            funciton?.Invoke();
+            yield return new WaitForSeconds(firingCooldown);
+        }
+    }
+    
 }
