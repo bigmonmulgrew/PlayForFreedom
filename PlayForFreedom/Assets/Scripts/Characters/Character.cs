@@ -60,7 +60,6 @@ public class Character : NetworkBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"{name} was shot by {collision.gameObject.name}");
         if ((projectileLayers.value & (1 << collision.gameObject.layer)) != 0)
         {
             Debug.Log($"{collision.gameObject.name} on correct collision layer");

@@ -2,12 +2,17 @@ using Unity.Netcode;
 using System.Linq;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
+using UnityEditor.ShaderKeywordFilter;
 
 public class UnarmedWeapon : Weapon
 {
 
     [SerializeField] Transform damageHere;
     [SerializeField] float fistSize = 0.5f;
+
+    #region Preallocations
+    Collider[] hitTargets = new Collider[8];
+    #endregion
 
     protected override void Awake()
     {
@@ -47,17 +52,18 @@ public class UnarmedWeapon : Weapon
     [Rpc(SendTo.Server)]
     protected override void RequestFireRPC(RequestFireParameters rfp)
     {
-        // TODO needs to work on all characters incase we give player melee
-        Player[] hitPlayers = 
-            Physics.OverlapSphere(rfp.position, rfp.range)
-            .Select( hit => GetComponent<Player>() )
-            .Where( player => player != null )
-            .Distinct()
-            .ToArray();
+        // TODO add a visual impact effect
 
-        foreach (Player player in hitPlayers)
+        int hitCount = Physics.OverlapSphereNonAlloc(rfp.position, rfp.range, hitTargets);
+
+        if (hitCount <= 0) return;
+
+        for (int i = 0; i < hitCount; i++)
         {
-            player.DealDamage(baseDamage);
+            if (hitTargets[i].gameObject.layer == characterLayerIndex) continue;
+            if (hitTargets[i].TryGetComponent<Character>(out Character c)) continue;
+            c.DealDamage(baseDamage);
+
         }
     }
 

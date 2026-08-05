@@ -9,7 +9,7 @@ public class ProjectileWeapon : Weapon
     [SerializeField] Projectile projectile;
     [SerializeField] Transform bulletSpawn;
     [SerializeField] float projectileForce = 10f;
-    [Tooltip("Projectile Damage is handled on the projectile")]
+    [Tooltip("Projectile Damage is handled on the projectile, this multiplies the damage.")]
     [SerializeField] float damageMultipler = 1;
 
     #endregion
@@ -42,6 +42,7 @@ public class ProjectileWeapon : Weapon
     {
 
         Projectile newProjectile = Instantiate(projectile, rfp.position, Quaternion.LookRotation(rfp.direction));
+        newProjectile.ApplyDamageMultiplier(damageMultipler);
         if (newProjectile.TryGetComponent<NetworkObject>(out NetworkObject no)) no.Spawn();
 
 

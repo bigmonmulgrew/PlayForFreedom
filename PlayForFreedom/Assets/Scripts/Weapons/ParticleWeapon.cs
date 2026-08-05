@@ -8,13 +8,12 @@ public class ParticleWeapon : Weapon
     #region Configuration
     [Header("Particle Settings")]
     [SerializeField] ParticleSystem particleEmitter;
-    [SerializeField] float particleDamage;
     [Range(0.5f, 50f)]
     [SerializeField] float particleRange = 20f;
     //TODO add ricochet beams
     [SerializeField] bool penetrateTargets;
     [Range(1, 10)]
-    [SerializeField] int maxPentrationTargets;
+    [SerializeField] int maxPentrationTargets = 2;
     [SerializeField] float damageMultiplierPerTarget = 0.5f;
     
     #endregion
@@ -58,7 +57,7 @@ public class ParticleWeapon : Weapon
 
         foreach (RaycastHit hit in hitTargets) 
         {
-            if (hit.collider.gameObject.layer == layerIndex) continue;
+            if (hit.collider.gameObject.layer == characterLayerIndex) continue;
             if (!hit.collider.TryGetComponent<Character>(out Character c)) continue;
 
             c.DealDamage(currentDamage);

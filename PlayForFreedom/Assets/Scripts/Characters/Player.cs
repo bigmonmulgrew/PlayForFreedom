@@ -52,7 +52,7 @@ public class Player : Character
                 cashScore.Value += p.CashValue;
                 
                 p.DestroyPickup();
-                Debug.Log($"{playerName} now has {cashScore}");
+                Debug.Log($"{playerName} now has {cashScore.Value}");
             }
         }
     }

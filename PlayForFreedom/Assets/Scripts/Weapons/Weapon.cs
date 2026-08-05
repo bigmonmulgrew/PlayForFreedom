@@ -11,6 +11,8 @@ public abstract class Weapon : NetworkBehaviour
     
 
     [Header("Stats Settings")]
+    [Tooltip("Weapons with projectiles do not use base damage.\n" +
+        "The damage is based on the projectile.")]
     [SerializeField] protected float baseDamage;
 
 
@@ -22,7 +24,7 @@ public abstract class Weapon : NetworkBehaviour
     #endregion
 
     protected float nextFireTime = 0;
-    protected int layerIndex;
+    protected int characterLayerIndex;
 
     public float NextFireTime => nextFireTime;
 
@@ -30,7 +32,7 @@ public abstract class Weapon : NetworkBehaviour
     {
         characterController = GetComponentInParent<CharacterController>();
         character = GetComponentInParent<Character>();
-        layerIndex = character.gameObject.layer;
+        characterLayerIndex = character.gameObject.layer;
     }
     void Start()
     {
