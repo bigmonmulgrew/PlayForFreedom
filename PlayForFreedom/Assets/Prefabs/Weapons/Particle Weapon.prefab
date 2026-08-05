@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParticleWeapon
   ShowTopMostFoldoutHeaderGroup: 1
-  firingCooldown: 0.5
+  firingCooldown: 0.2
   repeatFire: 1
-  baseDamage: 100
+  baseDamage: 80
   particleEmitter: {fileID: 1950193822985723224}
   fireSound: {fileID: 8300000, guid: 78d416ab36a9ef84f8315d5cab1676ed, type: 3}
   pitchVariance: 0.1

@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: enemiesToSpawn
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: initialSpawnDelay
@@ -86,24 +86,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: enemies.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: 'enemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 1030915511202361709, guid: 684210e60cbcb2444927c6b215c15361, type: 3}
+      objectReference: {fileID: 2138369141299980798, guid: f2eecde3e877ad842a7ac02d2dce3be5, type: 3}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: 'enemies.Array.data[1]'
       value: 
-      objectReference: {fileID: 2138369141299980798, guid: f2eecde3e877ad842a7ac02d2dce3be5, type: 3}
+      objectReference: {fileID: 1030915511202361709, guid: 80850d4ffa368c64ab7cae4903a618ad, type: 3}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: 'enemies.Array.data[2]'
       value: 
-      objectReference: {fileID: 2138369141299980798, guid: c174bc336ba18ec45b835a560a10b4f5, type: 3}
+      objectReference: {fileID: 2603254870720165880, guid: b98b3ba2e5748134f8e7917d5be9a011, type: 3}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: 'enemies.Array.data[3]'
       value: 
-      objectReference: {fileID: 2138369141299980798, guid: 91f4d82f48931714ea447b91d14561c0, type: 3}
+      objectReference: {fileID: 4136711960441842497, guid: a78eb27b0cda32243bff42c8e46773b9, type: 3}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: 'enemies.Array.data[4]'
       value: 
