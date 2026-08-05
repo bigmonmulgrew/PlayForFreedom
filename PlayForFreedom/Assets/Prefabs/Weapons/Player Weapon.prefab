@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 1355806568378072720, guid: f977ced7cc542724b8d381712d84748e, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 9095164719813320676, guid: 67d5b33a62f9cee418e6884482a75cf5, type: 3}
     - target: {fileID: 2150834301484636009, guid: f977ced7cc542724b8d381712d84748e, type: 3}
       propertyPath: projectile
       value: 

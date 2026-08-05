@@ -26,7 +26,7 @@ public class Enemy: Character
     bool finishedSpawning;
     #endregion
 
-    public bool ReadyToFire => Time.time >= weapon.NextFireTime;
+    public bool ReadyToFire => weapon != null && Time.time >= weapon.NextFireTime;
 
     public EnemyRoomSpawner ParentSpawner => parentSpawner;
 

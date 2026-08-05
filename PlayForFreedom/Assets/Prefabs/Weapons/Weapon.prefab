@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1006006100138925769}
-  - component: {fileID: 2150834301484636009}
+  - component: {fileID: 1355806568378072720}
   m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 4230516242969178237}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2150834301484636009
+--- !u!114 &1355806568378072720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,14 +43,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1055839379968048551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a669e9e53b233064e9caa83da8859376, type: 3}
+  m_Script: {fileID: 11500000, guid: 5da9be173a52e9f43b9008eba49e56f7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
   ShowTopMostFoldoutHeaderGroup: 1
+  firingCooldown: 0.5
+  particleDamage: 0
+  damageMultiplier: 0
   projectile: {fileID: 173318939751075400, guid: 92d8fc2e78d26084688cda85328d88bb, type: 3}
   bulletSpawn: {fileID: 4230516242969178237}
   projectileForce: 100
-  firingCooldown: 0.5
+  damageMultipler: 1
 --- !u!1 &3418831563661253696
 GameObject:
   m_ObjectHideFlags: 0

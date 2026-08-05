@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1523752531
+  GlobalObjectIdHash: 2178124127
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -284,7 +284,7 @@ MonoBehaviour:
   maxBounces: 3
   maxLifetime: 5
   minimumVelocity: 3
-  damage: 100
+  baseDamage: 100
   fireSound: {fileID: 8300000, guid: eacc3ed7e4ee57a42a9aa9267ff79b38, type: 3}
   impactSound: {fileID: 8300000, guid: eebf2aea6976bb545a5d9352358034e8, type: 3}
   pitchVariance: 0.1

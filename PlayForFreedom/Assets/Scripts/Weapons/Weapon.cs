@@ -1,54 +1,50 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 using CharacterController = BMD.CharacterController;
 
-public class Weapon : NetworkBehaviour
+public abstract class Weapon : NetworkBehaviour
 {
-    [SerializeField] Projectile projectile;
-    [SerializeField] Transform bulletSpawn;
-    [SerializeField] float projectileForce = 10f;
-    [SerializeField] float firingCooldown = 0.5f;
+    #region Configuration
+    [SerializeField] protected float firingCooldown = 0.5f;
 
-    #region Cached references
-    CharacterController characterController;
+    [Header("Particle Settings")]
+    [SerializeField] float particleDamage;
+
+    [Header("AoE Settings")]
+
+    [Header("Stats Settings")]
+    [SerializeField] float baseDamage;
+
+
     #endregion
 
-    float nextFireTime;
+    #region Cached references
+    protected CharacterController characterController;
+    #endregion
+
+    protected float nextFireTime = 0;
 
     public float NextFireTime => nextFireTime;
 
     private void Awake()
     {
         characterController = GetComponentInParent<CharacterController>();
+        
     }
     void Start()
     {
         nextFireTime = Time.time;
     }
-    
-    public void Fire()
-    {
-        if (Time.time < nextFireTime) return;
 
-        characterController.NotifyFireWeaponPerformed();
-        nextFireTime = Time.time + firingCooldown;
-
-        RequestFireRPC(bulletSpawn.position, transform.forward);
-
-        // TODO this should really be after the animation ends. 
-        characterController.NotifyFireWeaponEnded();
-    }
+    public abstract void Fire();
 
     [Rpc(SendTo.Server)]
-    private void RequestFireRPC(Vector3 spawnPosition, Vector3 direction)
+    protected virtual void RequestFireRPC(RequestFireParameters requestfireParameters)
     {
-        Projectile newProjectile = Instantiate(projectile, spawnPosition, Quaternion.LookRotation(direction));
-        if (newProjectile.TryGetComponent<NetworkObject>(out NetworkObject no)) no.Spawn();
-
-
-        newProjectile.FireProjectile(bulletSpawn.forward, projectileForce);
+        Debug.LogError($"{name}: Weapon used does not oveeride RequestFireRPC, please ensure it is overrided", this);
+        throw new NotImplementedException();
+        
     }
 
-
- 
 }

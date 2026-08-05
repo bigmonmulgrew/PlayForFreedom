@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Projectile : NetworkBehaviour
 {
@@ -10,7 +11,7 @@ public class Projectile : NetworkBehaviour
     [SerializeField] int maxBounces = 1;
     [SerializeField] float maxLifetime = 1.0f;
     [SerializeField] float minimumVelocity = 0.1f;
-    [SerializeField] int damage = 100;
+    [SerializeField] int baseDamage = 100;
 
     [Header("Audio")]
     [SerializeField] AudioClip fireSound;
@@ -25,11 +26,12 @@ public class Projectile : NetworkBehaviour
 
     #region Runtime Variables
     float spawnTime;
+    float damage;
     Coroutine intermittenChecksCoroutine;
     int bounces;
     #endregion
 
-    public int Damage => damage;
+    public float Damage => damage;
 
     void Awake()
     {
@@ -37,6 +39,8 @@ public class Projectile : NetworkBehaviour
         ResetAudio();
         audioSource.Play();
         SetRandomPitch();
+
+        damage = baseDamage;
     }
 
     void ResetAudio()
@@ -67,6 +71,7 @@ public class Projectile : NetworkBehaviour
     {
         base.OnNetworkDespawn();
         if (intermittenChecksCoroutine != null) StopCoroutine(intermittenChecksCoroutine);
+        damage = baseDamage;
     }
     /// <summary>
     /// Destroys the projectile or applies pool cleanup
@@ -79,7 +84,6 @@ public class Projectile : NetworkBehaviour
         // TODO add some destroy particles or effects.
         NetworkObject.Despawn();
         
-
     }
 
     IEnumerator IntermittendChecks()
@@ -114,7 +118,7 @@ public class Projectile : NetworkBehaviour
     }
     void PlayImpactSound()
     {
-        Debug.Log($"{name} audiosource is pllaying : {audioSource.isPlaying}");
+        
         if (audioSource.isPlaying) AudioSource.PlayClipAtPoint(impactSound, transform.position);        // TODO move this to pooled instanced audio
         else
         {
@@ -122,5 +126,16 @@ public class Projectile : NetworkBehaviour
             audioSource.clip = impactSound;
             audioSource.Play();
         }
+    }
+
+    public void ApplyDamageMultiplier(float multiplier)
+    {
+        if (multiplier == 0)
+        {
+            Debug.LogWarning($"{name} was provided a damage multipler of 0, defaulting to 1");
+            multiplier = 1;
+        }
+            
+        damage = baseDamage * multiplier;
     }
 }

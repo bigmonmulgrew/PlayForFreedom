@@ -14,7 +14,7 @@ public class Character : NetworkBehaviour
     #endregion
 
     #region Runtime Variables
-    int health;
+    float health;
     bool isDead;
     bool isDespawning;
     #endregion
@@ -42,7 +42,7 @@ public class Character : NetworkBehaviour
     {
         health = maxHealth;
     }
-    public void DealDamage(int amount)
+    public void DealDamage(float amount)
     {
         if (IsDead) return;
 
@@ -78,6 +78,8 @@ public class Character : NetworkBehaviour
     }
     void RequestFire()
     {
+        if (weapon == null) return;
+
         weapon.Fire();
     }
 

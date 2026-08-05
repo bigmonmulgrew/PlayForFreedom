@@ -260,8 +260,6 @@ public class EnemyController : BMD.CharacterController
 
         Vector3 newTarget = path.EvaluatePosition(progressAtCurrentPoint);
 
-        Debug.Log($"{name} moving from {transform.position} to {newTarget}. CurrentProgress {progressAtCurrentPoint}");
-
         return newTarget;
 
     }
