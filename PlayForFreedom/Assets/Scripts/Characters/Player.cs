@@ -63,21 +63,15 @@ public class Player : Character
         }
     }
 
-    private void Start()
+    public void SetPlayerData(PlayerConfig playerConfig)
     {
-        SetCustomColours(Color.magenta, Color.green, Color.blue);
-    }
-    public void SetCustomColours(Color colour1, Color colour2, Color colour3)
-    {
+        name = playerConfig.name != "" ? playerConfig.name : $"Player {AllPlayers.Count}";
+        cashScore.Value = playerConfig.startingMoney;
+        customColourRenderer1.materials[materialIndex1].color = playerConfig.customColour1;
+        customColourRenderer2.materials[materialIndex2].color = playerConfig.customColour2;
+        customColourRenderer3.materials[materialIndex3].color = playerConfig.customColour3;
 
-        customColourRenderer1.materials[materialIndex1].color = colour1;
-        customColourRenderer2.materials[materialIndex2].color = colour2;
-        customColourRenderer3.materials[materialIndex3].color = colour3;
-
+        Debug.Log($"Player, {name}, has spawned");
     }
 
-    void SetColour(Color newColour, Renderer renderer, int index)
-    {
-        renderer.materials[index].color = newColour;
-    }
 }

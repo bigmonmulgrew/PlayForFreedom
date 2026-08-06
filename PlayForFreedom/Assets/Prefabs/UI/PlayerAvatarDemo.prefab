@@ -191,5 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546ba756bea2a094d92c40df2baacb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  defaultAvatar: {fileID: 3012106539973489724, guid: fa0c53dbe0fa1d2489b4f8455268853f, type: 3}
+  playerUIIndex: 0
+  defaultAvatar: {fileID: 4783492245057923198, guid: fa0c53dbe0fa1d2489b4f8455268853f, type: 3}
   avatarSpawn: {fileID: 3332829087831812766}

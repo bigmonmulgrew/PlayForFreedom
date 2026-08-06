@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAvatarDemo (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8328569122853481543, guid: 2965e76cec4f33447b2f0fc987d87c71, type: 3}
+      propertyPath: defaultAvatar
+      value: 
+      objectReference: {fileID: 4783492245057923198, guid: fa0c53dbe0fa1d2489b4f8455268853f, type: 3}
+    - target: {fileID: 8328569122853481543, guid: 2965e76cec4f33447b2f0fc987d87c71, type: 3}
+      propertyPath: playerUIIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -498,6 +506,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 13.700012
       objectReference: {fileID: 0}
+    - target: {fileID: 8395863074755501584, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
+      propertyPath: playerUIIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8699467183823712734, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
       propertyPath: m_fontSize
       value: 34.45
@@ -793,6 +805,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 13.700012
       objectReference: {fileID: 0}
+    - target: {fileID: 8395863074755501584, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
+      propertyPath: playerUIIndex
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8699467183823712734, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
       propertyPath: m_fontSize
       value: 34.45
@@ -939,6 +955,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAvatarDemo (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8328569122853481543, guid: 2965e76cec4f33447b2f0fc987d87c71, type: 3}
+      propertyPath: defaultAvatar
+      value: 
+      objectReference: {fileID: 4783492245057923198, guid: fa0c53dbe0fa1d2489b4f8455268853f, type: 3}
+    - target: {fileID: 8328569122853481543, guid: 2965e76cec4f33447b2f0fc987d87c71, type: 3}
+      propertyPath: playerUIIndex
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1075,6 +1099,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAvatarDemo (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8328569122853481543, guid: 2965e76cec4f33447b2f0fc987d87c71, type: 3}
+      propertyPath: defaultAvatar
+      value: 
+      objectReference: {fileID: 4783492245057923198, guid: fa0c53dbe0fa1d2489b4f8455268853f, type: 3}
+    - target: {fileID: 8328569122853481543, guid: 2965e76cec4f33447b2f0fc987d87c71, type: 3}
+      propertyPath: playerUIIndex
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1143,6 +1175,10 @@ PrefabInstance:
     - target: {fileID: 3334260846470214153, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 13.700012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395863074755501584, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
+      propertyPath: playerUIIndex
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8699467183823712734, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
       propertyPath: m_fontSize
@@ -1408,6 +1444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAvatarDemo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8328569122853481543, guid: 2965e76cec4f33447b2f0fc987d87c71, type: 3}
+      propertyPath: defaultAvatar
+      value: 
+      objectReference: {fileID: 4783492245057923198, guid: fa0c53dbe0fa1d2489b4f8455268853f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

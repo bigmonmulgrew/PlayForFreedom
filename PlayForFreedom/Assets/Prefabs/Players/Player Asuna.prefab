@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 316081623712342049, guid: 534c7111ba9434743881f6d2167bdabd, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 242341237
+      value: 509278529
       objectReference: {fileID: 0}
     - target: {fileID: 781202122701996046, guid: 534c7111ba9434743881f6d2167bdabd, type: 3}
       propertyPath: canJump
