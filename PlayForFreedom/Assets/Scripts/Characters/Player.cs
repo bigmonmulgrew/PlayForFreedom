@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -10,8 +11,13 @@ public class Player : Character
     public readonly static List<Player> RemotePlayers = new();
 
     //public event Action<int> OnScoreChanged;
-
     [SerializeField] LayerMask pickupsLayers = (1 << 12);
+    [SerializeField] Renderer customColourRenderer1;
+    [SerializeField] int materialIndex1;
+    [SerializeField] Renderer customColourRenderer2;
+    [SerializeField] int materialIndex2;
+    [SerializeField] Renderer customColourRenderer3;
+    [SerializeField] int materialIndex3;
 
     NetworkVariable<int> cashScore = new(0);
     string playerName = "Dave"; // TODO add UI to change this.
@@ -55,5 +61,23 @@ public class Player : Character
                 Debug.Log($"{playerName} now has {cashScore.Value}");
             }
         }
+    }
+
+    private void Start()
+    {
+        SetCustomColours(Color.magenta, Color.green, Color.blue);
+    }
+    public void SetCustomColours(Color colour1, Color colour2, Color colour3)
+    {
+
+        customColourRenderer1.materials[materialIndex1].color = colour1;
+        customColourRenderer2.materials[materialIndex2].color = colour2;
+        customColourRenderer3.materials[materialIndex3].color = colour3;
+
+    }
+
+    void SetColour(Color newColour, Renderer renderer, int index)
+    {
+        renderer.materials[index].color = newColour;
     }
 }
