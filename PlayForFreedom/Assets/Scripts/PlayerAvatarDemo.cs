@@ -8,6 +8,7 @@ public class PlayerAvatarDemo : MonoBehaviour
     [SerializeField] Transform avatarSpawn;
 
     PlayerSelectUI playerSelectUI;
+    Player demoAvatar;
 
     public int PlayerUIIndex => playerUIIndex;
 
@@ -21,13 +22,30 @@ public class PlayerAvatarDemo : MonoBehaviour
         if (playerSelectUI == null) Debug.LogError($"{name} unable to find player select UI with matching player UI index.", this);
     }
 
+    private void OnEnable()
+    {
+        playerSelectUI.ColourSelector.OnColourChanged += UpdateColour;
+    }
+
+    private void OnDisable()
+    {
+        playerSelectUI.ColourSelector.OnColourChanged -= UpdateColour;
+    }
+
+    void UpdateColour(Color col1, Color col2, Color col3)
+    {
+        if (demoAvatar == null) return;
+        demoAvatar.SetPlayerColour(col1, col2, col3);
+    }
+
     public void PossessPlayer(PlayerConfig playerConfig)
     {
+        if (demoAvatar != null) return;
         CreatePlayerAvatar(playerConfig);
     }
     void CreatePlayerAvatar(PlayerConfig playerConfig)
     {
-        Player newPlayer = Instantiate(defaultAvatar, avatarSpawn.position, avatarSpawn.rotation);
-        newPlayer.SetPlayerData(playerConfig);
+        demoAvatar = Instantiate(defaultAvatar, avatarSpawn.position, avatarSpawn.rotation);
+        demoAvatar.SetPlayerData(playerConfig);
     }
 }

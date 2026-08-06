@@ -12,7 +12,8 @@ public class UIColourSelector : MonoBehaviour
 
     Button selectedButton;
     FlexibleColorPicker colorPicker;
-    
+
+    public event Action<Color,Color,Color> OnColourChanged;
     public Color PlayerColour1 => colourButton1 == null ? Color.magenta : colourButton1.colors.normalColor;
     public Color PlayerColour2 => colourButton2 == null ? Color.magenta : colourButton2.colors.normalColor;
     public Color PlayerColour3 => colourButton3 == null ? Color.magenta : colourButton3.colors.normalColor;
@@ -53,6 +54,8 @@ public class UIColourSelector : MonoBehaviour
         if (selectedButton == null) return;
 
         selectedButton.colors = SetAllColours(newColor);
+
+        OnColourChanged?.Invoke(PlayerColour1, PlayerColour2, PlayerColour3);
 
     }
 

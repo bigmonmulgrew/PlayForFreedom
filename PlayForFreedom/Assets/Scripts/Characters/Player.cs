@@ -74,4 +74,11 @@ public class Player : Character
         Debug.Log($"Player, {name}, has spawned");
     }
 
+    public void SetPlayerColour(Color col1, Color col2, Color col3)
+    {
+        customColourRenderer1.materials[materialIndex1].color = col1;
+        customColourRenderer2.materials[materialIndex2].color = col2;
+        customColourRenderer3.materials[materialIndex3].color = col3;
+    }
+
 }

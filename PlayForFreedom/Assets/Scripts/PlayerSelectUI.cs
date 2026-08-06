@@ -13,7 +13,7 @@ public class PlayerSelectUI : MonoBehaviour
 
     public int PlayerUIIndex => playerUIIndex;
 
-
+    public UIColourSelector ColourSelector => colourSelector;
 
 
     private void Awake()
