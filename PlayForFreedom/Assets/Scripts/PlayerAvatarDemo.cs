@@ -24,7 +24,8 @@ public class PlayerAvatarDemo : MonoBehaviour
 
     private void OnEnable()
     {
-        playerSelectUI.ColourSelector.OnColourChanged += UpdateColour;
+        UIColourSelector col = playerSelectUI.ColourSelector;
+        col.OnColourChanged += UpdateColour;
     }
 
     private void OnDisable()

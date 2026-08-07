@@ -573,25 +573,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3833350310191945702}
     m_Modifications:
-    - target: {fileID: 810110516412823415, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
-      propertyPath: m_fontSize
-      value: 34.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1086185181297429353, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
-      propertyPath: m_fontSize
-      value: 24.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 2714569645650959533, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
-      propertyPath: m_fontSize
-      value: 37.4
-      objectReference: {fileID: 0}
     - target: {fileID: 3228931437455073995, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
       propertyPath: m_Name
       value: Player (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8699467183823712734, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
-      propertyPath: m_fontSize
-      value: 34.45
       objectReference: {fileID: 0}
     - target: {fileID: 9087994757313083248, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
       propertyPath: m_Pivot.x
