@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSelectUI : MonoBehaviour
 {
     [SerializeField] int playerUIIndex = 0;
     [SerializeField] TextMeshProUGUI playerLabel;
     [SerializeField] TMP_InputField nameInput;
+    [SerializeField] Button possessButton;
 
     PlayerAvatarDemo playerAvatarDemo;
     UIColourSelector colourSelector;
@@ -14,7 +16,7 @@ public class PlayerSelectUI : MonoBehaviour
     public int PlayerUIIndex => playerUIIndex;
 
     public UIColourSelector ColourSelector => colourSelector;
-
+    public PlayerAvatarDemo PlayerAvatarDemo => playerAvatarDemo;
 
     private void Awake()
     {
@@ -44,6 +46,12 @@ public class PlayerSelectUI : MonoBehaviour
             customColour3 = colourSelector.PlayerColour3
         };
           
+        foreach(PlayerSelectUI ui in FindObjectsByType<PlayerSelectUI>())
+        {
+            if (ui == this) possessButton.gameObject.SetActive(false);
+            else ui.gameObject.SetActive(false);
+        }
+
         playerAvatarDemo.PossessPlayer(newData);
     }
 }

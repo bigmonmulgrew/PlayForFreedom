@@ -11,6 +11,7 @@ public class PlayerAvatarDemo : MonoBehaviour
     Player demoAvatar;
 
     public int PlayerUIIndex => playerUIIndex;
+    public Player DemoAvatar => demoAvatar;
 
     private void Awake()
     {

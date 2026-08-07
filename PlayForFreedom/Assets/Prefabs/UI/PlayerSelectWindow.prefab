@@ -1155,6 +1155,7 @@ MonoBehaviour:
   playerUIIndex: 0
   playerLabel: {fileID: 2714569645650959533}
   nameInput: {fileID: 6266364913658848663}
+  possessButton: {fileID: 4322753759405897944}
 --- !u!1 &3911053728225607381
 GameObject:
   m_ObjectHideFlags: 0

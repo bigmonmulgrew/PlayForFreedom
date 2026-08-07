@@ -61,6 +61,20 @@ public class SessionPanelUI : MonoBehaviour
 
     public void StartGame()
     {
+        
+        foreach (PlayerSelectUI p in FindObjectsByType<PlayerSelectUI>())
+        {
+            if (p.gameObject.activeSelf)
+            {
+                ulong clientID = PlayerCouch.InstanceLocal.OwnerClientId;
+                Player avatar = p.PlayerAvatarDemo.DemoAvatar;
+                NetworkObject no = avatar.GetComponent<NetworkObject>();
+                no.Spawn(false);
+                DontDestroyOnLoad(no);
+                no.ChangeOwnership(clientID);
+            }
+        }
+
         LevelManager.LoadFirstLevel();
     }
 
