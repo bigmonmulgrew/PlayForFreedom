@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
     //[SerializeField] GameObject leaderboardUI;
     public void StartGame()
     {
-        LevelManager.LoadFirstLevel();
+        LevelManager.LoadCharacterSelect();
     }
 
     public void OpenOptions()

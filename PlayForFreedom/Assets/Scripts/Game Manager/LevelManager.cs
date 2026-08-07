@@ -9,7 +9,10 @@ public class LevelManager : MonoBehaviour
     static bool activeRunner;
 
     const float LOADING_TIMEOUT = 30f;
+    const string MAIN_MENU_SCENE_NAME = "MainMenu";
+    const string OPTIONS_MENU_SCENE_NAME = "OptionsMene";
     const string BOOTSTRAP_SCENE_NAME = "Bootstrap";
+    const string CHARACTER_SELECT_SCENE_NAME = "CharacterSelect";
     const string LEVEL_ONE_SCENE_NAME = "Level 1";
     const string COROUTINE_RUNNER_NAME = "Coroutine Runner";
     
@@ -90,18 +93,21 @@ public class LevelManager : MonoBehaviour
 
     public static void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(MAIN_MENU_SCENE_NAME);
+    }
+    public static void LoadCharacterSelect(bool recreateBootstrap = false)
+    {
+        CoroutineRunner.StartCoroutine(LoadNewLevelAsync(CHARACTER_SELECT_SCENE_NAME, recreateBootstrap));
     }
     public static void LoadOptions()
     {
-        SceneManager.LoadScene("OptionsMenu");
+        SceneManager.LoadScene(OPTIONS_MENU_SCENE_NAME);
     }
     public static void LoadBootstrap()
     {
         SceneManager.LoadScene(BOOTSTRAP_SCENE_NAME);
         
     }
-
     public static void LoadFirstLevel(bool recreateBootstrap = false)
     {
 
@@ -113,9 +119,8 @@ public class LevelManager : MonoBehaviour
             MusicManager.Instance = null; // Reset the singleton instance
         }
 
-        CoroutineRunner.StartCoroutine(LoadNewLevelAsync("Level 1"));
+        CoroutineRunner.StartCoroutine(LoadNewLevelAsync(LEVEL_ONE_SCENE_NAME));
     }
-    
     static IEnumerator LoadNewLevelAsync(string levelName, bool recreateBootstrap = false)
     {
         if (Instance == null) activeRunner = true;
@@ -157,7 +162,6 @@ public class LevelManager : MonoBehaviour
 
         yield break;
     }
-
     static void CloseAllScenes()
     {
         int count = SceneManager.sceneCount;
@@ -169,7 +173,6 @@ public class LevelManager : MonoBehaviour
             SceneManager.UnloadSceneAsync(buildIndex);
         }
     }
-
     static IEnumerator DoLevelLoad(string levelName)
     {
         Debug.Log($"Current active scene before load async: {SceneManager.GetActiveScene().name}");
@@ -187,8 +190,6 @@ public class LevelManager : MonoBehaviour
 
         yield break;
     }
-
-
     public static void LoadGameOver()
     {
         SceneManager.LoadScene("GameOver");
@@ -207,7 +208,6 @@ public class LevelManager : MonoBehaviour
             LoadMainMenu();
         }
     }
-
     public static void LoadWinScreen()
     {
         SceneManager.LoadScene("WinScreen");
