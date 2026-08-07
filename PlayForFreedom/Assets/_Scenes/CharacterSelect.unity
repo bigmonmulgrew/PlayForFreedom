@@ -749,9 +749,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 798674645}
     m_Modifications:
+    - target: {fileID: 865220066045766204, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120804208300126622, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3028449201583378001, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
       propertyPath: m_Name
       value: SessionPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414946820945245760, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3414946820945245760, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525815307658974497, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525815307658974497, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525815307658974497, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7163511123858616811, guid: 8e00c59056cb3cf49a4a45441d6a432d, type: 3}
       propertyPath: m_Pivot.x
