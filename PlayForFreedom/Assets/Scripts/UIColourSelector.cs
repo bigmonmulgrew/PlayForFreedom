@@ -32,9 +32,6 @@ public class UIColourSelector : MonoBehaviour
         colorPicker.color = selectedButton.colors.normalColor;
     }
 
- 
-
-
     public void SetSelectedButton(Button button)
     {
         if (button == null) return;

@@ -94,7 +94,7 @@ Material:
     - _Smoothness_Intensity: 0.556
     m_Colors:
     - _Light_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Light_Colour: {r: 1, g: 0, b: 0.09732437, a: 1}
-    - _Panel_Colour: {r: 0.8679245, g: 0.057315648, b: 0.057315648, a: 1}
+    - _Light_Colour: {r: 1, g: 0.35495567, b: 0, a: 1}
+    - _Panel_Colour: {r: 0.8666667, g: 0.058823526, b: 0.60386, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

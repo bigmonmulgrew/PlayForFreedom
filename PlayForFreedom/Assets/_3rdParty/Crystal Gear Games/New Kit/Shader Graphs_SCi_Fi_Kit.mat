@@ -111,10 +111,10 @@ Material:
     - _Smoothness_Intensity: 0.8
     - _Text_Colour_Intensity: 0.5
     m_Colors:
-    - _Cable_Mask_Colours: {r: 1, g: 0, b: 0, a: 1}
+    - _Cable_Mask_Colours: {r: 0.05265814, g: 1, b: 0, a: 1}
     - _Emissive_Mask_Colour: {r: 1, g: 0, b: 0, a: 1}
-    - _Large_Pipe_Mask_Colours: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
-    - _Panel_Mask_Colour: {r: 1, g: 1, b: 1, a: 1}
+    - _Large_Pipe_Mask_Colours: {r: 1, g: 0.15566027, b: 0.92207223, a: 1}
+    - _Panel_Mask_Colour: {r: 0, g: 0.074697964, b: 0.8773583, a: 1}
     - _Small_Pipe_Mask_Colours: {r: 1, g: 0, b: 0, a: 1}
     - _Text_Mask_Colours: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

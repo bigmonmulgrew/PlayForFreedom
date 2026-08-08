@@ -132,7 +132,11 @@ public class LevelManager : MonoBehaviour
         yield return ValidateBootstrap(recreateBootstrap);
 
         // Second unload the current scene if one is already loaded
-        if (currentScene.IsValid()) SceneManager.UnloadSceneAsync(currentScene);
+        if (currentScene.IsValid())
+        {
+            // Don't unload the character select screen
+            if (currentScene.name != CHARACTER_SELECT_SCENE_NAME) SceneManager.UnloadSceneAsync(currentScene);
+        }
         
         // Third load the new scene
         yield return DoLevelLoad(levelName);
@@ -178,19 +182,27 @@ public class LevelManager : MonoBehaviour
     }
     static IEnumerator DoLevelLoad(string levelName)
     {
-        Debug.Log($"Current active scene before load async: {SceneManager.GetActiveScene().name}");
-        currentScene = SceneManager.GetSceneByName(levelName);
+        //Debug.Log($"Attempting to load scene: {levelName}, Current Active Scene: {SceneManager.GetActiveScene().name}");
         SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
-        yield return null;
-        Debug.Log($"Current active scene after load async: {SceneManager.GetActiveScene().name}");
+        currentScene = SceneManager.GetSceneByName(levelName);      // Gets scenes that are currently loaded, returns invalid scene if not loaded
 
         float timeoutExitTime = Time.unscaledTime + LOADING_TIMEOUT;
 
         while (currentScene.isLoaded == false && Time.unscaledTime < timeoutExitTime)
         {
+            
+            string msg = $"Current Scene Name: {currentScene.name}, Loaded Scenes :";
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                msg += $"{SceneManager.GetSceneAt(i).name}, ";
+            }
+
+
+            Debug.Log(msg);
+
             yield return new WaitForFixedUpdate();
         }
-        if (Time.unscaledTime >= timeoutExitTime) Debug.LogError($"Timed out while loading scene: {currentScene.name}");
+        if (Time.unscaledTime >= timeoutExitTime) Debug.LogError($"Timed out while loading scene: {currentScene.name}, Current Active Scene: {SceneManager.GetActiveScene().name}");
 
         yield break;
     }
