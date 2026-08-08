@@ -190,16 +190,6 @@ public class LevelManager : MonoBehaviour
 
         while (currentScene.isLoaded == false && Time.unscaledTime < timeoutExitTime)
         {
-            
-            string msg = $"Current Scene Name: {currentScene.name}, Loaded Scenes :";
-            for (int i = 0; i < SceneManager.sceneCount; i++)
-            {
-                msg += $"{SceneManager.GetSceneAt(i).name}, ";
-            }
-
-
-            Debug.Log(msg);
-
             yield return new WaitForFixedUpdate();
         }
         if (Time.unscaledTime >= timeoutExitTime) Debug.LogError($"Timed out while loading scene: {currentScene.name}, Current Active Scene: {SceneManager.GetActiveScene().name}");

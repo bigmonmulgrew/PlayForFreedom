@@ -64,7 +64,6 @@ public class SessionManager : MonoBehaviour
         }
         OnNetcodeStateChanged?.Invoke(GetNetcodeState());
     }
-
     private void RecordFailure(string operation, Exception exception)
     {
         OnNetcodeStateChanged?.Invoke(GetNetcodeState());
@@ -72,8 +71,6 @@ public class SessionManager : MonoBehaviour
         OnStatusChanged?.Invoke(status);
         Debug.LogException(exception);
     }
-
-
     public async void HostGame()
     {
 
@@ -145,7 +142,6 @@ public class SessionManager : MonoBehaviour
         }
         OnNetcodeStateChanged?.Invoke(GetNetcodeState());
     }
-
     public async void LeaveGame()
     {
         // TODO, much of this isnt needed since we leave the scene that outputs status. Should probably rework this.
@@ -175,7 +171,6 @@ public class SessionManager : MonoBehaviour
         }
         OnNetcodeStateChanged?.Invoke(GetNetcodeState());
     }
-
     private static string GetNetcodeState()
     {
         NetworkManager manager = NetworkManager.Singleton;
@@ -189,5 +184,24 @@ public class SessionManager : MonoBehaviour
         if (manager.IsServer) return "Server";
 
         return "Offline";
+    }
+
+    public static void StartGame()
+    {
+        foreach (PlayerSelectUI p in FindObjectsByType<PlayerSelectUI>())
+        {
+            if (p.gameObject.activeSelf)
+            {
+                ulong clientID = PlayerCouch.Instance.OwnerClientId; // TODO add a fallback for single player, where there is no instance.
+                Player avatar = p.PlayerAvatarDemo.DemoAvatar;
+                NetworkObject no = avatar.GetComponent<NetworkObject>();
+                no.Spawn(false);
+                DontDestroyOnLoad(no);
+                no.ChangeOwnership(clientID);
+            }
+            p.gameObject.SetActive(false);
+        }
+
+        LevelManager.LoadFirstLevel();
     }
 }

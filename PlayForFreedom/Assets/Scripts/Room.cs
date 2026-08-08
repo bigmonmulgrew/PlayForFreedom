@@ -56,7 +56,7 @@ public class Room : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        
+        Debug.Log($"{name} spawned on network");
         FindReferences();
         SanityChecks();
                 

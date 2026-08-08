@@ -70,7 +70,6 @@ public class Player : Character
         customColourRenderer2.materials[materialIndex2].color = playerConfig.customColour2;
         customColourRenderer3.materials[materialIndex3].color = playerConfig.customColour3;
 
-        Debug.Log($"Player, {name}, has spawned");
     }
 
     public void SetPlayerColour(Color col1, Color col2, Color col3)

@@ -1,9 +1,9 @@
 using TMPro;
-using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SessionPanelUI : MonoBehaviour
+public class SessionPanelUI : UIBehaviour
 {
     public static SessionPanelUI Instance;
 
@@ -15,8 +15,9 @@ public class SessionPanelUI : MonoBehaviour
     public int MaxPlayers => (int)maxPlayersSlider.value;
     public string JoinCode => joinCodeInput.text;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if (Instance == null)
         {
             Instance = this;
@@ -28,16 +29,18 @@ public class SessionPanelUI : MonoBehaviour
         }
     }
 
-    void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         SessionManager.Instance.OnStatusChanged += UpdateStatus;
         SessionManager.Instance.OnHostCodeSet += UpdateHostCode;
         SessionManager.Instance.OnNetcodeStateChanged += UpdateNetcodeState;
 
     }
 
-    void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         SessionManager.Instance.OnStatusChanged -= UpdateStatus;
         SessionManager.Instance.OnHostCodeSet -= UpdateHostCode;
         SessionManager.Instance.OnNetcodeStateChanged -= UpdateNetcodeState;
@@ -59,23 +62,9 @@ public class SessionPanelUI : MonoBehaviour
 
     public void StartGame()
     {
-        
-        foreach (PlayerSelectUI p in FindObjectsByType<PlayerSelectUI>())
-        {
-            if (p.gameObject.activeSelf)
-            {
-                ulong clientID = PlayerCouch.Instance.OwnerClientId; // TODO add a fallback for single player, where there is no instance.
-                Player avatar = p.PlayerAvatarDemo.DemoAvatar;
-                NetworkObject no = avatar.GetComponent<NetworkObject>();
-                no.Spawn(false);
-                DontDestroyOnLoad(no);
-                no.ChangeOwnership(clientID);
-            }
-            p.gameObject.SetActive(false);
-        }
-
-        LevelManager.LoadFirstLevel();
+        SessionManager.StartGame();
         gameObject.SetActive(false);
+        
     }
 
     public void JoinGame()
