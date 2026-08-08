@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerCouch : NetworkBehaviour
 {
-    public static PlayerCouch InstanceLocal;
+    static PlayerCouch instance;
+    static PlayerCouch instanceLocal;
+    public static PlayerCouch Instance => instanceLocal != null ? instanceLocal : instance;
     public static int nextCouchindex = 0;
 
     NetworkVariable<int> playerIndex = new(-1);
@@ -16,6 +18,11 @@ public class PlayerCouch : NetworkBehaviour
     List<Player> avatars = new();
 
     public int Seats => seats;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public override void OnNetworkSpawn()
     {
@@ -31,9 +38,9 @@ public class PlayerCouch : NetworkBehaviour
 
         if (!IsOwner) return;
 
-        if (InstanceLocal == null)
+        if (instanceLocal == null)
         {
-            InstanceLocal = this;
+            instanceLocal = this;
             DontDestroyOnLoad(gameObject);
         }
         else

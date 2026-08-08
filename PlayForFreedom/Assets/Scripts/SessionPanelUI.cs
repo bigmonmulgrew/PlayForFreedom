@@ -65,7 +65,7 @@ public class SessionPanelUI : MonoBehaviour
         {
             if (p.gameObject.activeSelf)
             {
-                ulong clientID = PlayerCouch.InstanceLocal.OwnerClientId; // TODO add a fallback for single player, where there is no instance.
+                ulong clientID = PlayerCouch.Instance.OwnerClientId; // TODO add a fallback for single player, where there is no instance.
                 Player avatar = p.PlayerAvatarDemo.DemoAvatar;
                 NetworkObject no = avatar.GetComponent<NetworkObject>();
                 no.Spawn(false);

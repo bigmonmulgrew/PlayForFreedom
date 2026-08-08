@@ -10,6 +10,8 @@ public class PlayerAvatarDemo : MonoBehaviour
     PlayerSelectUI playerSelectUI;
     Player demoAvatar;
 
+    ulong clientID;
+
     public int PlayerUIIndex => playerUIIndex;
     public Player DemoAvatar => demoAvatar;
 
@@ -45,6 +47,14 @@ public class PlayerAvatarDemo : MonoBehaviour
         if (demoAvatar != null) return;
         CreatePlayerAvatar(playerConfig);
     }
+
+    public void PossessPlayer(PlayerConfig playerConfig, ulong clientID)
+    {
+        if (demoAvatar != null) return;
+        CreatePlayerAvatar(playerConfig);
+        this.clientID = clientID;
+    }
+
     void CreatePlayerAvatar(PlayerConfig playerConfig)
     {
         demoAvatar = Instantiate(defaultAvatar, avatarSpawn.position, avatarSpawn.rotation);
