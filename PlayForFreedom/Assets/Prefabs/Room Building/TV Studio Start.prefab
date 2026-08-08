@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6915971758769378213
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1693512012251033085, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 416214305
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358812309855326008, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: startsLocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730201960102084004, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1499932135
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501228039580216431, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 887319222
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023391057365380820, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: startsLocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155586175612935269, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: m_Name
+      value: Studio Room 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: spawnInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: initialSpawnDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: enemies.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: 'enemies.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2138369141299980798, guid: f2eecde3e877ad842a7ac02d2dce3be5, type: 3}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: 'enemies.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1030915511202361709, guid: 80850d4ffa368c64ab7cae4903a618ad, type: 3}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: 'enemies.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2603254870720165880, guid: b98b3ba2e5748134f8e7917d5be9a011, type: 3}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: 'enemies.Array.data[3]'
+      value: 
+      objectReference: {fileID: 4136711960441842497, guid: a78eb27b0cda32243bff42c8e46773b9, type: 3}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: 'enemies.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1030915511202361709, guid: 88cab6982def7c54b8dff887fc751e68, type: 3}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: 'enemies.Array.data[5]'
+      value: 
+      objectReference: {fileID: 1030915511202361709, guid: 80850d4ffa368c64ab7cae4903a618ad, type: 3}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: 'enemies.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2603254870720165880, guid: b98b3ba2e5748134f8e7917d5be9a011, type: 3}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: 'enemies.Array.data[7]'
+      value: 
+      objectReference: {fileID: 1030915511202361709, guid: 80850d4ffa368c64ab7cae4903a618ad, type: 3}
+    - target: {fileID: 8674187733664554056, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1739871154
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687836991483069051, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 893710487
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
