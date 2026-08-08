@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1693512012251033085, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2489611645
+      objectReference: {fileID: 0}
     - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,9 +52,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6730201960102084004, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3472312122
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501228039580216431, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3996466006
+      objectReference: {fileID: 0}
     - target: {fileID: 8155586175612935269, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: m_Name
-      value: Room Template
+      value: Studio Room 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674187733664554056, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 588678146
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687836991483069051, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2637853602
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
