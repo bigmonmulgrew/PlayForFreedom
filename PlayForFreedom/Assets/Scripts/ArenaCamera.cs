@@ -1,9 +1,12 @@
 using BMD;
+using NUnit.Framework.Constraints;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 public class ArenaCamera : MonoBehaviour
 {
+    [System.Serializable]
     class BasicTransform
     {
         public Vector3 Position;
@@ -13,25 +16,65 @@ public class ArenaCamera : MonoBehaviour
     }
 
     public static ArenaCamera Instance;
+    [SerializeField]
+    BasicTransform menuDefault = new BasicTransform()
+    {
+        Position = new Vector3(0, 4, -6),
+        Rotation = new Vector3(0, 0, 0)
+    };
+    [SerializeField]
+    BasicTransform gameStartDefault = new BasicTransform()
+    {
+        Position = new Vector3(0, 10, 0),
+        Rotation = new Vector3(90, 0, 0)
+    };
+
+    #region Config
     [SerializeField] float roomTransitionTime = 2.0f;
     [SerializeField] float locationTransitionTime = 1.0f;
+    [SerializeField] float menuScreenNearClip = 0.3f;
+    [SerializeField] float menuScreenFOV = 60f;
+    [SerializeField] float gameplayNearClip = 10.5f;
+    [SerializeField] float gameplayFOV = 60f;
+    #endregion
 
+    #region Cahced References
     PlayerControls playerControls;
     InputAction cameraInputIA;
+    Camera camera;
+    #endregion
 
+    #region Runtime Variables
     BasicTransform targetTransform;
     BasicTransform startTransform;
 
     RoomCameraLocations currentRoomCameraLocaitons;
     RoomCameraLocation currentCameraLocation;
 
+    float targetFOV;
+    float startFOV;
+    bool fovIsLarger;
+
+    float targetNearClip;
+    float startNearClip;
+    bool nearClipIsLarger;
+
     float startTime;
     int currentCameraIndex = 0;
     bool transitionIsRoom = false;
+
+    #endregion
+
+
+
     float TransitionTime => transitionIsRoom ? roomTransitionTime : locationTransitionTime;
     private void Awake()
     {
         Instance = this;
+
+        camera = GetComponent<Camera>();
+        targetFOV = camera.fieldOfView;
+        targetNearClip = camera.nearClipPlane;
 
         playerControls = new();
     }
@@ -49,9 +92,39 @@ public class ArenaCamera : MonoBehaviour
     {
         ReadCameraInputs();
         SmoothTransition();
-
+        SmoothFOVandNearCLip();
     }
 
+    void SmoothFOVandNearCLip()
+    {
+        if (targetFOV == camera.fieldOfView && targetNearClip == camera.nearClipPlane) return;
+        
+
+        float timeDifference = Time.time - startTime;
+        float interpolatioRatio = timeDifference / TransitionTime;
+
+        camera.fieldOfView = Mathf.Lerp(startFOV, targetFOV, interpolatioRatio);
+        camera.nearClipPlane = Mathf.Lerp(startNearClip, targetNearClip, interpolatioRatio);
+
+        if (fovIsLarger)
+        {
+            if (camera.fieldOfView > targetFOV) camera.fieldOfView = targetFOV;
+        }
+        else
+        {
+            if (camera.fieldOfView < targetFOV) camera.fieldOfView = targetFOV;
+        }
+
+        if (nearClipIsLarger)
+        {
+            if (camera.nearClipPlane > targetNearClip) camera.nearClipPlane = targetNearClip;
+        }
+        else
+        {
+            if (camera.nearClipPlane < targetNearClip) camera.nearClipPlane = targetNearClip;
+        }
+
+    }
     void ReadCameraInputs()
     {
         if (!cameraInputIA.WasPerformedThisFrame()) return;
@@ -179,4 +252,43 @@ public class ArenaCamera : MonoBehaviour
         startTime = Time.time;
         transitionIsRoom = true;
     }
+
+    public void SetCameraForMenu()
+    {
+        SetCameraFOVandNearClip(menuScreenNearClip, menuScreenFOV, menuDefault);
+    }
+    public void SetCameraForGameplay()
+    {
+        SetCameraFOVandNearClip(gameplayNearClip, gameplayFOV, gameStartDefault);
+    }
+
+    void SetCameraFOVandNearClip(float nc, float fov, BasicTransform newTransform)
+    {
+        if (camera == null) return;
+
+        startNearClip = camera.nearClipPlane;
+        targetNearClip = nc;
+        nearClipIsLarger = nc > camera.nearClipPlane;
+
+        startFOV = camera.fieldOfView;
+        targetFOV = fov;
+        fovIsLarger = fov > camera.fieldOfView;
+
+        targetTransform = new()
+        {
+            Position = newTransform.Position,
+            Rotation = newTransform.Rotation
+        };
+
+        startTransform = new()
+        {
+            Position = transform.position,
+            Rotation = transform.rotation.eulerAngles
+        };
+
+        
+        startTime = Time.time;
+        transitionIsRoom = false;
+    }
+
 }

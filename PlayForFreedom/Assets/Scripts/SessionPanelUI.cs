@@ -1,6 +1,5 @@
 using TMPro;
 using Unity.Netcode;
-using Unity.Services.Matchmaker.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,16 +65,18 @@ public class SessionPanelUI : MonoBehaviour
         {
             if (p.gameObject.activeSelf)
             {
-                ulong clientID = PlayerCouch.InstanceLocal.OwnerClientId;
+                ulong clientID = PlayerCouch.InstanceLocal.OwnerClientId; // TODO add a fallback for single player, where there is no instance.
                 Player avatar = p.PlayerAvatarDemo.DemoAvatar;
                 NetworkObject no = avatar.GetComponent<NetworkObject>();
                 no.Spawn(false);
                 DontDestroyOnLoad(no);
                 no.ChangeOwnership(clientID);
             }
+            p.gameObject.SetActive(false);
         }
 
         LevelManager.LoadFirstLevel();
+        gameObject.SetActive(false);
     }
 
     public void JoinGame()

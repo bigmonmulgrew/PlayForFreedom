@@ -97,7 +97,8 @@ public class LevelManager : MonoBehaviour
     }
     public static void LoadCharacterSelect(bool recreateBootstrap = false)
     {
-        CoroutineRunner.StartCoroutine(LoadNewLevelAsync(CHARACTER_SELECT_SCENE_NAME, recreateBootstrap));
+        CoroutineRunner.StartCoroutine(LoadNewLevelAsync(CHARACTER_SELECT_SCENE_NAME, true));
+        if (ArenaCamera.Instance) ArenaCamera.Instance.SetCameraForMenu();
     }
     public static void LoadOptions()
     {
@@ -110,6 +111,8 @@ public class LevelManager : MonoBehaviour
     }
     public static void LoadFirstLevel(bool recreateBootstrap = false)
     {
+        if (ArenaCamera.Instance) ArenaCamera.Instance.SetCameraForGameplay();
+
 
         MusicManager musicManager = FindAnyObjectByType<MusicManager>();
         //Check if the music manager is valid and that it doesnty have a game manager component attached
@@ -177,7 +180,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log($"Current active scene before load async: {SceneManager.GetActiveScene().name}");
         currentScene = SceneManager.GetSceneByName(levelName);
-        SceneManager.LoadSceneAsync(levelName);
+        SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         Debug.Log($"Current active scene after load async: {SceneManager.GetActiveScene().name}");
 
         float timeoutExitTime = Time.unscaledTime + LOADING_TIMEOUT;
