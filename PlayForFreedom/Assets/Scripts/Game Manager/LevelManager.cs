@@ -181,6 +181,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"Current active scene before load async: {SceneManager.GetActiveScene().name}");
         currentScene = SceneManager.GetSceneByName(levelName);
         SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+        yield return null;
         Debug.Log($"Current active scene after load async: {SceneManager.GetActiveScene().name}");
 
         float timeoutExitTime = Time.unscaledTime + LOADING_TIMEOUT;

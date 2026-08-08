@@ -26,18 +26,21 @@ public class Room : NetworkBehaviour
     private void Awake()
     {
         AllRooms.Add(this);
+        //FindReferences();
+        //SanityChecks();
+        if (IsServer) GetComponent<NetworkObject>().Spawn();
     }
 
     void FindReferences()
     {
         // This skips searching in children if already assigned.
-        startTrigger = startTrigger != null ? startTrigger : GetComponentInChildren<RoomStartTrigger>();
+        startTrigger = startTrigger != null ? startTrigger : GetComponentInChildren<RoomStartTrigger>(true);
 
         enemyRoomSpawner = enemyRoomSpawner != null ? enemyRoomSpawner : GetComponent<EnemyRoomSpawner>();
 
-        doorList = GetComponentsInChildren<Door>();
+        doorList = doorList != null && doorList.Length > 0 ? doorList : GetComponentsInChildren<Door>(true);
 
-        cameraLocations = GetComponentInChildren<RoomCameraLocations>();
+        cameraLocations = cameraLocations != null ? cameraLocations : GetComponentInChildren<RoomCameraLocations>(true);
     }
 
     void SanityChecks()
@@ -46,6 +49,10 @@ public class Room : NetworkBehaviour
         if (startTrigger == null) Debug.LogError($"{name} cannot find start trigger. This is required.", this);
     }
 
+    //private void OnEnable()
+    //{
+    //    startTrigger.RoomStartTriggered += StartRoom;
+    //}
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -53,6 +60,7 @@ public class Room : NetworkBehaviour
         FindReferences();
         SanityChecks();
                 
+        // TODO check i8f this is assigned twice or just updates reference.
         startTrigger.RoomStartTriggered += StartRoom;
     }
     public override void OnNetworkDespawn()
@@ -60,6 +68,11 @@ public class Room : NetworkBehaviour
         base.OnNetworkDespawn();
         startTrigger.RoomStartTriggered -= StartRoom;
     }
+    //private void OnDisable()
+    //{
+
+    //    startTrigger.RoomStartTriggered -= StartRoom;
+    //}
 
     void StartRoom(NetworkObject no)
     {

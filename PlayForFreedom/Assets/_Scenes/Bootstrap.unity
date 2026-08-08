@@ -731,18 +731,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3377123638317273685, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
-      propertyPath: roomTransitionTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3377123638317273685, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
-      propertyPath: locationTransitionTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3377123638317273685, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
-      propertyPath: gameStartDefault.Position.y
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5141059700496268330, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
       propertyPath: m_Name
       value: ArenaCamera
@@ -786,22 +774,6 @@ PrefabInstance:
     - target: {fileID: 5603590662828705203, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5654267553253395753, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
-      propertyPath: field of view
-      value: 60.000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 5654267553253395753, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
-      propertyPath: m_FocalLength
-      value: 20.78461
-      objectReference: {fileID: 0}
-    - target: {fileID: 5654267553253395753, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
-      propertyPath: near clip plane
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5654267553253395753, guid: dbbfae69313d81847ad729eb522db97f, type: 3}
-      propertyPath: m_projectionMatrixMode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

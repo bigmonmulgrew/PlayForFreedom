@@ -148,7 +148,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -161,9 +161,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 10.67
+  near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -245,4 +245,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576367e85173f6141b159c4baedbe5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArenaCamera
-  transitionTime: 2
+  menuDefault:
+    Position: {x: 0, y: 4, z: -6}
+    Rotation: {x: 0, y: 0, z: 0}
+  gameStartDefault:
+    Position: {x: 0, y: 15, z: 0}
+    Rotation: {x: 90, y: 0, z: 0}
+  roomTransitionTime: 2
+  locationTransitionTime: 1
+  menuScreenNearClip: 0.3
+  menuScreenFOV: 60
+  gameplayNearClip: 10.5
+  gameplayFOV: 60
