@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BMD
 {
     public class PlayerController : BMD.CharacterController
     {
+        [SerializeField] MonoBehaviour inputController;
+        private readonly NetworkVariable<bool> controlGranted = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+        
         #region Cached references
         private PlayerControls playerControls;
         private InputAction move;
