@@ -41,6 +41,7 @@ public class Player : Character
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();
+        Debug.Log($"Spawning player {name}");
         AllPlayers.Remove(this);
         
         if (IsOwner) LocalPlayers.Remove(this);
@@ -64,7 +65,8 @@ public class Player : Character
 
     public void SetPlayerData(PlayerConfig playerConfig)
     {
-        name = playerConfig.name != "" ? playerConfig.name : $"Player {AllPlayers.Count}";
+        if (!playerConfig.IsInitialized) return;
+        name = playerConfig.name.IsEmpty ? playerConfig.name.ToString() : $"Player {AllPlayers.Count}";
         cashScore.Value = playerConfig.startingMoney;
         customColourRenderer1.materials[materialIndex1].color = playerConfig.customColour1;
         customColourRenderer2.materials[materialIndex2].color = playerConfig.customColour2;

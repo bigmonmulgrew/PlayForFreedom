@@ -63,7 +63,6 @@ public class SessionPanelUI : UIBehaviour
     public void StartGame()
     {
         SessionManager.StartGame();
-        gameObject.SetActive(false);
         
     }
 

@@ -1,19 +1,21 @@
+using Unity.Netcode;
 using UnityEngine;
 
 public class PlayerAvatarDemo : MonoBehaviour
 {
-    [SerializeField] int playerUIIndex = 0;
+    [SerializeField] int playerUIIndex = -1;
 
     [SerializeField] Player defaultAvatar;
     [SerializeField] Transform avatarSpawn;
 
     PlayerSelectUI playerSelectUI;
-    Player demoAvatar;
 
-    ulong clientID;
-
+    NetworkVariable<Player> demoAvatar = new(null, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    
     public int PlayerUIIndex => playerUIIndex;
-    public Player DemoAvatar => demoAvatar;
+    public Player DemoAvatar => demoAvatar.Value;
+    public Transform AvatarSpawn => avatarSpawn;
+    
 
     private void Awake()
     {
@@ -38,26 +40,12 @@ public class PlayerAvatarDemo : MonoBehaviour
 
     void UpdateColour(Color col1, Color col2, Color col3)
     {
-        if (demoAvatar == null) return;
-        demoAvatar.SetPlayerColour(col1, col2, col3);
+        if (demoAvatar.Value == null) return;
+        demoAvatar.Value.SetPlayerColour(col1, col2, col3);
+    }
+    public void SetDemoAvatar(Player newAvatar)
+    {
+        demoAvatar.Value = newAvatar;
     }
 
-    public void PossessPlayer(PlayerConfig playerConfig)
-    {
-        if (demoAvatar != null) return;
-        CreatePlayerAvatar(playerConfig);
-    }
-
-    public void PossessPlayer(PlayerConfig playerConfig, ulong clientID)
-    {
-        if (demoAvatar != null) return;
-        CreatePlayerAvatar(playerConfig);
-        this.clientID = clientID;
-    }
-
-    void CreatePlayerAvatar(PlayerConfig playerConfig)
-    {
-        demoAvatar = Instantiate(defaultAvatar, avatarSpawn.position, avatarSpawn.rotation);
-        demoAvatar.SetPlayerData(playerConfig);
-    }
 }

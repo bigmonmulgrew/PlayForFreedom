@@ -1,10 +1,11 @@
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerSelectUI : MonoBehaviour
 {
-    [SerializeField] int playerUIIndex = 0;
+    [SerializeField] int playerUIIndex = -1;
     [SerializeField] TextMeshProUGUI playerLabel;
     [SerializeField] TMP_InputField nameInput;
     [SerializeField] Button possessButton;
@@ -33,9 +34,12 @@ public class PlayerSelectUI : MonoBehaviour
 
     }
 
-    public void PossessPlayer()
+    public void SpawnPlayerOnPedestal()
     {
         if (playerAvatarDemo == null) return;
+
+        PlayerCouch playerCouch = SessionManager.GetLocalCouch();
+        playerCouch.SpawnAvatar(PlayerUIIndex);
 
         PlayerConfig newData = new PlayerConfig()
         {
@@ -52,6 +56,10 @@ public class PlayerSelectUI : MonoBehaviour
             else ui.gameObject.SetActive(false);
         }
 
-        playerAvatarDemo.PossessPlayer(newData);
+
+        playerCouch.SetPlayerData(playerAvatarDemo.PlayerUIIndex, newData);
+        
     }
+
+    
 }

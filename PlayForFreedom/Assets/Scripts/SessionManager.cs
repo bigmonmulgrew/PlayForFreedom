@@ -9,6 +9,8 @@ using UnityEngine;
 public class SessionManager : MonoBehaviour
 {
     public static SessionManager Instance;
+    static bool gameStarted = false;
+
 
     public event Action<string> OnStatusChanged;
     public event Action<string> OnHostCodeSet;
@@ -18,6 +20,7 @@ public class SessionManager : MonoBehaviour
 
     bool servicesReady;
     bool busy;
+    
 
     string hostJoinCode = "";
     string status = "Starting Unity Gaming Services...";
@@ -188,20 +191,40 @@ public class SessionManager : MonoBehaviour
 
     public static void StartGame()
     {
+        if (gameStarted) return;
+        gameStarted = true;
+
+        SessionPanelUI.Instance.gameObject.SetActive(false);
+
+        PlayerCouch playerCouch = GetLocalCouch();
+
+        if (playerCouch)
+        {
+            playerCouch.StartGame();
+            playerCouch.RequestControl();
+        }
+        else Debug.Log("No couch found when starting session"); 
+
+
         foreach (PlayerSelectUI p in FindObjectsByType<PlayerSelectUI>())
         {
-            if (p.gameObject.activeSelf)
-            {
-                ulong clientID = PlayerCouch.Instance.OwnerClientId; // TODO add a fallback for single player, where there is no instance.
-                Player avatar = p.PlayerAvatarDemo.DemoAvatar;
-                NetworkObject no = avatar.GetComponent<NetworkObject>();
-                no.Spawn(false);
-                DontDestroyOnLoad(no);
-                no.ChangeOwnership(clientID);
-            }
             p.gameObject.SetActive(false);
         }
 
         LevelManager.LoadFirstLevel();
     }
+
+    public static PlayerCouch GetLocalCouch()
+    {
+        // TODO this is used in multiple scripts, move it to a helper
+        NetworkManager nm = NetworkManager.Singleton;
+
+        if (nm == null || !nm.IsClient) return null;
+
+        NetworkObject playerObject = nm.LocalClient.PlayerObject;
+        if (playerObject == null) return null;
+
+        return playerObject.GetComponent<PlayerCouch>();
+    }
+
 }
