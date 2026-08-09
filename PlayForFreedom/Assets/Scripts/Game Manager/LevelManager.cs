@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -183,7 +184,8 @@ public class LevelManager : MonoBehaviour
     static IEnumerator DoLevelLoad(string levelName)
     {
         //Debug.Log($"Attempting to load scene: {levelName}, Current Active Scene: {SceneManager.GetActiveScene().name}");
-        SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+        if (NetworkManager.Singleton.SceneManager != null) NetworkManager.Singleton.SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
+        else SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         currentScene = SceneManager.GetSceneByName(levelName);      // Gets scenes that are currently loaded, returns invalid scene if not loaded
 
         float timeoutExitTime = Time.unscaledTime + LOADING_TIMEOUT;

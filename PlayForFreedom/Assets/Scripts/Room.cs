@@ -27,8 +27,9 @@ public class Room : NetworkBehaviour
     {
         AllRooms.Add(this);
         //FindReferences();
-        //SanityChecks();
-        if (IsServer) GetComponent<NetworkObject>().Spawn();
+        //SanityChecks()
+        
+        //if (NetworkManager.Singleton.IsServer) GetComponent<NetworkObject>().Spawn();
     }
 
     void FindReferences()
