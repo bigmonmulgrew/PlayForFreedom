@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1581302549779615841}
   - component: {fileID: 4177008168589406778}
   - component: {fileID: 5980144835664008891}
+  - component: {fileID: -7282777531627492480}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -108,7 +109,7 @@ MonoBehaviour:
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
-  m_InScenePlaced: 1
+  m_InScenePlaced: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
@@ -430,6 +431,26 @@ MonoBehaviour:
   pickupsLayers:
     serializedVersion: 2
     m_Bits: 4096
+  customColourRenderer1: {fileID: 0}
+  materialIndex1: 0
+  customColourRenderer2: {fileID: 0}
+  materialIndex2: 0
+  customColourRenderer3: {fileID: 0}
+  materialIndex3: 0
+--- !u!114 &-7282777531627492480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130636629329087225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bd070fe6acf1848bc0d0f07b1f4054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AvatarControlGate
+  ShowTopMostFoldoutHeaderGroup: 1
+  inputController: {fileID: 8469057815816999502}
 --- !u!1001 &959828056183761307
 PrefabInstance:
   m_ObjectHideFlags: 0
