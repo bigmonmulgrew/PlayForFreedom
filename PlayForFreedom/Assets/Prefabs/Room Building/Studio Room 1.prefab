@@ -1101,7 +1101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358812309855326008, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: startsLocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1153,32 +1153,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8023391057365380820, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: startsLocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8155586175612935269, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: m_Name
       value: Studio Room 1
       objectReference: {fileID: 0}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
-      propertyPath: spawnInterval
+      propertyPath: enemies.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
-      propertyPath: enemiesToSpawn
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
-      propertyPath: initialSpawnDelay
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
-      propertyPath: enemies.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
-      propertyPath: 'enemies.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2138369141299980798, guid: f2eecde3e877ad842a7ac02d2dce3be5, type: 3}
     - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: 'enemies.Array.data[1]'
       value: 
