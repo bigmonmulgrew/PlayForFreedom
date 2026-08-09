@@ -105,8 +105,6 @@ public class PlayerCouch : NetworkBehaviour
         if (!TryGetSpawnTransformFromPedestal(playerUIIndex, out Transform targetSpawn, out PlayerAvatarDemo selectedPedestal)) return;
 
         Player newAvatar = Instantiate(defaultAvatar, targetSpawn.position, targetSpawn.rotation);
-        selectedPedestal.SetDemoAvatar(newAvatar);
-
         
         spawnedAvatar = newAvatar.GetComponent<NetworkObject>();
 
@@ -132,6 +130,8 @@ public class PlayerCouch : NetworkBehaviour
         // At this point the avatar exists on the network but the
         // player has not been granted control.
         spawnedAvatar.Spawn();
+
+        selectedPedestal.SetDemoAvatar(spawnedAvatar);
 
     }
 

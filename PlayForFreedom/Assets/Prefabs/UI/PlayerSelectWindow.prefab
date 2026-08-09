@@ -2476,7 +2476,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8395863074755501584}
         m_TargetAssemblyTypeName: PlayerSelectUI, Assembly-CSharp
-        m_MethodName: PossessPlayer
+        m_MethodName: SpawnPlayerOnPedestal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

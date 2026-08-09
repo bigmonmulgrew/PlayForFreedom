@@ -577,10 +577,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4322753759405897944, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnPlayerOnPedestal
-      objectReference: {fileID: 0}
     - target: {fileID: 9087994757313083248, guid: c10521d2f29cf1b439e230df7517bd0b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

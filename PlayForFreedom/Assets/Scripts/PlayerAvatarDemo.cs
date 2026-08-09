@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerAvatarDemo : MonoBehaviour
+public class PlayerAvatarDemo : NetworkBehaviour
 {
     [SerializeField] int playerUIIndex = -1;
 
@@ -10,10 +10,15 @@ public class PlayerAvatarDemo : MonoBehaviour
 
     PlayerSelectUI playerSelectUI;
 
-    NetworkVariable<Player> demoAvatar = new(null, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    readonly NetworkVariable<NetworkObjectReference> demoAvatarNetworkRef = new(
+        default, 
+        NetworkVariableReadPermission.Everyone, 
+        NetworkVariableWritePermission.Server
+        );
+    Player demoAvatar;
     
     public int PlayerUIIndex => playerUIIndex;
-    public Player DemoAvatar => demoAvatar.Value;
+    public Player DemoAvatar => demoAvatar != null ? defaultAvatar : GetDemoAvatar();
     public Transform AvatarSpawn => avatarSpawn;
     
 
@@ -40,12 +45,32 @@ public class PlayerAvatarDemo : MonoBehaviour
 
     void UpdateColour(Color col1, Color col2, Color col3)
     {
-        if (demoAvatar.Value == null) return;
-        demoAvatar.Value.SetPlayerColour(col1, col2, col3);
+        if (DemoAvatar == null) return;
+        demoAvatar.SetPlayerColour(col1, col2, col3);
     }
-    public void SetDemoAvatar(Player newAvatar)
+    public void SetDemoAvatar(NetworkObject newAvatarNO)
     {
-        demoAvatar.Value = newAvatar;
+
+        Debug.Log($"newAvatarNO null: {newAvatarNO == null}");
+        Debug.Log($"demoAvatarNetworkRef null: {demoAvatarNetworkRef == null}");
+
+        if (newAvatarNO == null)
+        {
+            Debug.LogError("Not a valid network object");
+            return;
+        }
+        NetworkObjectReference reference = new(newAvatarNO);
+
+        demoAvatarNetworkRef.Value = reference;
     }
 
+    public Player GetDemoAvatar()
+    {
+        if (demoAvatarNetworkRef.Value.TryGet(out NetworkObject networkObject))
+        {
+            return networkObject.GetComponent<Player>();
+        }
+
+        return null;
+    }
 }
