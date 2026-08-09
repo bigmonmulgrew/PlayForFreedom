@@ -8,7 +8,9 @@ namespace BMD
     {
         [SerializeField] MonoBehaviour inputController;
         private readonly NetworkVariable<bool> controlGranted = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-        
+
+        public bool ControlGranted => controlGranted.Value;
+
         #region Cached references
         private PlayerControls playerControls;
         private InputAction move;
@@ -27,6 +29,13 @@ namespace BMD
 
         bool lookLocked;
 
+        public void SetControlGranted(bool isGranted)
+        {
+            if (!IsServer) return;
+
+            controlGranted.Value = isGranted;
+        }
+
         protected override void Awake()
         {
             base.Awake();
@@ -40,6 +49,8 @@ namespace BMD
                 if (Camera == null) Debug.LogWarning("No camera found on the player. Please attach a camera module or child camera.");
                 return;
             }
+
+            if (inputController != null) inputController.enabled = false;
         }
 
         private void SetupControls()
@@ -81,6 +92,12 @@ namespace BMD
         }
         protected override void Update()
         {
+            if (!IsSpawned || inputController == null) return;
+
+            bool shouldHaveInput = IsOwner && controlGranted.Value;
+
+            if (inputController.enabled != shouldHaveInput) inputController.enabled = shouldHaveInput;
+
             if (!IsOwner) return;
 
             HandleLookLockinput();

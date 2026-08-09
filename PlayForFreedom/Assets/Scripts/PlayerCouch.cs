@@ -1,3 +1,4 @@
+using BMD;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -116,9 +117,9 @@ public class PlayerCouch : NetworkBehaviour
         }
 
         // Avatar control gate
-        if (newAvatar.GetComponent<AvatarControlGate>() == null)
+        if (newAvatar.GetComponent<PlayerController>() == null)
         {
-            Debug.LogError("Avatar prefab requires AvatarControlGate.");
+            Debug.LogError("Avatar prefab requires PlayerController.");
             Destroy(newAvatar);
             spawnedAvatar = null;
             return;
@@ -164,7 +165,7 @@ public class PlayerCouch : NetworkBehaviour
 
         if (spawnedAvatar == null || !spawnedAvatar.IsSpawned) return;
 
-        AvatarControlGate controlGate = spawnedAvatar.GetComponent<AvatarControlGate>();
+        PlayerController controlGate = spawnedAvatar.GetComponent<PlayerController>();
 
         if (controlGate == null) return;
 
