@@ -63,13 +63,13 @@ public class LevelManager : MonoBehaviour
             return;
         }
     }
-
+#if UNITY_EDITOR
     private void Start()
     {
         ForceLoadInEditor();
     }
 
-#if UNITY_EDITOR
+
     static void ForceLoadInEditor()
     {
         if (SceneManager.sceneCount != 1) return;   // Only load when 1 scene eg bootstrap
