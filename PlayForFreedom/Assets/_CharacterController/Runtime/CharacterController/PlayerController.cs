@@ -31,6 +31,7 @@ namespace BMD
 
         public void SetControlGranted(bool isGranted)
         {
+            
             if (!IsServer) return;
 
             controlGranted.Value = isGranted;
@@ -68,27 +69,43 @@ namespace BMD
             specialAttack = playerControls.Player.SpecialAttack;
             lockLook    = playerControls.Player.LockLook;
         }
+
         public override void OnNetworkSpawn()
         {
-            if (IsOwner)
-            {
-                playerControls.Player.Enable();
-                look.performed += ctx => HandleLookInput(ctx);
-                look.canceled += ctx => HandleLookInput();
-                zoom.performed += ctx => AdjustZoomLevel(-ctx.ReadValue<float>());
-                zoom.canceled += ctx => AdjustZoomLevel(0f);
-                crouch.performed += ctx => ToggleCrouch();
-                roll.performed += ctx => PerformRoll();
-                sprint.started += ctx => NotifySprintTriggered(true);
-                sprint.canceled += ctx => NotifySprintTriggered(false);
-            }
-            
-
             base.OnNetworkSpawn();
+
+            controlGranted.OnValueChanged += EnablePlayerControls;
         }
+
+        public void EnablePlayerControls(bool previousValue, bool newValue)
+        {
+            if (previousValue || !newValue) return;
+            if (!IsOwner) return;
+
+            playerControls.Player.Enable();
+            look.performed += ctx => HandleLookInput(ctx);
+            look.canceled += ctx => HandleLookInput();
+            zoom.performed += ctx => AdjustZoomLevel(-ctx.ReadValue<float>());
+            zoom.canceled += ctx => AdjustZoomLevel(0f);
+            crouch.performed += ctx => ToggleCrouch();
+            roll.performed += ctx => PerformRoll();
+            sprint.started += ctx => NotifySprintTriggered(true);
+            sprint.canceled += ctx => NotifySprintTriggered(false);
+        }
+
         public override void OnNetworkDespawn()
         {
+            controlGranted.OnValueChanged -= EnablePlayerControls;
+
             playerControls.Player.Disable();
+            look.performed -= ctx => HandleLookInput(ctx);
+            look.canceled -= ctx => HandleLookInput();
+            zoom.performed -= ctx => AdjustZoomLevel(-ctx.ReadValue<float>());
+            zoom.canceled -= ctx => AdjustZoomLevel(0f);
+            crouch.performed += ctx => ToggleCrouch();
+            roll.performed -= ctx => PerformRoll();
+            sprint.started -= ctx => NotifySprintTriggered(true);
+            sprint.canceled -= ctx => NotifySprintTriggered(false);
         }
         protected override void Update()
         {

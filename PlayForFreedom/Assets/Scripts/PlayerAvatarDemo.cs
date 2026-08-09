@@ -19,6 +19,7 @@ public class PlayerAvatarDemo : NetworkBehaviour
     
     public int PlayerUIIndex => playerUIIndex;
     public Player DemoAvatar => demoAvatar != null ? defaultAvatar : GetDemoAvatar();
+    public NetworkObjectReference DemoAvatarNetworkRef => demoAvatarNetworkRef.Value;
     public Transform AvatarSpawn => avatarSpawn;
     
 

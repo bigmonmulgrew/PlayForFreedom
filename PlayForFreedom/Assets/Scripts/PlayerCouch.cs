@@ -22,6 +22,7 @@ public class PlayerCouch : NetworkBehaviour
 
     #region Runtime Variables
     NetworkVariable<int> playerIndex = new(-1);
+    NetworkVariable<int> playerAvatarDemoIndex = new(-1);
 
     int playerID = -1;
     int seats;
@@ -133,6 +134,7 @@ public class PlayerCouch : NetworkBehaviour
         spawnedAvatar.Spawn();
 
         selectedPedestal.SetDemoAvatar(spawnedAvatar);
+        playerAvatarDemoIndex.Value = playerUIIndex;
 
     }
 
@@ -173,7 +175,9 @@ public class PlayerCouch : NetworkBehaviour
         spawnedAvatar.ChangeOwnership(senderID);
 
         controlGate.SetControlGranted(true);
+
     }
+    
 
     public void StartGame()
     {
