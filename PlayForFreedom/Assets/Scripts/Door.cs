@@ -9,6 +9,8 @@ public class Door : MonoBehaviour
 
     #region Cahced References
     Room parentRoom;
+    //Collider playerBarrierCollider;
+    DoorTrigger playerBarrierDoorTrigger;
     #endregion
 
     #region Runtime variables
@@ -18,15 +20,31 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
+        playerBarrierDoorTrigger = playerBarrier.GetComponent<DoorTrigger>();
         islocked = startsLocked;
         Open();
     }
 
+    private void OnEnable()
+    {
+        if (playerBarrierDoorTrigger) playerBarrierDoorTrigger.OnTriggerEnterAction += ChildTriggerTriggered;
+    }
+
+    private void OnDisable()
+    {
+        if (playerBarrierDoorTrigger) playerBarrierDoorTrigger.OnTriggerEnterAction -= ChildTriggerTriggered;
+    }
+
     void OnTriggerEnter(Collider other)
+    {
+        ChildTriggerTriggered(other);
+    }
+
+    void ChildTriggerTriggered(Collider other)
     {
         if (!isOpen) return;
 
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             if (parentRoom) parentRoom.LockOtherDoors(this);
             islocked = true;
@@ -44,14 +62,16 @@ public class Door : MonoBehaviour
     {
         if (islocked || isOpen) return;
 
-        playerBarrier.SetActive(false);
+        //playerBarrier.SetActive(false);
+        playerBarrier.GetComponent<Collider>().isTrigger = true;
         doorMesh.enabled = false;
         isOpen = true;
     }
 
     public void Close()
     {
-        playerBarrier.SetActive(true);
+        //playerBarrier.SetActive(true);
+        playerBarrier.GetComponent<Collider>().isTrigger = false;
         doorMesh.enabled = true;
         isOpen = false;
     }
@@ -59,7 +79,9 @@ public class Door : MonoBehaviour
     public void LockDoor()
     {
         islocked = true;
-        playerBarrier.SetActive(true);
+        //playerBarrier.SetActive(true);
+
+        playerBarrier.GetComponent<Collider>().isTrigger = false;
         doorMesh.enabled = true;
         isOpen = false;
     }

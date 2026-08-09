@@ -647,6 +647,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1559411826431614109, guid: 8ef948e3362c68849b32c509bce4a4b1, type: 3}
+      propertyPath: isExitDoor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559411826431614109, guid: 8ef948e3362c68849b32c509bce4a4b1, type: 3}
+      propertyPath: startsLocked
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2840383895982952926, guid: 8ef948e3362c68849b32c509bce4a4b1, type: 3}
       propertyPath: m_InScenePlaced
       value: 1

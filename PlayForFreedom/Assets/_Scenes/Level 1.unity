@@ -984,6 +984,10 @@ PrefabInstance:
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 893710487
       objectReference: {fileID: 0}
+    - target: {fileID: 422621667383012538, guid: 1d09d13e0602c094db8948ba9b8acb03, type: 3}
+      propertyPath: isExitDoor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 528219262864816180, guid: 1d09d13e0602c094db8948ba9b8acb03, type: 3}
       propertyPath: m_LocalPosition.x
       value: 150
@@ -1292,6 +1296,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 528219262864816180, guid: 1d09d13e0602c094db8948ba9b8acb03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1559411826431614109, guid: 1d09d13e0602c094db8948ba9b8acb03, type: 3}
+      propertyPath: isExitDoor
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1559411826431614109, guid: 1d09d13e0602c094db8948ba9b8acb03, type: 3}

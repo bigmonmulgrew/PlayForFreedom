@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeapon
   ShowTopMostFoldoutHeaderGroup: 1
   firingCooldown: 0.5
-  particleDamage: 0
-  damageMultiplier: 0
+  repeatFire: 0
+  baseDamage: 0
   projectile: {fileID: 173318939751075400, guid: 92d8fc2e78d26084688cda85328d88bb, type: 3}
   bulletSpawn: {fileID: 4230516242969178237}
   projectileForce: 100

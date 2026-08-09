@@ -1266,6 +1266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Studio Room 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8674187733664554056, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 437566705

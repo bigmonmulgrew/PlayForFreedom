@@ -1510,7 +1510,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1693512012251033085, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 4049541979
+      value: 389675953
       objectReference: {fileID: 0}
     - target: {fileID: 6390303525033110417, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1554,19 +1554,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6730201960102084004, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1324854449
+      value: 4135958004
       objectReference: {fileID: 0}
     - target: {fileID: 7501228039580216431, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3568298160
+      value: 2440127320
       objectReference: {fileID: 0}
     - target: {fileID: 8155586175612935269, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: m_Name
       value: Studio Room 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8326653938142033569, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
+      propertyPath: enemiesToSpawn
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8674187733664554056, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 710320545
+      value: 206184407
       objectReference: {fileID: 0}
     - target: {fileID: 8687836991483069051, guid: b5185eb38e0ac714b9e9d3d1c18dd037, type: 3}
       propertyPath: GlobalObjectIdHash
